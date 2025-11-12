@@ -89,7 +89,7 @@ export default function SegmentsAndMountingShowcase() {
                 }}
             />
 
-            <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
+            <div className="mx-auto max-w-7xl px-6 py-8 lg:py-14">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto">
                     <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-900 ring-1 ring-blue-200">
@@ -192,7 +192,7 @@ export default function SegmentsAndMountingShowcase() {
                             <div className="mt-6 pt-4 border-t border-slate-200">
                                 <a
                                     href="#contact"
-                                    className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-orange-500 to-amber-600 px-6 py-3 font-semibold text-white shadow-lg hover:brightness-105"
+                                    className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#F5B835] to-[#daa22a] px-6 py-3 font-semibold text-white shadow-lg hover:brightness-105"
                                 >
                                     Start Project for {activeData.price} <DollarSign className="h-5 w-5" />
                                 </a>

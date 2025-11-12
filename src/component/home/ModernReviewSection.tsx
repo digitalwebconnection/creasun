@@ -57,7 +57,7 @@ export default function  ModernReviewSection() {
   );
 
   return (
-    <section className="bg-gray-50 py-12 sm:py-16">
+    <section className="bg-gray-50 py-5 sm:py-10">
       {/* Hide scrollbar helper */}
       <style>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }

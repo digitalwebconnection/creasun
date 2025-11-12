@@ -106,7 +106,7 @@ export default function CreasunHomeHero() {
         >
           <a
             href="#quote"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FF8C00] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(255,140,0,0.35)] hover:brightness-110 transition"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B835] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(255,140,0,0.35)] hover:brightness-110 transition"
           >
             Get a Free Solar Quote
             <ArrowRight className="h-4 w-4" />
