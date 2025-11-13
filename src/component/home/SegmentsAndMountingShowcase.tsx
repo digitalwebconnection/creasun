@@ -1,13 +1,7 @@
-"use client";
+
 
 import React, { useState } from 'react';
 import { Sun, Home, Building2, Factory, Mountain, BadgeCheck, IndianRupee, Zap, TrendingUp, DollarSign, CheckCircle } from "lucide-react";
-
-/**
- * Creasun — Segments & Mounting Showcase (New Tabbed Design)
- * Focuses on an interactive, segmented view instead of a card grid.
- * TailwindCSS + lucide-react icons only.
- */
 
 // Define the colors and data structure
 const SEGMENTS_DATA: SegmentData[] = [
@@ -89,7 +83,7 @@ export default function SegmentsAndMountingShowcase() {
                 }}
             />
 
-            <div className="mx-auto max-w-7xl px-6 py-8 lg:py-14">
+            <div className="mx-auto max-w-7xl px-6 md:px-0 py-8 lg:py-14">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto">
                     <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-900 ring-1 ring-blue-200">

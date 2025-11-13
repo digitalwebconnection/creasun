@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
@@ -30,7 +28,20 @@ const BRAND = {
   yellow: "#F5B835",
 };
 
-const CITY_SUN = { Rajkot: 5.5 } as const;
+/** Avg sun hours for key Gujarat locations (approx values) */
+const CITY_SUN = {
+  Rajkot: 5.5,
+  Ahmedabad: 5.4,
+  Surat: 5.2,
+  Vadodara: 5.3,
+  Gandhinagar: 5.4,
+  Jamnagar: 5.5,
+  Bhavnagar: 5.4,
+  Bhuj: 5.7,
+  Junagadh: 5.3,
+  Morbi: 5.4,
+} as const;
+
 type City = keyof typeof CITY_SUN;
 
 type Segment = "Residential" | "Commercial" | "Industrial";
@@ -135,9 +146,10 @@ async function makePdf(payload: {
       ["Monthly Generation", `${payload.results.monthlyGen} kWh`],
       [
         "Payback Period",
-        `${Number.isFinite(payload.results.paybackYears)
-          ? payload.results.paybackYears.toFixed(1)
-          : "—"
+        `${
+          Number.isFinite(payload.results.paybackYears)
+            ? payload.results.paybackYears.toFixed(1)
+            : "—"
         } years`,
       ],
       ["Gross CAPEX", formatINRPlain(payload.results.capex)],
@@ -190,7 +202,13 @@ function Chip({ label, onClick }: { label: string; onClick: () => void }) {
   );
 }
 
-function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function Card({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -209,7 +227,13 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 }
 
 /* Animated number using framer-motion */
-function AnimatedNumber({ value, format }: { value: number; format?: (n: number) => string }) {
+function AnimatedNumber({
+  value,
+  format,
+}: {
+  value: number;
+  format?: (n: number) => string;
+}) {
   const mv = useMotionValue(0);
   const spring = useSpring(mv, { stiffness: 120, damping: 18, mass: 0.8 });
   const rounded = useTransform(spring, (v) => Math.round(v));
@@ -229,7 +253,17 @@ function AnimatedNumber({ value, format }: { value: number; format?: (n: number)
   return <span ref={ref}>{format ? format(0) : 0}</span>;
 }
 
-function Stat({ label, value, accent = "", isMoney = false }: { label: string; value: number; accent?: string; isMoney?: boolean }) {
+function Stat({
+  label,
+  value,
+  accent = "",
+  isMoney = false,
+}: {
+  label: string;
+  value: number;
+  accent?: string;
+  isMoney?: boolean;
+}) {
   return (
     <Card className="p-5">
       <div className="text-xs text-gray-500">{label}</div>
@@ -246,7 +280,8 @@ function Stat({ label, value, accent = "", isMoney = false }: { label: string; v
 
 /* ===================== Main Component ===================== */
 export default function CreasunCalculatorWhite() {
-  const [city] = useState<City>("Rajkot");
+  // 👇 city is now selectable
+  const [city, setCity] = useState<City>("Rajkot");
   const [segment, setSegment] = useState<Segment>("Residential");
   const [mount, setMount] = useState<Mount>("Rooftop");
 
@@ -263,19 +298,23 @@ export default function CreasunCalculatorWhite() {
 
   const result = useMemo(() => {
     const sunHours = CITY_SUN[city];
-    const monthlyKWh = monthlyBill > 0 && tariff > 0 ? monthlyBill / tariff : 0;
+    const monthlyKWh =
+      monthlyBill > 0 && tariff > 0 ? monthlyBill / tariff : 0;
     const targetKWh = monthlyKWh * TARGET_OFFSET;
     const kWhPerKwMonth = sunHours * 30 * PR;
 
-    const recommendedKw = kWhPerKwMonth > 0 ? clamp(targetKWh / kWhPerKwMonth, 0.3, 500) : 0;
+    const recommendedKw =
+      kWhPerKwMonth > 0 ? clamp(targetKWh / kWhPerKwMonth, 0.3, 500) : 0;
 
     const capex = Math.round(recommendedKw * costPerKw);
-    const subsidy = applySubsidy && subsidyAllowed ? subsidyForKw(recommendedKw) : 0;
+    const subsidy =
+      applySubsidy && subsidyAllowed ? subsidyForKw(recommendedKw) : 0;
     const netCapex = Math.max(0, capex - subsidy);
     const monthlyGen = Math.round(recommendedKw * kWhPerKwMonth);
     const monthlySavings = Math.round(monthlyGen * tariff);
     const annualSavings = monthlySavings * 12;
-    const paybackYears = annualSavings > 0 ? netCapex / annualSavings : Infinity;
+    const paybackYears =
+      annualSavings > 0 ? netCapex / annualSavings : Infinity;
 
     return {
       sunHours,
@@ -293,7 +332,9 @@ export default function CreasunCalculatorWhite() {
 
   const paybackPct = (() => {
     const scaleMax = 10; // visualize vs 10y bar
-    const yrs = Number.isFinite(result.paybackYears) ? result.paybackYears : scaleMax;
+    const yrs = Number.isFinite(result.paybackYears)
+      ? result.paybackYears
+      : scaleMax;
     return Math.max(0, Math.min(100, (yrs / scaleMax) * 100));
   })();
 
@@ -313,7 +354,7 @@ export default function CreasunCalculatorWhite() {
           transition={{ duration: 0.6 }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col gap-3 sm:gap-4">
+        <div className="max-w-7xl mx-auto px-6 md:px-0 py-10 flex flex-col gap-3 sm:gap-4">
           <motion.div
             className="inline-flex items-center justify-center gap-2 text-[13px] text-gray-600"
             initial={{ y: 10, opacity: 0 }}
@@ -321,7 +362,8 @@ export default function CreasunCalculatorWhite() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <BadgeCheck className="h-4 w-4" style={{ color: BRAND.yellow }} />
-            Creasun Energy • Rajkot • Rooftop, Ground-Mounted • Residential, Commercial & Industrial
+            Creasun Energy • Rooftop, Ground-Mounted • Residential, Commercial
+            & Industrial
           </motion.div>
 
           <motion.h1
@@ -339,27 +381,45 @@ export default function CreasunCalculatorWhite() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
-            Get an instant estimate of system size, cost, subsidy and ROI for your Rajkot property.
+            Get an instant estimate of system size, cost, subsidy and ROI for
+            your property.
           </motion.p>
         </div>
       </section>
 
       {/* Main */}
-      <main className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <main className="max-w-7xl mx-auto px-6 md:px-0 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Inputs Card */}
         <Card className="lg:col-span-1">
-          <h2 className="text-lg font-semibold pb-4 mb-6 border-b" style={{ color: BRAND.blue }}>
+          <h2
+            className="text-lg font-semibold pb-4 mb-6 border-b"
+            style={{ color: BRAND.blue }}
+          >
             <span className="inline-flex items-center gap-2">
               <DollarSign className="h-5 w-5" /> Your Inputs
             </span>
           </h2>
 
-          {/* City (fixed) */}
+          {/* City / Location – now selectable */}
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-1">City / Location</label>
-            <div className="p-3 rounded-xl bg-gray-50 border border-gray-200">Rajkot</div>
+            <label className="block text-sm font-medium mb-1">
+              City / Location (Gujarat)
+            </label>
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value as City)}
+              className="w-full p-3 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-[--accent] focus:border-[--accent] outline-none text-sm"
+              style={{ ["--accent" as any]: BRAND.sky }}
+            >
+              {Object.keys(CITY_SUN).map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
             <p className="text-xs text-gray-500 mt-1">
-              Avg Sun Hours: <b>{CITY_SUN[city]} kWh/m²/day</b>
+              Avg Sun Hours in <b>{city}</b>:{" "}
+              <b>{CITY_SUN[city]} kWh/m²/day</b>
             </p>
           </div>
 
@@ -391,7 +451,9 @@ export default function CreasunCalculatorWhite() {
 
           {/* Mount */}
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-2">Mounting Type</label>
+            <label className="block text-sm font-medium mb-2">
+              Mounting Type
+            </label>
             <div className="grid grid-cols-2 gap-2">
               {[
                 { key: "Rooftop", icon: <PanelsTopLeft className="w-4 h-4" /> },
@@ -420,7 +482,9 @@ export default function CreasunCalculatorWhite() {
 
           {/* Bill */}
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-1">Monthly Electricity Bill (₹)</label>
+            <label className="block text-sm font-medium mb-1">
+              Monthly Electricity Bill (₹)
+            </label>
             <motion.input
               type="number"
               value={monthlyBill}
@@ -428,11 +492,17 @@ export default function CreasunCalculatorWhite() {
               onChange={(e) => setMonthlyBill(Number(e.target.value || 0))}
               className="w-full p-3 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-[--accent] focus:border-[--accent] outline-none"
               style={{ ["--accent" as any]: BRAND.yellow }}
-              whileFocus={{ boxShadow: "0 0 0 2px rgba(245,184,53,.35)" }}
+              whileFocus={{
+                boxShadow: "0 0 0 2px rgba(245,184,53,.35)",
+              }}
             />
             <div className="flex flex-wrap gap-2 mt-2">
               {[2000, 3000, 5000, 8000, 12000, 25000, 50000].map((v) => (
-                <Chip key={v} label={`₹${v.toLocaleString()}`} onClick={() => setMonthlyBill(v)} />
+                <Chip
+                  key={v}
+                  label={`₹${v.toLocaleString()}`}
+                  onClick={() => setMonthlyBill(v)}
+                />
               ))}
             </div>
             {/* Slider */}
@@ -450,7 +520,9 @@ export default function CreasunCalculatorWhite() {
 
           {/* Tariff */}
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-1">Electricity Tariff (₹/kWh)</label>
+            <label className="block text-sm font-medium mb-1">
+              Electricity Tariff (₹/kWh)
+            </label>
             <motion.input
               type="number"
               step="0.1"
@@ -459,11 +531,17 @@ export default function CreasunCalculatorWhite() {
               onChange={(e) => setTariff(Number(e.target.value || 0))}
               className="w-full p-3 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-[--accent] focus:border-[--accent] outline-none"
               style={{ ["--accent" as any]: BRAND.yellow }}
-              whileFocus={{ boxShadow: "0 0 0 2px rgba(245,184,53,.35)" }}
+              whileFocus={{
+                boxShadow: "0 0 0 2px rgba(245,184,53,.35)",
+              }}
             />
             <div className="flex flex-wrap gap-2 mt-2">
               {[7, 8.5, 9, 10, 11, 12].map((v) => (
-                <Chip key={v} label={`${v}/kWh`} onClick={() => setTariff(v)} />
+                <Chip
+                  key={v}
+                  label={`${v}/kWh`}
+                  onClick={() => setTariff(v)}
+                />
               ))}
             </div>
             <p className="text-xs text-gray-500 mt-2">
@@ -485,7 +563,10 @@ export default function CreasunCalculatorWhite() {
             <label htmlFor="subsidy" className="text-sm select-none">
               Apply PM Surya Ghar Subsidy
               {!subsidyAllowed && (
-                <span className="text-xs text-gray-500"> (only Residential Rooftop eligible)</span>
+                <span className="text-xs text-gray-500">
+                  {" "}
+                  (only Residential Rooftop eligible)
+                </span>
               )}
             </label>
           </div>
@@ -500,11 +581,20 @@ export default function CreasunCalculatorWhite() {
                 <Zap className="w-4 h-4" style={{ color: BRAND.sky }} />
                 Recommended Size
               </div>
-              <div className="text-4xl font-extrabold mt-2" style={{ color: BRAND.blue }}>
+              <div
+                className="text-4xl font-extrabold mt-2"
+                style={{ color: BRAND.blue }}
+              >
                 {/* animate size value smoothly */}
-                <AnimatedNumber value={result.recommendedKw} format={(n) => `${n.toFixed(0)} kW`} />
+                <AnimatedNumber
+                  value={result.recommendedKw}
+                  format={(n) => `${n.toFixed(0)} kW`}
+                />
               </div>
-              <p className="text-xs text-gray-500 mt-2">Est. monthly generation: <b>{result.monthlyGen} kWh</b></p>
+              <p className="text-xs text-gray-500 mt-2">
+                Est. monthly generation:{" "}
+                <b>{result.monthlyGen} kWh</b>
+              </p>
             </Card>
 
             <Card>
@@ -513,8 +603,13 @@ export default function CreasunCalculatorWhite() {
                 Payback Period
               </div>
               <div className="text-4xl font-extrabold mt-2 text-blue-600">
-                {Number.isFinite(result.paybackYears) ? result.paybackYears.toFixed(1) : "—"}
-                <span className="text-base font-semibold text-gray-500"> years</span>
+                {Number.isFinite(result.paybackYears)
+                  ? result.paybackYears.toFixed(1)
+                  : "—"}
+                <span className="text-base font-semibold text-gray-500">
+                  {" "}
+                  years
+                </span>
               </div>
               {/* Animated progress bar (10-year scale) */}
               <div className="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -522,8 +617,15 @@ export default function CreasunCalculatorWhite() {
                   className="h-full rounded-full"
                   initial={false}
                   animate={{ width: `${100 - paybackPct}%` }}
-                  transition={{ type: "spring", stiffness: 160, damping: 22 }}
-                  style={{ background: "linear-gradient(90deg, #F5B835, #2E7AE3)" }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 160,
+                    damping: 22,
+                  }}
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #F5B835, #2E7AE3)",
+                  }}
                   title="Faster payback → fuller bar"
                 />
               </div>
@@ -535,15 +637,23 @@ export default function CreasunCalculatorWhite() {
                 Monthly Savings
               </div>
               <div className="text-4xl font-extrabold mt-2 text-blue-600">
-                <AnimatedNumber value={result.monthlySavings} format={(n) => fmtINR.format(n)} />
+                <AnimatedNumber
+                  value={result.monthlySavings}
+                  format={(n) => fmtINR.format(n)}
+                />
               </div>
-              <p className="text-xs text-gray-500 mt-2">Indicative savings based on current tariff</p>
+              <p className="text-xs text-gray-500 mt-2">
+                Indicative savings based on current tariff
+              </p>
             </Card>
           </div>
 
           {/* Price & Summary */}
           <Card>
-            <h3 className="text-lg font-semibold mb-4" style={{ color: BRAND.blue }}>
+            <h3
+              className="text-lg font-semibold mb-4"
+              style={{ color: BRAND.blue }}
+            >
               Investment & Savings Breakdown
             </h3>
 
@@ -560,7 +670,11 @@ export default function CreasunCalculatorWhite() {
                 {segment}
               </span>
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-400">
-                {mount === "Rooftop" ? <PanelsTopLeft className="w-4 h-4" /> : <Mountain className="w-4 h-4" />}
+                {mount === "Rooftop" ? (
+                  <PanelsTopLeft className="w-4 h-4" />
+                ) : (
+                  <Mountain className="w-4 h-4" />
+                )}
                 {mount}
               </span>
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 text-gray-700 border border-gray-600">
@@ -569,30 +683,54 @@ export default function CreasunCalculatorWhite() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Stat label="Gross CAPEX" value={result.capex} accent="text-gray-900" isMoney />
-              <Stat label="Subsidy" value={result.subsidy} accent="text-emerald-600" isMoney />
-              <Stat label="Net Cost" value={result.netCapex} accent="text-indigo-600" isMoney />
-              <Stat label="Monthly Savings" value={result.monthlySavings} accent="text-amber-600" isMoney />
+              <Stat
+                label="Gross CAPEX"
+                value={result.capex}
+                accent="text-gray-900"
+                isMoney
+              />
+              <Stat
+                label="Subsidy"
+                value={result.subsidy}
+                accent="text-emerald-600"
+                isMoney
+              />
+              <Stat
+                label="Net Cost"
+                value={result.netCapex}
+                accent="text-indigo-600"
+                isMoney
+              />
+              <Stat
+                label="Monthly Savings"
+                value={result.monthlySavings}
+                accent="text-amber-600"
+                isMoney
+              />
             </div>
           </Card>
 
           {/* Info strip */}
           <motion.div
-            className="rounded-xl border border-gray-800/50 bg-linear-to-r from-[#FFF9E6] to-white p-4 text-sm text-gray-700 flex items-center gap-2 shadow-md shadow-yellow-500/20"
+            className="rounded-xl border border-gray-800/50 bg-gradient-to-r from-[#FFF9E6] to-white p-4 text-sm text-gray-700 flex items-center gap-2 shadow-md shadow-yellow-500/20"
             initial={{ opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.35 }}
           >
             <BadgeCheck className="h-4 w-4" style={{ color: BRAND.yellow }} />
-            Creasun provides site survey, design, installation, subsidy assistance & AMC in Rajkot.
+            Creasun provides site survey, design, installation, subsidy
+            assistance & AMC across Gujarat.
           </motion.div>
 
           {/* ---------- DETAILS ---------- */}
           <Card>
             {/* Live price matrix */}
             <div className="mt-1">
-              <h4 className="text-base font-semibold mb-3" style={{ color: BRAND.blue }}>
+              <h4
+                className="text-base font-semibold mb-3"
+                style={{ color: BRAND.blue }}
+              >
                 Indicative Price Matrix (₹/kW — excl. taxes)
               </h4>
               <div className="overflow-x-auto rounded-xl border border-gray-200">
@@ -601,17 +739,30 @@ export default function CreasunCalculatorWhite() {
                     <tr className="text-left">
                       <th className="px-4 py-3 font-semibold">Segment</th>
                       <th className="px-4 py-3 font-semibold">Rooftop</th>
-                      <th className="px-4 py-3 font-semibold">Ground-Mounted</th>
+                      <th className="px-4 py-3 font-semibold">
+                        Ground-Mounted
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {(["Residential", "Commercial", "Industrial"] as const).map((seg) => (
-                      <tr key={seg} className="border-t">
-                        <td className="px-4 py-3">{seg}</td>
-                        <td className="px-4 py-3">₹{COST_PER_KW_MATRIX[seg].Rooftop.toLocaleString()}/kW</td>
-                        <td className="px-4 py-3">₹{COST_PER_KW_MATRIX[seg]["Ground-Mounted"].toLocaleString()}/kW</td>
-                      </tr>
-                    ))}
+                    {(["Residential", "Commercial", "Industrial"] as const).map(
+                      (seg) => (
+                        <tr key={seg} className="border-t">
+                          <td className="px-4 py-3">{seg}</td>
+                          <td className="px-4 py-3">
+                            ₹{COST_PER_KW_MATRIX[seg].Rooftop.toLocaleString()}
+                            /kW
+                          </td>
+                          <td className="px-4 py-3">
+                            ₹
+                            {COST_PER_KW_MATRIX[seg][
+                              "Ground-Mounted"
+                            ].toLocaleString()}
+                            /kW
+                          </td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -641,10 +792,19 @@ export default function CreasunCalculatorWhite() {
                 segment,
                 mount,
                 costPerKw,
-                inputs: { monthlyBill, tariff, applySubsidy: applySubsidy && (segment === "Residential" && mount === "Rooftop") },
+                inputs: {
+                  monthlyBill,
+                  tariff,
+                  applySubsidy:
+                    applySubsidy &&
+                    segment === "Residential" &&
+                    mount === "Rooftop",
+                },
                 results: result,
               });
-              doc.save(`Creasun_Estimate_${city}_${segment}_${mount}_${Date.now()}.pdf`);
+              doc.save(
+                `Creasun_Estimate_${city}_${segment}_${mount}_${Date.now()}.pdf`
+              );
             }}
             className="px-8 py-3 rounded-full font-semibold border border-gray-300 hover:bg-gray-50 flex items-center gap-2"
             style={{ color: BRAND.blue }}

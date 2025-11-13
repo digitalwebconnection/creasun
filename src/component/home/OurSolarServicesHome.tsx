@@ -1,4 +1,3 @@
-"use client";
 
 import {
   Sun,
@@ -82,13 +81,13 @@ export default function SolarServicesGridCreasun() {
         }}
       />
 
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-10">
+      <div className="mx-auto max-w-7xl px-6 md:px-0 py-8 lg:py-10">
         <header className="max-w-7xl mx-auto text-center">
           <p className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-900 ring-1 ring-amber-200">
             <span className="h-2 w-2 rounded-full bg-amber-500" /> Our Solar Services
           </p>
           <h2 className="mt-3 max-w-3xl mx-auto text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            Reliable rooftop solar — engineered in Rajkot, built for India
+            Reliable rooftop solar — engineered in Gujrat , built for India
           </h2>
           <p className="mt-3 text-slate-600">
             Transparent scopes, tidy execution, and measurable savings. Pick what you need or go turnkey — we’ll handle the rest.

@@ -1,4 +1,3 @@
-"use client";
 
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Sun } from "lucide-react";
 import logo from "../assets/creasun.png";
@@ -27,9 +26,7 @@ export default function Footer() {
           <p className="mt-4 text-sm leading-relaxed">
             Clean Power. Smart Savings. Reliable Service.{" "}
             <br />
-            <span className="text-[#F5B835] font-semibold">
-              Made in Rajkot, Gujarat.
-            </span>
+            Creasun Energy is your trusted partner for end-to-end solar
           </p>
 
           {/* Socials */}
@@ -125,7 +122,7 @@ export default function Footer() {
       <div className="border-t border-[#2E7AE3]/40 bg-[#021A5E]/50 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm">
           <p className="text-[#B1D5FA]/90">
-            © {currentYear} Creasun Energy, Rajkot. All rights reserved.
+            © {currentYear} Creasun Energy. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a href="#privacy" className="hover:text-[#F5B835]">Privacy</a>

@@ -1,4 +1,3 @@
-"use client";
 
 import { motion, type Variants, type Transition } from "framer-motion";
 import {
@@ -67,7 +66,7 @@ export default function CreasunHomeHero() {
           className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm font-semibold backdrop-blur"
         >
           <Sun className="h-4 w-4 text-[#F5B835]" />
-          Rajkot’s Trusted Solar Partner • Creasun Energy
+          Gujrat Trusted Solar Partner • Creasun Energy
         </motion.div>
 
         {/* Headline */}
@@ -77,7 +76,7 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
           className="mt-6 text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-[0_4px_18px_rgba(0,0,0,0.6)]"
         >
-          Clean Power for Rajkot,
+          Clean Power for Gujrat,
           <br className="hidden sm:block" /> Smart Savings for You -{" "}
           <span className="bg-linear-to-r from-[#1a52f8] via-[#296dcc] to-[#4889c9] bg-clip-text text-transparent">
             Creasun Energy
@@ -91,7 +90,7 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
           className="mt-4 max-w-2xl text-base sm:text-lg text-white/90"
         >
-          Rajkot-based EPC delivering end-to-end rooftop, commercial and
+          Gujrat -based EPC delivering end-to-end rooftop, commercial and
           industrial solar. From site survey and design to installation,
           subsidy/documentation and AMC—Creasun makes going solar simple and
           reliable.
@@ -119,7 +118,7 @@ export default function CreasunHomeHero() {
           </a>
         </motion.div>
 
-        {/* Trust chips – Rajkot/Saurashtra focus */}
+        {/* Trust chips – Gujrat /Saurashtra focus */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -127,7 +126,7 @@ export default function CreasunHomeHero() {
           className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
         >
           {[
-            { icon: Leaf, label: "Serving Rajkot & Saurashtra" },
+            { icon: Leaf, label: "Serving Gujrat  & Saurashtra" },
             { icon: BatteryCharging, label: "Rooftop • Commercial • Industrial" },
             { icon: Sun, label: "Design • Installation • AMC" },
           ].map(({ icon: Icon, label }) => (

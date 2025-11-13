@@ -1,4 +1,3 @@
-"use client";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -30,7 +29,7 @@ export default function Scroll() {
 
   return (
     <main className="w-full bg-linear-to-b from-white via-slate-50 to-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-0 py-12 sm:py-6">
         <header className="mb-6 sm:mb-10 text-center">
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Our Partners

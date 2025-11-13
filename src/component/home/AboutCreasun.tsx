@@ -11,8 +11,6 @@ import {
   BarChart3,
 } from "lucide-react";
 
-
-
 export default function AboutCreasun() {
   return (
     <section className="relative overflow-hidden bg-linear-to-b from-white via-[#F8FAFF] to-[#EEF3FF] py-10">
@@ -25,7 +23,7 @@ export default function AboutCreasun() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-0 text-center">
         <span className="inline-flex items-center gap-2 rounded-full bg-[#F5B835]/90 px-8 py-2 text-sm font-semibold text-black ring-1 ring-amber-400">
           <Sun className="h-4 w-4 text-black" /> Creasun Energy
         </span>
@@ -55,7 +53,7 @@ export default function AboutCreasun() {
       </div>
 
       {/* CORE SECTIONS */}
-      <div className="mt-10 grid gap-8 md:grid-cols-3 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="mt-10 grid gap-8 md:grid-cols-3 max-w-7xl mx-auto px-6 lg:px-0">
         <AnimatedCard
           icon={<Factory className="h-8 w-8 text-[#F5B835]" />}
           title="Solar Manufacturing"
@@ -89,7 +87,7 @@ function AnimatedCard({ icon, title, desc, points }: { icon: React.ReactNode; ti
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -3 }}
-      className="relative rounded-2xl bg-white p-6 border border-gray-800/50 shadow-lg shadow-blue-500/20 hover:shadow-2xl hover:scale-105 hover:border-[#2E7AE3]/80 transition-all duration-300"
+      className="relative rounded-2xl bg-white p-6 hover:bg-[rgb(255,245,224)] border border-gray-800/20 shadow-lg shadow-blue-500/20 hover:shadow-2xl hover:scale-101 hover:border-[#2E7AE3]/20 transition-all duration-300"
     >
       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-[#F5B835]/20 to-[#2E7AE3]/10">
         {icon}
@@ -106,8 +104,6 @@ function AnimatedCard({ icon, title, desc, points }: { icon: React.ReactNode; ti
     </motion.div>
   );
 }
-
-
 
 function SDGPill({ icon, label, color }: { icon: React.ReactNode; label: string; color: "emerald" | "sky" }) {
   const bg = color === "emerald" ? "bg-emerald-200/80 ring-emerald-200 text-black" : "bg-sky-200/80 ring-sky-200 text-sky-950";

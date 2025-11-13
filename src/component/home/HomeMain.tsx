@@ -6,6 +6,7 @@ import OurSolarServicesCreasun from "./OurSolarServicesHome"
 import Scroll from "./ScerollHome"
 import SegmentsAndMountingShowcase from "./SegmentsAndMountingShowcase"
 import SimpleFAQ from "./SimpleFAQ"
+import WhatWeDo from "./WhatWeDo"
 
 const HomeMain = () => {
   return (
@@ -14,6 +15,7 @@ const HomeMain = () => {
     <CreasunCalculator/>
     <AboutCreasun/>
     <Scroll/>
+    <WhatWeDo/>
     <OurSolarServicesCreasun/>
     <SegmentsAndMountingShowcase/>
     <ModernReviewSection/>
