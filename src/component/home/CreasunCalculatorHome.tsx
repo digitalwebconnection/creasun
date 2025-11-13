@@ -712,7 +712,7 @@ export default function CreasunCalculatorWhite() {
 
           {/* Info strip */}
           <motion.div
-            className="rounded-xl border border-gray-800/50 bg-gradient-to-r from-[#FFF9E6] to-white p-4 text-sm text-gray-700 flex items-center gap-2 shadow-md shadow-yellow-500/20"
+            className="rounded-xl border border-gray-800/50 bg-linear-to-r from-[#FFF9E6] to-white p-4 text-sm text-gray-700 flex items-center gap-2 shadow-md shadow-yellow-500/20"
             initial={{ opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
