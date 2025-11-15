@@ -123,19 +123,19 @@ function ZigZagRow({ item, index }: { item: ServiceItem; index: number }) {
   const isRight = index % 2 === 1;
 
   return (
-    <div className={`flex ${isRight ? "justify-end" : "justify-start"}`}>
+    <div className={`flex ${isRight ? "justify-end " : "justify-start"}`}>
       <div
         className={`flex items-center gap-4 ${
           isRight ? "flex-row-reverse" : ""
         }`}
       >
         {/* circle */}
-        <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#031E6C] shadow-md shadow-[#031E6C]/40 ring-2 ring-white">
+        <div className="relative flex h-16 w-16 -mt-8 items-center justify-center rounded-full bg-[#031E6C] shadow-md shadow-[#031E6C]/40 ring-2 ring-white">
           <div className="absolute inset-[3px] rounded-full bg-linear-to-br from-[#2E7AE3] via-[#B1D5FA] to-[#0A2E9E]" />
           <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white">
             <Icon className="h-6 w-6 text-[#0A2E9E]" />
           </div>
-          <span className="absolute -bottom-1.5 right-1 h-3 w-3 rounded-full bg-[#F5B835] shadow-sm shadow-[#F5B835]/70" />
+          {/* <span className="absolute -bottom-1.5 right-1 h-3 w-3 rounded-full bg-[#F5B835] shadow-sm shadow-[#F5B835]/70" /> */}
         </div>
 
         {/* pill + small description */}
