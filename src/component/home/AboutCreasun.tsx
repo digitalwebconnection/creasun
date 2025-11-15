@@ -1,116 +1,84 @@
+"use client";
 
 import { motion } from "framer-motion";
 import {
   Sun,
   Leaf,
-  Zap,
-  Factory,
-  ShieldCheck,
-  Sparkles,
-  BarChart3,
+  Lightbulb, // New icon for Innovation
 } from "lucide-react";
 
-export default function AboutCreasun() {
+
+
+function HighlightPill({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-white via-[#F8FAFF] to-[#EEF3FF] py-10">
-      {/* Background accents */}
+    <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium  ring-1 ring-[#0A2E9E] ]">
+      <span className="">{icon}</span>
+      {label}
+    </span>
+  );
+}
+
+/* ───────────────────────────────── Page Component (Redesigned) ───────────────────────────────── */
+
+export default function AboutCreasunRedesign() {
+  return (
+    <section className="relative overflow-hidden bg-white py-10 sm:py-14">
+      {/* Background accents (Changed color) */}
       <div
-        className="absolute inset-0 -z-10 opacity-50"
+        className="absolute inset-0 -z-10 opacity-70"
         style={{
           background:
-            "radial-gradient(700px 300px at 80% 0%, rgba(46,122,227,0.12), transparent 70%), radial-gradient(900px 400px at 20% 0%, rgba(245,184,53,0.15), transparent 70%)",
+            "radial-gradient(1000px 500px at 10% 0%, rgba(132, 204, 22, 0.05), transparent 70%), radial-gradient(1200px 600px at 90% 10%, rgba(20, 83, 45, 0.08), transparent 70%)",
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-0 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full bg-[#F5B835]/90 px-8 py-2 text-sm font-semibold text-black ring-1 ring-amber-400">
-          <Sun className="h-4 w-4 text-black" /> Creasun Energy
-        </span>
+      <div className="max-w-7xl mx-auto px-6 lg:px-0">
 
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-4 text-4xl sm:text-5xl font-extrabold max-w-4xl mx-auto  tracking-tight text-[#031E6C]"
-        >
-          Engineering Brighter Tomorrows - One Rooftop at a Time
-        </motion.h2>
+        {/* HEADER: Split Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center text-left">
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="mt-4 max-w-7xl mx-auto text-lg text-gray-600"
-        >
-          Creasun Energy is a leading solar EPC & manufacturing company delivering complete solar solutions — from high-efficiency panels to intelligent power systems — designed to make clean energy affordable, accessible, and future-ready.
-        </motion.p>
+          {/* Left: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full  px-4 py-1.5 text-sm font-bold text-[#F5B835] ring-2 ring-[#F5B835]">
+              <Sun className="h-5 w-5 text-[#F5B835]" /> CREASUN ENERGY
+            </span>
 
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <SDGPill icon={<Leaf className="h-4 w-4" />} label="Sustainable Growth" color="emerald" />
-          <SDGPill icon={<Zap className="h-4 w-4" />} label="Clean Power Generation" color="sky" />
+            <h2 className="mt-4 text-5xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
+              Engineering <span className="text-[#0A2E9E]">Future-Ready</span> Solar Solutions
+            </h2>
+
+            <p className="mt-6 text-lg text-slate-600">
+              Creasun Energy is the trusted solar EPC & manufacturing partner, seamlessly integrating high-performance proprietary components with certified modules (Adani, Polycab) to deliver **optimized, durable, and cost-effective** clean power systems for C&I sectors.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <HighlightPill icon={<Leaf className="h-4 w-4" />} label="Sustainable Impact" />
+              <HighlightPill icon={<Lightbulb className="h-4 w-4" />} label="Component Innovation" />
+            </div>
+          </motion.div>
+
+          {/* Right: Simulated Visual/Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="hidden lg:block h-[400px] w-full rounded-3xl bg-[#031E6C] shadow-2xl shadow-slate-900/50 p-2 relative overflow-hidden"
+            
+          >
+            <div className="absolute inset-4 rounded-2xl border-4 border-dashed border-blue-500/50 flex items-center justify-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3m4ULjD46IrPwN6UiO44Fb7FdqtdwYFQ2A&s" alt="" className="w-full h-full rounded-2xl" />
+            </div>
+          </motion.div>
         </div>
-      </div>
 
-      {/* CORE SECTIONS */}
-      <div className="mt-10 grid gap-8 md:grid-cols-3 max-w-7xl mx-auto px-6 lg:px-0">
-        <AnimatedCard
-          icon={<Factory className="h-8 w-8 text-[#F5B835]" />}
-          title="Solar Manufacturing"
-          desc="Creasun manufactures high-performance ACDBs, DCDBs, and integrated solar kits ensuring unmatched reliability and long lifespan."
-          points={["Precision-engineered products", "Made in India", "Adani & Polycab partnerships"]}
-        />
-        <AnimatedCard
-          icon={<ShieldCheck className="h-8 w-8 text-[#2E7AE3]" />}
-          title="Trusted EPC Partner"
-          desc="From residential rooftops to large-scale industrial plants, we manage the entire EPC process with safety, speed, and precision."
-          points={["On-site survey & design", "Turnkey installation", "Compliance & subsidy handling"]}
-        />
-        <AnimatedCard
-          icon={<BarChart3 className="h-8 w-8 text-[#031E6C]" />}
-          title="ROI & Energy Analytics"
-          desc="We ensure every solar investment is financially optimized through detailed payback analysis and performance monitoring."
-          points={["Transparent cost structure", "Live performance tracking", "Predictive savings modeling"]}
-        />
-      </div>
 
+      </div>
     </section>
-  );
-}
-
-/* -------- Helper Components -------- */
-function AnimatedCard({ icon, title, desc, points }: { icon: React.ReactNode; title: string; desc: string; points: string[] }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -3 }}
-      className="relative rounded-2xl bg-white p-6 hover:bg-[rgb(255,245,224)] border border-gray-800/20 shadow-lg shadow-blue-500/20 hover:shadow-2xl hover:scale-101 hover:border-[#2E7AE3]/20 transition-all duration-300"
-    >
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-[#F5B835]/20 to-[#2E7AE3]/10">
-        {icon}
-      </div>
-      <h3 className="mt-4 text-lg font-bold text-gray-900">{title}</h3>
-      <p className="mt-2 text-gray-600">{desc}</p>
-      <ul className="mt-4 text-sm text-gray-700 space-y-1">
-        {points.map((p, i) => (
-          <li key={i} className="flex gap-2">
-            <Sparkles className="h-4 w-4 text-[#2E7AE3] mt-0.5" /> {p}
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-  );
-}
-
-function SDGPill({ icon, label, color }: { icon: React.ReactNode; label: string; color: "emerald" | "sky" }) {
-  const bg = color === "emerald" ? "bg-emerald-200/80 ring-emerald-200 text-black" : "bg-sky-200/80 ring-sky-200 text-sky-950";
-  const ic = color === "emerald" ? "text-emerald-600" : "text-sky-600";
-  return (
-    <span className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium ring-1 ${bg}`}>
-      <span className={ic}>{icon}</span>
-      {label}
-    </span>
   );
 }

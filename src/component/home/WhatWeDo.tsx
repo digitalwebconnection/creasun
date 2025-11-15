@@ -122,19 +122,6 @@ export default function WhatWeDo() {
             );
           })}
         </div>
-
-        {/* Optional bottom line / reassurance */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mx-auto max-w-3xl text-center text-sm sm:text-base text-slate-600"
-        >
-          From feasibility to commissioning, Creasun Energy  delivers
-          end-to-end solar and clean energy solutions designed for long-term
-          reliability, savings, and sustainability.
-        </motion.p>
       </div>
     </section>
   );

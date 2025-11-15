@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "../assets/creasun.png"; // keep your existing path
+import logo from "../assets/creasun2.png"; // keep your existing path
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -58,21 +58,14 @@ export default function Header() {
             {/* Left: Logo + Name */}
             <div className="flex items-center gap-3">
               <a href="#top" className="flex items-center gap-3">
-                <div className="h-10 w-auto">
+                <div className="h-22 w-auto">
                   <img
                     src={logo}
                     alt="Creasun Energy"
-                    className="h-10 w-auto object-contain"
+                    className="h-full w-48 object-contain"
                   />
                 </div>
-                <div className="hidden sm:flex flex-col leading-tight">
-                  <span className="text-sm font-semibold text-[#031E6C] tracking-wide uppercase">
-                    Creasun Energy
-                  </span>
-                  <span className="text-[11px] text-slate-500">
-                    Rajkot • Solar EPC &amp; Solutions
-                  </span>
-                </div>
+                
               </a>
             </div>
 
