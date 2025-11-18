@@ -38,7 +38,7 @@ export default function Scroll() {
       <div className="mx-auto max-w-7xl px-4 sm:px-0 py-10">
         <header className="mb-6 text-center">
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-            Our Partners
+            Solar Penal Brand
           </h1>
           <p className="mt-2 text-slate-600">
             Trusted by leading brands in the solar industry.
@@ -87,12 +87,11 @@ function Marquee({
   duration: number;
 }) {
   const logos = [
-    { src: "https://www.epcworld.in/wp-content/uploads/2025/05/1473406729waree%20-%20final.jpg", alt: "Waaree" },
-    { src: "https://companieslogo.com/img/orig/POLYCAB.NS_BIG-75d2f870.png?t=1729362040", alt: "Polycab" },
-    { src: "https://i0.wp.com/solarquarter.com/wp-content/uploads/2019/10/Adani-Solar.png?fit=200%2C124&ssl=1", alt: "Adani Solar" },
-    { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/ISO_9001-2015.svg/1200px-ISO_9001-2015.svg.png", alt: "ISO 9001" },
-    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq3nvPsX4c16iUN2F2LIxvu9Ru7D2iqHJTbRD5JAaDuFBgyWvqbYaA4o6YsWj0_L3OORI&usqp=CAU", alt: "ISO 14001" },
-    { src: "https://5.imimg.com/data5/SELLER/Default/2023/8/333242435/WU/UE/UO/1883722/iso-45001-2018-occupational-health-and-safety.jpg", alt: "ISO 45001" },
+    { src: "https://rayzonsolar.com/img/rayzon-solar-logo-teal.png", alt: "rayzon green energy" },
+    { src: "https://pahalsolar.com/wp-content/uploads/2025/04/logo-2_page-0001-scaled-e1745927127322.jpg", alt: "pahal solar" },
+    { src: "https://www.cengrs.com/assets/upload/news/1604574110-tata-power-solar.jpg", alt: " Tata Power Solar" },
+    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPU9RzArjtkccQK9fvarpXLRPc4VnLITCAYw&s", alt: "goldi solar" },
+   
   ];
 
   /* Two copies of list → seamless scroll */

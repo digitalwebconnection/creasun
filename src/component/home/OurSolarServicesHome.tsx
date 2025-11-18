@@ -39,7 +39,7 @@ const services: ServiceItem[] = [
   {
     key: "bos",
     title: "Inverters & BOS Supply",
-    desc: "Adani panels, Polycab inverters, Creasun ACDB/DCDB.",
+    desc: "Adani panels, Polycab inverters, Creasun L&T",
     icon: Cable,
   },
   {

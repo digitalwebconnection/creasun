@@ -1,4 +1,3 @@
-"use client";
 
 import { motion } from "framer-motion";
 import {
@@ -53,7 +52,7 @@ export default function AboutCreasunRedesign() {
             </h2>
 
             <p className="mt-6 text-lg text-slate-600">
-              Creasun Energy is the trusted solar EPC & manufacturing partner, seamlessly integrating high-performance proprietary components with certified modules (Adani, Polycab) to deliver **optimized, durable, and cost-effective** clean power systems for C&I sectors.
+              Creasun Energy is the trusted solar EPC & manufacturing partner, seamlessly integrating high-performance proprietary components with certified modules to deliver **optimized, durable, and cost-effective** clean power systems for C&I sectors.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
