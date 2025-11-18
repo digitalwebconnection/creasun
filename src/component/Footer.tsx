@@ -68,6 +68,7 @@ export default function Footer() {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-10 px-6 py-8 sm:px-0">
+
           {/* Brand */}
           <div>
             <img
@@ -84,27 +85,40 @@ export default function Footer() {
 
             {/* Socials */}
             <div className="mt-5 flex items-center gap-3">
+
+              {/* Facebook */}
               <a
-                href="#"
+                href="https://www.facebook.com/creasunenergy/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2 hover:bg-[#F5B835]/20 transition"
                 aria-label="Facebook"
               >
                 <Facebook className="h-4 w-4 text-[#F5B835]" />
               </a>
+
+              {/* Instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com/creasunenergy?igsh=b2F6NGZsdXc2dGEx&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2 hover:bg-[#F5B835]/20 transition"
                 aria-label="Instagram"
               >
                 <Instagram className="h-4 w-4 text-[#F5B835]" />
               </a>
+
+              {/* LinkedIn */}
               <a
-                href="#"
+                href="https://www.linkedin.com/company/creasun-energy/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2 hover:bg-[#F5B835]/20 transition"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4 text-[#F5B835]" />
               </a>
+
             </div>
           </div>
 
@@ -115,24 +129,16 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#about" className="hover:text-[#F5B835]">
-                  About Us
-                </a>
+                <a href="/about" className="hover:text-[#F5B835]">About Us</a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#F5B835]">
-                  Services
-                </a>
+                <a href="#services" className="hover:text-[#F5B835]">Services</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-[#F5B835]">
-                  Products
-                </a>
+                <a href="#products" className="hover:text-[#F5B835]">Products</a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-[#F5B835]">
-                  Projects
-                </a>
+                <a href="#projects" className="hover:text-[#F5B835]">Projects</a>
               </li>
             </ul>
           </div>
@@ -144,24 +150,16 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#subsidy" className="hover:text-[#F5B835]">
-                  PM Surya Ghar Guide
-                </a>
+                <a href="#subsidy" className="hover:text-[#F5B835]">PM Surya Ghar Guide</a>
               </li>
               <li>
-                <a href="#warranty" className="hover:text-[#F5B835]">
-                  Warranty & Service
-                </a>
+                <a href="#warranty" className="hover:text-[#F5B835]">Warranty & Service</a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-[#F5B835]">
-                  FAQ
-                </a>
+                <a href="#faq" className="hover:text-[#F5B835]">FAQ</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-[#F5B835]">
-                  Contact
-                </a>
+                <a href="#contact" className="hover:text-[#F5B835]">Contact</a>
               </li>
             </ul>
           </div>
@@ -174,26 +172,26 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-[#F5B835]" />
-                <span>Rajkot, Gujarat — 360001</span>
+                <span>Floor Navsarjan, RMC Complex, Office No. 3, Third, Mavdi Main Road, Rajkot, Gujarat 360004</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-[#F5B835]" />
-                <a href="tel:+919999999999" className="hover:text-[#F5B835]">
-                  +91 99999 99999
+                <a href="tel:+9196241 20591" className="hover:text-[#F5B835]">
+                  +91 96241 20591
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#F5B835]" />
                 <a
-                  href="mailto:info@creasunenergy.in"
+                  href="mailto:creasunenergy24@gmail.com"
                   className="hover:text-[#F5B835]"
                 >
-                  info@creasunenergy.in
+                  creasunenergy24@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="https://maps.google.com/?q=Rajkot+Gujarat+360001"
+                  href="https://share.google/NTWwf5kKrOkAqVBFy"
                   className="underline decoration-[#2E7AE3]/60 hover:text-[#F5B835]"
                 >
                   View on Map
@@ -210,22 +208,18 @@ export default function Footer() {
               © {currentYear} Creasun Energy. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#privacy" className="hover:text-[#F5B835]">
-                Privacy
-              </a>
-              <a href="#terms" className="hover:text-[#F5B835]">
-                Terms
-              </a>
-              <a href="#sitemap" className="hover:text-[#F5B835]">
-                Sitemap
-              </a>
+              <a href="#privacy" className="hover:text-[#F5B835]">Privacy</a>
+              <a href="#terms" className="hover:text-[#F5B835]">Terms</a>
+              <a href="#sitemap" className="hover:text-[#F5B835]">Sitemap</a>
             </div>
           </div>
         </div>
 
         {/* Decorative Background Glow */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#F5B835]/10 blur-3xl rounded-full opacity-40" />
+
       </footer>
+
     </>
   );
 }

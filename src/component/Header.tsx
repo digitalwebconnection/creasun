@@ -12,7 +12,7 @@ export default function Header() {
     { label: "About", href: "/about" },
     { label: "Services", href: "/#services" },
     { label: "Projects", href: "/#projects" },
-    { label: "Careers", href: "/#careers" },
+    { label: "Contact Us", href: "/contactus" },
   ];
 
   // ===== Smart hide/show on scroll =====
@@ -67,7 +67,7 @@ export default function Header() {
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
+            <nav className="hidden md:flex items-center gap-10 text-lg font-medium text-slate-700">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -79,25 +79,18 @@ export default function Header() {
                 </Link>
               ))}
 
-              <Link
-                to="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-[#F5B835] px-4 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm hover:bg-[#2E7AE3] hover:text-white transition-colors"
+              <a
+                href="tel:+9196241 20591"
+                className="inline-flex items-center gap-2 rounded-full bg-[#F5B835] px-10 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm hover:bg-[#2E7AE3] hover:text-white transition-colors"
               >
                 <Phone className="h-4 w-4" />
-                Contact Us
-              </Link>
+                Call Us
+              </a>
             </nav>
 
             {/* Mobile: CTA + Menu */}
             <div className="flex items-center gap-2 md:hidden">
-              <Link
-                to="/#contact"
-                className="inline-flex items-center justify-center rounded-full border border-[#F5B835]/60 bg-white px-3 py-1.5 text-xs font-semibold text-[#031E6C] shadow-sm hover:bg-[#F5B835] hover:text-[#031E6C] transition-colors"
-              >
-                Call Us
-              </Link>
-
-              <button
+            <button
                 type="button"
                 onClick={() => setOpen((prev) => !prev)}
                 className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 hover:text-[#031E6C] focus:outline-none focus:ring-2 focus:ring-[#2E7AE3]"

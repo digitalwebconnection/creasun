@@ -25,7 +25,7 @@ export default function ModernReviewSection() {
     },
     {
       name: "Sanjay Yadav",
-      location: "Nagpur, MH",
+      location: "Nagpur, GJ ",
       rating: 5,
       comment:
         "Clean work, on-time completion, and really good after-sales service. Highly recommended!",

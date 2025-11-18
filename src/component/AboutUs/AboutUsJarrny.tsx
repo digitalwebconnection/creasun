@@ -12,7 +12,7 @@ const steps = [
     {
         id: 1,
         title: "Free Site Survey",
-        desc: "Roof study, load assessment, shading analysis & feasibility check.",
+        desc: "Roof study, load assessment, shading analysis & feasibility.",
     },
     {
         id: 2,
@@ -55,7 +55,6 @@ const leaders = [
     },
 ];
 
-
 const faqs = [
     {
         question: "How involved is the leadership team in day-to-day projects?",
@@ -79,15 +78,13 @@ const faqs = [
     },
 ];
 
-
-
 const ProcessTimeline = () => {
 
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
         <main className="bg-white">
-
+            
             {/* ====== HOW IT WORKS SECTION ====== */}
             <section className="relative py-8 sm:py-10 bg-linear-to-b from-slate-50 via-white to-slate-100 overflow-hidden">
                 {/* soft background blobs */}
@@ -157,7 +154,8 @@ const ProcessTimeline = () => {
                     </div>
 
                 </div>
-            </section>
+            </section>  
+
             {/* ====== JOURNEY SECTION ====== */}
             <motion.section
                 className="timeline-section max-w-7xl mx-auto py-10"
@@ -168,7 +166,7 @@ const ProcessTimeline = () => {
                 transition={{ duration: 0.65 }}
             >
                 <motion.h1
-                    className="text-5xl max-w-3xl mx-auto font-bold text-blue-950 text-center"
+                    className="text-3xl md:text-5xl max-w-3xl mx-auto font-bold text-blue-950 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.4 }}
@@ -180,7 +178,7 @@ const ProcessTimeline = () => {
                 <div className="timeline-steps">
                     {/* 1. Foundation & First Rooftop Projects */}
                     <motion.div
-                        className="step step-top mb-30 "
+                        className="step step-top mb-0 md:mb-30 "
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.4 }}
@@ -204,7 +202,7 @@ const ProcessTimeline = () => {
 
                     {/* 2. Expanding to Commercial & Industrial */}
                     <motion.div
-                        className="step step-bottom mt-20"
+                        className="step step-bottom mt-0 md:mt-20"
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.4 }}
@@ -228,7 +226,7 @@ const ProcessTimeline = () => {
 
                     {/* 3. MW-Scale Milestones & Engineering Focus */}
                     <motion.div
-                        className="step step-top mb-30"
+                        className="step step-top mb-0 md:mb-30"
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.4 }}
@@ -252,7 +250,7 @@ const ProcessTimeline = () => {
 
                     {/* 4. Smart Monitoring & Financing Support */}
                     <motion.div
-                        className="step step-bottom mt-20"
+                        className="step step-bottom mt-0 md:mt-20"
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.4 }}
@@ -276,7 +274,7 @@ const ProcessTimeline = () => {
 
                     {/* 5. 2025 & Beyond – Net Zero Partnerships */}
                     <motion.div
-                        className="step step-top mb-30"
+                        className="step step-top mb-0 md:mb-30"
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.4 }}
@@ -297,7 +295,6 @@ const ProcessTimeline = () => {
                     </motion.div>
                 </div>
             </motion.section>
-
 
             <section className="relative py-8 sm:py-10 bg-slate-950 text-slate-50 overflow-hidden">
                 {/* soft gradient background */}
