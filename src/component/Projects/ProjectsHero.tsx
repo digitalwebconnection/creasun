@@ -32,7 +32,7 @@ const SLIDES = [
     title: "500 kW Factory Rooftop",
     subtitle: "Morbi • Ceramic Plant",
     image:
-      " ",
+      "https://thumbs.dreamstime.com/z/aerial-overhead-view-solar-energy-panels-photo-luzhu-district-kaohsiung-city-taiwan-241768576.jpg ",
     description:
       "High-capacity ceramic plant that offsets a major portion of production load with solar.",
   },
@@ -153,7 +153,7 @@ const CreasunProjectsHero = () => {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${slide.image})` }}
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <span className="relative z-10 block px-2 pb-1 pt-7 text-[9px] text-left font-semibold leading-tight text-slate-50">
                     {slide.title}
                   </span>
