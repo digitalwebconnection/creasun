@@ -28,7 +28,7 @@ const AboutUsHero = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-tight text-white leading-tight">
             Engineering{" "}
             <span className="relative inline-block">
-              <span className="absolute inset-0 rounded-md bg-gradient-to-r from-[#F5B835] via-[#FFD86A] to-[#F5B835] opacity-90" />
+              <span className="absolute inset-0 rounded-md bg-linear-to-r from-[#F5B835] via-[#FFD86A] to-[#F5B835] opacity-90" />
               <span className="relative px-1 text-slate-900">
                 Reliable Solar
               </span>
@@ -89,7 +89,7 @@ const AboutUsHero = () => {
         {/* RIGHT SECTION */}
         <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
           {/* Decorative orbit behind card */}
-          <div className="pointer-events-none absolute -inset-6 rounded-[32px] border border-white/5" />
+          <div className="pointer-events-none absolute -inset-6 rounded-4xl border border-white/5" />
           <div className="pointer-events-none absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-[#F5B835]/15 blur-3xl" />
 
           {/* Main card */}
@@ -99,7 +99,7 @@ const AboutUsHero = () => {
               alt="Creasun Energy rooftop solar installation"
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-slate-950/90 via-slate-900/40 to-transparent" />
 
             {/* Bottom strip stats */}
             <div className="absolute inset-x-0 bottom-0 px-4 pb-4">
@@ -131,7 +131,7 @@ const AboutUsHero = () => {
           {/* Bottom mini card */}
           <div className="absolute -bottom-10 left-8 w-72 rounded-3xl bg-white p-3.5 shadow-xl shadow-slate-900/60 border border-slate-200/80">
             <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-10 w-18 items-center justify-center rounded-full bg-[#F5B835]/12">
+              <div className="mt-0.5 flex h-10 w-1 items-center justify-center rounded-full bg-[#F5B835]/12">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZyv6cuS9v6UqPb9qHHxGUe3q_UvMdROGNag&s"
                   className="rounded-full h-8 w-8 object-cover"

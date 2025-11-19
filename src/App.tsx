@@ -4,6 +4,7 @@ import Footer from "./component/Footer";
 import Navbar from "./component/Header";
 import HomeMain from "./component/home/HomeMain";
 import AboutUsMain from "./component/AboutUs/AboutUsMain";
+import ProjectsMain from "./component/Projects/ProjectsMain";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* You can add more routes later like: */}
         <Route path="/about" element={<AboutUsMain/>} />
         {/* <Route path="/services" element={<ServicesPage />} /> */}
+        <Route path="/project" element={<ProjectsMain/>} />
       </Routes>
 
       {/* Footer will stay on all pages */}
