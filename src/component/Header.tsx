@@ -1,18 +1,23 @@
-import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import { Link } from "react-router-dom";   // ⭐ Added
+import { useEffect, useState, useRef } from "react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "../assets/creasun2.png";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
-  const [showHeader, setShowHeader] = useState(true);
+  const [open, setOpen] = useState(false); // mobile menu
+  const [showHeader, setShowHeader] = useState(true); // smart hide/show
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const navItems = [
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/#services" },
-    { label: "Projects", href: "/project" },
-    { label: "Contact Us", href: "/contactus" },
+  const [servicesOpen, setServicesOpen] = useState(false); // desktop Services dropdown
+  const [servicesOpenMobile, setServicesOpenMobile] = useState(false); // mobile Services accordion
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const serviceItems = [
+    { label: "Residential Solar", href: "/services/residential-solar" },
+    { label: "Commercial Solar", href: "/services/Commercial-solar" },
+    { label: "Industrial Solar", href: "/services/industrial-solar" },
+    { label: "Ground Mounted Solar", href: "/services/ground-mounted-solar" },
   ];
 
   // ===== Smart hide/show on scroll =====
@@ -27,8 +32,10 @@ export default function Header() {
       }
 
       if (currentY > lastScrollY + 5) {
+        // scrolling down
         setShowHeader(false);
       } else if (currentY < lastScrollY - 5) {
+        // scrolling up
         setShowHeader(true);
       }
 
@@ -38,6 +45,21 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  // ===== Click outside to close desktop Services dropdown =====
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setServicesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header
@@ -52,83 +74,185 @@ export default function Header() {
       <div className="backdrop-blur bg-white/90 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            
             {/* LEFT: LOGO */}
-            <div className="flex items-center gap-3">
-              <Link to="/" className="flex items-center gap-3">
-                <div className="h-22 w-auto">
-                  <img
-                    src={logo}
-                    alt="Creasun Energy"
-                    className="h-full w-48 object-contain"
-                  />
-                </div>
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src={logo}
+                alt="Creasun Energy"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden items-center gap-10 text-lg font-medium text-slate-700 md:flex">
+              {/* 1. About */}
+              <Link
+                to="/about"
+                className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
+              >
+                <span>About</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
-            </div>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-10 text-lg font-medium text-slate-700">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="relative py-1 hover:text-[#2E7AE3] transition-colors group"
+              {/* 2. Services (click dropdown) */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  type="button"
+                  onClick={() => setServicesOpen((prev) => !prev)}
+                  className="flex items-center gap-1 py-1 transition-colors hover:text-[#2E7AE3]"
                 >
-                  <span>{item.label}</span>
-                  <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
-                </Link>
-              ))}
+                  <span>Services</span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      servicesOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
 
+                {servicesOpen && (
+                  <div className="absolute left-0 top-full z-40 mt-2 w-56 rounded-xl border border-slate-200 bg-white shadow-lg animate-fade">
+                    {serviceItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.href}
+                        onClick={() => setServicesOpen(false)}
+                        className="block px-4 py-2.5 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 3. Projects */}
+              <Link
+                to="/project"
+                className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
+              >
+                <span>Projects</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
+              </Link>
+
+              {/* 4. Contact Us */}
+              <Link
+                to="/contactus"
+                className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
+              >
+                <span>Contact Us</span>
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
+              </Link>
+
+              {/* Call Button */}
               <a
-                href="tel:+9196241 20591"
-                className="inline-flex items-center gap-2 rounded-full bg-[#F5B835] px-10 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm hover:bg-[#2E7AE3] hover:text-white transition-colors"
+                href="tel:+919624120591"
+                className="inline-flex items-center gap-2 rounded-full bg-[#F5B835] px-10 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm transition-colors hover:bg-[#2E7AE3] hover:text-white"
               >
                 <Phone className="h-4 w-4" />
                 Call Us
               </a>
             </nav>
 
-            {/* Mobile: CTA + Menu */}
-            <div className="flex items-center gap-2 md:hidden">
+            {/* Mobile: Menu Button */}
             <button
-                type="button"
-                onClick={() => setOpen((prev) => !prev)}
-                className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 hover:text-[#031E6C] focus:outline-none focus:ring-2 focus:ring-[#2E7AE3]"
-              >
-                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
-
+              type="button"
+              onClick={() => setOpen((prev) => !prev)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 hover:text-[#031E6C] md:hidden"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {open && (
-          <div className="md:hidden border-t border-slate-200 bg-white/95 backdrop-blur">
+          <div className="border-t border-slate-200 bg-white/95 backdrop-blur md:hidden">
             <nav className="space-y-1 px-4 py-3 text-sm font-medium text-slate-700">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 hover:bg-slate-50 hover:text-[#2E7AE3] transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-
+              {/* About */}
               <Link
-                to="/#contact"
+                to="/about"
                 onClick={() => setOpen(false)}
-                className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[#F5B835] px-4 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm hover:bg-[#2E7AE3] hover:text-white transition-colors"
+                className="block rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+              >
+                About
+              </Link>
+
+              {/* Services (accordion) */}
+              <button
+                type="button"
+                onClick={() =>
+                  setServicesOpenMobile((prev) => !prev)
+                }
+                className="flex w-full items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+              >
+                <span>Services</span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    servicesOpenMobile ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {servicesOpenMobile && (
+                <div className="pl-4">
+                  {serviceItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => {
+                        setOpen(false);
+                        setServicesOpenMobile(false);
+                      }}
+                      className="block rounded-lg px-3 py-2 text-[13px] transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {/* Projects */}
+              <Link
+                to="/project"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+              >
+                Projects
+              </Link>
+
+              {/* Contact Us */}
+              <Link
+                to="/contactus"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+              >
+                Contact Us
+              </Link>
+
+              {/* Call Button */}
+              <a
+                href="tel:+919624120591"
+                onClick={() => setOpen(false)}
+                className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[#F5B835] px-4 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm transition-colors hover:bg-[#2E7AE3] hover:text-white"
               >
                 <Phone className="h-4 w-4" />
                 Contact Us
-              </Link>
+              </a>
             </nav>
           </div>
         )}
       </div>
+
+      {/* Small fade animation for dropdown */}
+      <style>{`
+        @keyframes fade {
+          from { opacity: 0; transform: translateY(-5px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+          animation: fade 0.18s ease-out;
+        }
+      `}</style>
     </header>
   );
 }

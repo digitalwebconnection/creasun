@@ -46,7 +46,7 @@ export default function CreasunHomeHero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            'url("https://frontend-cdn.solarreviews.com/hero-placeholder.jpg")',
+            'url("https://solarsmart.co.in/wp-content/uploads/2025/03/New-Project.png")',
         }}
       />
 

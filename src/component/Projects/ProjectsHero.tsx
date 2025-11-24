@@ -145,15 +145,15 @@ const CreasunProjectsHero = () => {
                   className={`relative h-20 w-28 overflow-hidden rounded-2xl border transition-all duration-300
                     ${
                       isActive
-                        ? "border-yellow-400 shadow-lg shadow-yellow-400/40 scale-100"
-                        : "border-white/25 opacity-75 hover:opacity-100 scale-95"
+                        ? "border-yellow-800 shadow-lg shadow-yellow-400/40 scale-105"
+                        : "border-black/25 opacity-75 hover:opacity-100 scale-95"
                     }`}
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${slide.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
                   <span className="relative z-10 block px-2 pb-1 pt-7 text-[9px] text-left font-semibold leading-tight text-slate-50">
                     {slide.title}
                   </span>

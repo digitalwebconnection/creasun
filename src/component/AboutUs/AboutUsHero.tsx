@@ -28,7 +28,7 @@ const AboutUsHero = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-tight text-white leading-tight">
             Engineering{" "}
             <span className="relative inline-block">
-              <span className="absolute inset-0 rounded-md bg-linear-to-r from-[#F5B835] via-[#FFD86A] to-[#F5B835] opacity-90" />
+              <span className="absolute inset-0 rounded-md bg-linear-to-r from-[#fac147] via-[#f3ca58] to-[#F5B835] opacity-90" />
               <span className="relative px-1 text-slate-900">
                 Reliable Solar
               </span>

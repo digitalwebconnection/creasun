@@ -5,6 +5,8 @@ import Navbar from "./component/Header";
 import HomeMain from "./component/home/HomeMain";
 import AboutUsMain from "./component/AboutUs/AboutUsMain";
 import ProjectsMain from "./component/Projects/ProjectsMain";
+import ResidentialSolarMain from "./component/service/ResidentialSolar/ResidentialSolarMain";
+import CommercialSolarMain from "./component/service/CommercialSolar/CommercialSolarMain";
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
 
         {/* You can add more routes later like: */}
         <Route path="/about" element={<AboutUsMain/>} />
-        {/* <Route path="/services" element={<ServicesPage />} /> */}
+        <Route path="/services/residential-solar" element={<ResidentialSolarMain />} />
+                <Route path="/services/Commercial-solar" element={<CommercialSolarMain />} />
         <Route path="/project" element={<ProjectsMain/>} />
       </Routes>
 
