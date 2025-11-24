@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, useRef } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -5,11 +7,12 @@ import logo from "../assets/creasun2.png";
 
 export default function Header() {
   const [open, setOpen] = useState(false); // mobile menu
-  const [showHeader, setShowHeader] = useState(true); // smart hide/show
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   const [servicesOpen, setServicesOpen] = useState(false); // desktop Services dropdown
   const [servicesOpenMobile, setServicesOpenMobile] = useState(false); // mobile Services accordion
+
+  const [showHeader, setShowHeader] = useState(true); // smart hide/show
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -20,33 +23,42 @@ export default function Header() {
     { label: "Ground Mounted Solar", href: "/services/ground-mounted-solar" },
   ];
 
-  // ===== Smart hide/show on scroll =====
+  /* ========== SMART HIDE / SHOW ON SCROLL ========== */
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY;
+      const currentY = window.scrollY || 0;
 
-      if (currentY < 20) {
-        setShowHeader(true);
-        setLastScrollY(currentY);
-        return;
-      }
+      if (ticking.current) return;
+      ticking.current = true;
 
-      if (currentY > lastScrollY + 5) {
-        // scrolling down
-        setShowHeader(false);
-      } else if (currentY < lastScrollY - 5) {
-        // scrolling up
-        setShowHeader(true);
-      }
+      window.requestAnimationFrame(() => {
+        const prevY = lastScrollY.current;
 
-      setLastScrollY(currentY);
+        // Always show when close to top
+        if (currentY < 10) {
+          setShowHeader(true);
+        } else {
+          const diff = currentY - prevY;
+
+          if (diff > 5) {
+            // scrolling down
+            setShowHeader(false);
+          } else if (diff < -5) {
+            // scrolling up
+            setShowHeader(true);
+          }
+        }
+
+        lastScrollY.current = currentY;
+        ticking.current = false;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  // ===== Click outside to close desktop Services dropdown =====
+  /* ========== CLICK OUTSIDE TO CLOSE DESKTOP DROPDOWN ========== */
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -63,7 +75,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-30 transform transition-transform duration-300 ${
+      className={`fixed top-0 left-0 z-30 w-full transform transition-transform duration-300 ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -85,7 +97,7 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center gap-10 text-lg font-medium text-slate-700 md:flex">
-              {/* 1. About */}
+              {/* About */}
               <Link
                 to="/about"
                 className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
@@ -94,7 +106,7 @@ export default function Header() {
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
 
-              {/* 2. Services (click dropdown) */}
+              {/* Services (dropdown) */}
               <div className="relative" ref={dropdownRef}>
                 <button
                   type="button"
@@ -125,7 +137,7 @@ export default function Header() {
                 )}
               </div>
 
-              {/* 3. Projects */}
+              {/* Projects */}
               <Link
                 to="/project"
                 className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
@@ -134,7 +146,7 @@ export default function Header() {
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
 
-              {/* 4. Contact Us */}
+              {/* Contact Us */}
               <Link
                 to="/contactus"
                 className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
@@ -180,9 +192,7 @@ export default function Header() {
               {/* Services (accordion) */}
               <button
                 type="button"
-                onClick={() =>
-                  setServicesOpenMobile((prev) => !prev)
-                }
+                onClick={() => setServicesOpenMobile((prev) => !prev)}
                 className="flex w-full items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
               >
                 <span>Services</span>

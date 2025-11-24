@@ -16,7 +16,7 @@ export default function CommercialSolarHero() {
         <div className="h-full w-64 rotate-[-24deg] bg-linear-to-b from-[#b09600] to-[#a18901] opacity-80" />
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-8 lg:flex-row lg:items-center lg:px-0 lg:py-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-8 lg:flex-row lg:items-center lg:px-0 lg:py-25">
         {/* Left content */}
         <div className="relative z-10 max-w-xl">
           <p className="text-xs sm:text-sm font-semibold tracking-[0.15em] uppercase text-[#8fd23a]">

@@ -36,7 +36,7 @@ const bgMotion: Variants = {
 
 export default function CreasunHomeHero() {
   return (
-    <section className="relative overflow-hidden bg-[#031E6C] text-white h-[70vh] sm:h-[80vh] flex items-center">
+    <section className="relative overflow-hidden bg-[#031E6C] text-white h-auto sm:h-[90vh] flex items-center">
       
       {/* Animated Background */}
       <motion.div
@@ -75,7 +75,7 @@ export default function CreasunHomeHero() {
       </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl px-6 pt-20  lg:px-8">
         
         {/* Eyebrow */}
         <motion.div

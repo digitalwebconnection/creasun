@@ -15,7 +15,7 @@ const ResidentialHero = () => {
       <div className="absolute inset-0 bg-black/45" />
 
       {/* CONTENT */}
-      <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-10 lg:flex-row lg:items-center lg:py-14">
+      <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-10 lg:flex-row lg:items-center lg:py-24">
         {/* LEFT CONTENT SIDE */}
         <div className="max-w-3xl space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-yellow-200">

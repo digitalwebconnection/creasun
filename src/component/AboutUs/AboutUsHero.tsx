@@ -1,7 +1,7 @@
 const AboutUsHero = () => {
   return (
     <section
-      className="relative overflow-hidden py-12 sm:py-16 bg-cover bg-center bg-no-repeat"
+      className="relative overflow-hidden py-12 sm:py-20 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('https://insolationenergy.in/public/upload/seo/solar-panels-in-india-ina.jpg')`,
       }}

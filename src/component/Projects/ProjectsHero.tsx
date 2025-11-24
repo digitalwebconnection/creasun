@@ -56,7 +56,7 @@ const CreasunProjectsHero = () => {
   const prev = () => setActive((p) => (p - 1 + SLIDES.length) % SLIDES.length);
 
   return (
-    <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-black text-white">
+    <section className="relative h-[70vh] min-h-[520px] w-full overflow-hidden bg-black text-white">
       {/* MAIN MOVING IMAGE */}
       <div
         key={active} // remounts to restart CSS animation
