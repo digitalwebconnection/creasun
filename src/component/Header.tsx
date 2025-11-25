@@ -19,7 +19,7 @@ export default function Header() {
   const serviceItems = [
     { label: "Residential Solar", href: "/services/residential-solar" },
     { label: "Commercial Solar", href: "/services/Commercial-solar" },
-    { label: "Industrial Solar", href: "/services/industrial-solar" },
+    { label: "Industrial Solar", href: "/services/Industrial-solar" },
     { label: "Ground Mounted Solar", href: "/services/ground-mounted-solar" },
   ];
 

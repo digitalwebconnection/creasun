@@ -119,7 +119,7 @@ export default function CreasunCommercialBenefitsWithFAQ() {
         {/*              HEADER             */}
         {/* =============================== */}
         <div className="mb-10 text-center max-w-4xl mx-auto">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-600">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-950">
             Creasun Energy · Commercial & Residential Rooftop Solar
           </p>
           <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">

@@ -4,56 +4,93 @@ import { ArrowRight } from "lucide-react";
 
 export default function CommercialSolarHero() {
   return (
-    <section className="relative overflow-hidden bg-[#080d18] text-white">
-      {/* decorative windmill-ish silhouette on the far left */}
-      <div className="pointer-events-none absolute inset-y-0 left-[-10%] w-52 opacity-10 hidden md:block">
-        <div className="h-full w-[3px] bg-slate-300 mx-auto rounded-full" />
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 h-32 w-32 rounded-full border border-slate-300" />
+    <section className="relative overflow-hidden text-white">
+      {/* Background image */}
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src="https://frontend-cdn.solarreviews.com/sr-commercial-solar.jpg"
+          alt="Commercial solar plant"
+          className="h-full w-full object-cover"
+        />
+        {/* Left-to-right dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050814dc] via-[#050814b4] to-[#0508149a]" />
+        {/* Top-to-bottom soft vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
       </div>
 
-      {/* angled green stripe between text + image */}
-      <div className="pointer-events-none absolute inset-y-[-30%] right-[42%] hidden lg:block">
-        <div className="h-full w-64 rotate-[-24deg] bg-linear-to-b from-[#b09600] to-[#a18901] opacity-80" />
-      </div>
+      {/* Main content */}
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-6 py-8 sm:px-0 sm:py-10 lg:flex-row lg:items-center lg:py-20">
+        {/* Left: Text content */}
+        <div className="max-w-3xl text-center lg:text-left">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#cfc202]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#c7ba09]" />
+            <span>Factories • Warehouses • Schools • Offices</span>
+          </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-8 lg:flex-row lg:items-center lg:px-0 lg:py-25">
-        {/* Left content */}
-        <div className="relative z-10 max-w-xl">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.15em] uppercase text-[#8fd23a]">
-            We have So Meany years of experience
-          </p>
-
-          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-            <span className="">Keep calm</span>
-            
-              and go{" "}
-              <span className="text-[#dacb00]">Commercial </span>
-              <span className="text-[#ffffff]">solar</span>
-       
+          {/* Heading */}
+          <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+            Turn idle rooftops into
+            <span className="block text-[#f1da08] drop-shadow-[0_0_18px_rgba(247,232,90,0.6)]">
+              profit-making power plants
+            </span>
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-slate-300 max-w-xl">
-            Power your business with high-performance, low-maintenance commercial
-            solar systems—engineered for maximum savings, reliability and a
-            cleaner energy footprint.
+          {/* Subheading */}
+          <p className="mt-4 text-sm sm:text-base text-slate-200">
+            Designed for factories, warehouses, schools, showrooms and offices—
+            our commercial solar solutions help you cut demand charges, lock in
+            predictable power costs, and generate clean energy from your own
+            rooftop space.
           </p>
 
-          <div className="mt-8">
-            <button className="inline-flex items-center gap-2 rounded-md bg-[#af890b] px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-[#53b225]/30 transition hover:bg-[#c7a409]">
-              Let&apos;s Talk
+          {/* CTA group */}
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-4 lg:items-start">
+            <button className="inline-flex items-center gap-2 rounded-full bg-[#c5960e] px-7 py-2 text-sm sm:text-base font-semibold text-white shadow-lg shadow-[#c5960e]/40 transition hover:bg-[#dfb31b]">
+              Book a commercial solar audit
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>
 
-        {/* Right image */}
-        <div className="relative z-0 flex-1">
-          <div className="relative ml-auto h-[360px] w-full max-w-xl overflow-hidden rounded-none lg:rounded-l-[60px] lg:rounded-r-none">
-            <img
-              src="https://www.soleosenergy.com/wp-content/uploads/2025/01/WhatsApp-Image-2024-04-27-at-3.50.16-PM-7.jpeg-scaled.jpg"
-              alt="Engineer installing commercial solar panels"
-              className="h-full w-full object-cover"
-            />
+        {/* Right: Stats card */}
+        <div className="w-full max-w-md lg:ml-auto">
+          <div className="rounded-3xl border border-white/12 bg-black/45 px-6 py-6 sm:px-8 sm:py-8 backdrop-blur shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
+            <p className="text-xs uppercase tracking-[0.22em] text-slate-300/80">
+              Our commercial solar track record
+            </p>
+
+            <div className="mt-5 grid grid-cols-2 gap-5 sm:gap-6">
+              <div>
+                <p className="text-2xl font-bold text-[#dfb31b]">100+ projects</p>
+                <p className="mt-1 text-xs sm:text-sm text-slate-300">
+                  Completed for factories, warehouses, schools & offices.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-[#6265f0]">3–5 years</p>
+                <p className="mt-1 text-xs sm:text-sm text-slate-300">
+                  Typical payback period on well-designed rooftop systems.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-[#dfb31b]">5,000+ MWh</p>
+                <p className="mt-1 text-xs sm:text-sm text-slate-300">
+                  Clean energy generated every year across our sites.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-[#6265f0]">₹25 Cr+</p>
+                <p className="mt-1 text-xs sm:text-sm text-slate-300">
+                  Projected lifetime savings for commercial solar clients.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
         </div>
       </div>

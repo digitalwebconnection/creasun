@@ -7,6 +7,7 @@ import AboutUsMain from "./component/AboutUs/AboutUsMain";
 import ProjectsMain from "./component/Projects/ProjectsMain";
 import ResidentialSolarMain from "./component/service/ResidentialSolar/ResidentialSolarMain";
 import CommercialSolarMain from "./component/service/CommercialSolar/CommercialSolarMain";
+import IndustrialsolarMain from "./component/service/industrialsolar/IndustrialsolarMain";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/about" element={<AboutUsMain/>} />
         <Route path="/services/residential-solar" element={<ResidentialSolarMain />} />
                 <Route path="/services/Commercial-solar" element={<CommercialSolarMain />} />
+                <Route path="/services/Industrial-solar" element={<IndustrialsolarMain/>} />
         <Route path="/project" element={<ProjectsMain/>} />
       </Routes>
 

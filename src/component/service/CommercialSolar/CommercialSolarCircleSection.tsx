@@ -47,7 +47,7 @@ export default function CommercialSolarCircleSection() {
           <span className="">Turn your rooftop</span>{" "}
           <span className="text-[#002a9e]">into a Power Plant!</span>
         </h2>
-        <p className="text-sm italic text-[#9A7B45] mb-10">
+        <p className="text-sm   mb-10">
           Commercial solar services we deliver with Creasun expertise.
         </p>
 
@@ -59,7 +59,7 @@ export default function CommercialSolarCircleSection() {
               className="relative flex items-center justify-center"
             >
               {/* Outer gradient ring */}
-              <div className="bg-linear-to-br from-emerald-400 via-lime-400 to-emerald-600 rounded-full p-1.5 shadow-xl">
+              <div className="bg-yellow-600 rounded-full p-1.5 shadow-xl">
                 {/* Inner image circle */}
                 <div className="relative h-60 w-60 rounded-full overflow-hidden">
                   <img
@@ -88,7 +88,6 @@ export default function CommercialSolarCircleSection() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

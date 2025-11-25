@@ -30,7 +30,7 @@ export default function CommercialSolarCreasunSection() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1.2fr] items-start">
           {/* LEFT: TEXT + STEPS */}
           <div>
-            <p className="text-sm italic text-[#9A7B45] mb-1">
+            <p className="text-sm italic text-[#040038] mb-1">
               We power businesses, not just buildings.
             </p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#333333] mb-3">
@@ -46,10 +46,10 @@ export default function CommercialSolarCreasunSection() {
               {steps.map((step) => (
                 <div key={step.no} className="relative">
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#c49808] text-white text-sm font-semibold">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#020064] text-white text-sm font-semibold">
                       {step.no}
                     </div>
-                    <div className="h-px flex-1 bg-[#C49A57]/60" />
+                    <div className="h-px flex-1 bg-[#020064]" />
                   </div>
                   <h3 className="text-base font-semibold text-[#333333]">
                     {step.title}
@@ -61,7 +61,7 @@ export default function CommercialSolarCreasunSection() {
               ))}
             </div>
 
-            <button className="mt-9 inline-block bg-[#b89600] px-8 py-3 text-sm font-semibold uppercase tracking-wide rounded-2xl text-white shadow-md hover:bg-[#020064] transition">
+            <button className="mt-9 inline-block bg-[#020064] px-8 py-3 text-sm font-semibold uppercase tracking-wide rounded-2xl text-white shadow-md hover:bg-[#020064] transition">
               View all commercial services
             </button>
           </div>
