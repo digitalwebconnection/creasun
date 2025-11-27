@@ -75,9 +75,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-30 w-full transform transition-transform duration-300 ${
-        showHeader ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`fixed top-0 left-0 z-30 w-full transform transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       {/* Thin gradient strip */}
       <div className="h-1 w-full bg-linear-to-r from-[#F5B835] via-[#2E7AE3] to-[#031E6C]" />
@@ -115,9 +114,8 @@ export default function Header() {
                 >
                   <span>Services</span>
                   <ChevronDown
-                    className={`h-4 w-4 transition-transform ${
-                      servicesOpen ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
 
@@ -197,9 +195,8 @@ export default function Header() {
               >
                 <span>Services</span>
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform ${
-                    servicesOpenMobile ? "rotate-180" : ""
-                  }`}
+                  className={`h-4 w-4 transition-transform ${servicesOpenMobile ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
