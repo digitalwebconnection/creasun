@@ -1,7 +1,8 @@
 import "../AboutUs/process-timeline.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
+import leader1 from "../../assets/IMG_6272    .jpg"
+import leader2 from "../../assets/IMG_6274    .jpg"
 // Animation variant
 const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -41,16 +42,14 @@ const leaders = [
         name: "name ",
         role: "Founder & CEO",
         bio: "Drives overall vision, strategy, and key partnerships while ensuring every project delivers measurable impact.",
-        image:
-            "https://www.aquasafemine.com/wp-content/uploads/2018/06/dummy-man-570x570.png", // replace with your image
+        image: leader1, // <--- assign the imported string directly
         linkedin: "#",
     },
     {
         name: "name",
         role: "Co-Founder & Director",
         bio: "Leads marketing, brand experience, and customer success with a focus on long-term client relationships.",
-        image:
-            "https://www.aquasafemine.com/wp-content/uploads/2018/06/dummy-man-570x570.png",// replace with your image
+        image: leader2, // <--- assign the imported string directly
         linkedin: "#",
     },
 ];
@@ -339,7 +338,7 @@ const ProcessTimeline = () => {
                                 <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start">
                                     {/* Avatar */}
                                     <div className="relative shrink-0">
-                                        <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-2xl overflow-hidden border border-slate-700 bg-slate-800">
+                                        <div className="h-20 w-20 sm:h-28 sm:w-24 rounded-2xl overflow-hidden border border-slate-700 bg-slate-800">
                                             <img
                                                 src={person.image}
                                                 alt={person.name}
