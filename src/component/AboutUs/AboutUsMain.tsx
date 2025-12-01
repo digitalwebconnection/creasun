@@ -6,9 +6,9 @@ import ProcessTimeline from "./AboutUsJarrny"
 const AboutUsMain = () => {
   return (
     <>
-      <AboutUsHero/>
-<AboutCreasunSection/>
-<ProcessTimeline/>
+      <AboutUsHero />
+      <AboutCreasunSection />
+      <ProcessTimeline />
     </>
   )
 }

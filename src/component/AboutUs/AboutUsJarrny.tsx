@@ -83,7 +83,7 @@ const ProcessTimeline = () => {
 
     return (
         <main className="bg-white">
-            
+
             {/* ====== HOW IT WORKS SECTION ====== */}
             <section className="relative py-8 sm:py-10 bg-linear-to-b from-slate-50 via-white to-slate-100 overflow-hidden">
                 {/* soft background blobs */}
@@ -153,7 +153,7 @@ const ProcessTimeline = () => {
                     </div>
 
                 </div>
-            </section>  
+            </section>
 
             {/* ====== JOURNEY SECTION ====== */}
             <motion.section
@@ -430,7 +430,7 @@ const ProcessTimeline = () => {
 
                                         <span
                                             className={`flex h-7 w-7 items-center p-2 justify-center rounded-full border text-sm font-bold transition
-                    ${isOpen
+                                                ${isOpen
                                                     ? "border-yellow-500 text-blue-600 bg-emerald-50"
                                                     : "border-slate-600 text-slate-500"
                                                 }`}
