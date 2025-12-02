@@ -10,6 +10,8 @@ import CommercialSolarMain from "./component/service/CommercialSolar/CommercialS
 import IndustrialsolarMain from "./component/service/industrialsolar/IndustrialsolarMain";
 import Groundmountedsolar from "./component/service/groundmountedsolar/Groundmountedsolar";
 import ScrollToTop from "./component/ScrollToTop";
+import ContactMain from "./component/contactPage/ContactMain";
+import WhatsAppChatbot from "./component/WhatsAppChatbot";
 
 function App() {
   return (
@@ -31,10 +33,12 @@ function App() {
         <Route path="/services/Industrial-solar" element={<IndustrialsolarMain />} />
         <Route path="/services/ground-mounted-solar" element={<Groundmountedsolar />} />
         <Route path="/project" element={<ProjectsMain />} />
+        <Route path="/contact" element={<ContactMain />} />
       </Routes>
 
       {/* Footer will stay on all pages */}
       <Footer />
+      <WhatsAppChatbot  autoOpenDelay={4000}/>
     </Router>
   );
 }

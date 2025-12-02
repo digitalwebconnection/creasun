@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Sun } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Code2, Sun } from "lucide-react";
 import logo from "../assets/creasun2.png";
 
 export default function Footer() {
@@ -172,7 +172,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-[#F5B835]" />
-                <span>Floor Navsarjan, RMC Complex, Office No. 3, Third, Mavdi Main Road, Rajkot, Gujarat 360004</span>
+                <span>Office No.3, 3rd Floor , Navsarjan Municipal Shopping Center, Movdi Main Road , Rajkot-360004, India</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-[#F5B835]" />
@@ -206,6 +206,10 @@ export default function Footer() {
           <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm">
             <p className="text-[#B1D5FA]/90">
               © {currentYear} Creasun Energy. All rights reserved.
+            </p>
+            <p className="flex md:me-25 md:px-10 items-center justify-center gap-2 ms-3 md:ms-0   text-white text-[13px] md:text-sm">
+              <Code2 className="w-6 h-6 text-[#F5B835]" />
+              <p>Developed by <span className="font-semibold text-[#F5B835]">Digital Web Connection</span></p>
             </p>
             <div className="flex items-center gap-4">
               <a href="#privacy" className="hover:text-[#F5B835]">Privacy</a>

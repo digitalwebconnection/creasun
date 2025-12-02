@@ -107,7 +107,7 @@ const PROJECTS: Project[] = [
     capacity: "0.1 MW",
     type: "Rooftop",
     hero:
-      "https://bluebirdsolar.com/cdn/shop/files/DAP_Delhi_100_KW_2_1.jpg?v=1654666139",
+      "https://bluebirdsolar.com/cdn/shop/files/DAP_Delhi_100_KW_2_1.jpg?v=1654666139 ",
     gallery: ["https://amplussolar.com/blog/wp-content/uploads/2024/05/blog-topheader.webp"],
     summary:
       "CSR-supported rooftop system for clean energy & water heating at a local school.",
@@ -123,8 +123,8 @@ const PROJECTS: Project[] = [
     capacity: "1 MW",
     type: "Agriculture",
     hero:
-      "https://images.unsplash.com/photo-1497471065136-6a3f9d4f1a39?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=solar10",
-    gallery: [],
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq5t8M9D0z6zHJRh6JWP1llES5gLrbgD4DMA&s",
+    gallery: ["https://www.tatapower.com/adobe/dynamicmedia/deliver/dm-p-oid--xoiKJFyY4kqwBXocriZrmRglbhyjMgNeoZG4whF-UwrRwMKccPcsDJ-OoCe9x0BAmBgFBk2V-X3i-zKQ4pMX1IF8I-9HkzGNa9bKmTaOU0MImcMpEx9Ah6w_zpck9PZaYj-IAc_hhrRjm9VZu3lzTQ/body-01.webp?quality=85&width=3280&preferwebp=true"],
     summary:
       "Distributed microgrid powering irrigation pumps and cold storage across 10 farms.",
     highlights: ["Smart meters", "Cold storage"],

@@ -146,7 +146,7 @@ export default function Header() {
 
               {/* Contact Us */}
               <Link
-                to="/contactus"
+                to="/contact"
                 className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
               >
                 <span>Contact Us</span>
