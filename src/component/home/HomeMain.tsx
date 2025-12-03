@@ -18,8 +18,8 @@ const HomeMain = () => {
       <Scroll />
       <WhatWeDo />
       <SegmentsAndMountingShowcase />
-      <OurSolarServicesCreasun />
       <RecentProjectsCreasun />
+      <OurSolarServicesCreasun />
       <ModernReviewSection />
       <SimpleFAQ />
     </>

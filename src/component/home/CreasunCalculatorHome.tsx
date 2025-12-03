@@ -146,10 +146,9 @@ async function makePdf(payload: {
       ["Monthly Generation", `${payload.results.monthlyGen} kWh`],
       [
         "Payback Period",
-        `${
-          Number.isFinite(payload.results.paybackYears)
-            ? payload.results.paybackYears.toFixed(1)
-            : "—"
+        `${Number.isFinite(payload.results.paybackYears)
+          ? payload.results.paybackYears.toFixed(1)
+          : "—"
         } years`,
       ],
       ["Gross CAPEX", formatINRPlain(payload.results.capex)],
@@ -436,11 +435,10 @@ export default function CreasunCalculatorWhite() {
                   key={it.key}
                   onClick={() => setSegment(it.key as Segment)}
                   whileTap={{ scale: 0.98 }}
-                  className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm ${
-                    segment === it.key
-                      ? "border-blue-600 text-blue-700 bg-blue-50 shadow-inner"
-                      : "border-gray-300 hover:bg-gray-50"
-                  }`}
+                  className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm ${segment === it.key
+                    ? "border-blue-600 text-blue-700 bg-blue-50 shadow-inner"
+                    : "border-gray-300 hover:bg-gray-50"
+                    }`}
                 >
                   {it.icon}
                   {it.key}
@@ -463,11 +461,10 @@ export default function CreasunCalculatorWhite() {
                   key={it.key}
                   onClick={() => setMount(it.key as Mount)}
                   whileTap={{ scale: 0.98 }}
-                  className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm ${
-                    mount === it.key
-                      ? "border-blue-600 text-blue-700 bg-blue-50 shadow-inner"
-                      : "border-gray-300 hover:bg-gray-50"
-                  }`}
+                  className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm ${mount === it.key
+                    ? "border-blue-600 text-blue-700 bg-blue-50 shadow-inner"
+                    : "border-gray-300 hover:bg-gray-50"
+                    }`}
                 >
                   {it.icon}
                   {it.key}

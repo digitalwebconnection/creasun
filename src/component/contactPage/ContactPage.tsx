@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Mail, Phone, MapPin, ArrowRight, Zap, CheckCircle } from "lucide-react"
 import bgImage from "../../assets/contact_bg_1.png"
+
 export default function CreasunContact(): React.JSX.Element {
     const BRAND = {
         deepBlue: "#0A2E9E",
@@ -41,16 +42,21 @@ export default function CreasunContact(): React.JSX.Element {
         `https://www.google.com/maps?q=${encodeURIComponent(initialMapQuery)}&z=15&output=embed`
     )
 
-
     const locDebounceRef = useRef<number | null>(null)
 
     // generate simple captcha on mount
     useEffect(() => {
+        regenerateCaptcha()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    function regenerateCaptcha() {
         const x = Math.floor(Math.random() * 8) + 1
         const y = Math.floor(Math.random() * 8) + 1
         setA(x)
         setB(y)
-    }, [])
+        setSum("")
+    }
 
     // generic change handler for inputs / textarea / select
     function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
@@ -142,16 +148,49 @@ export default function CreasunContact(): React.JSX.Element {
         }
     }
 
+    // --------- CAPTCHA handling (updated) ----------
+    // limit input to digits only; allow empty string so user can delete
+    function handleSumChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const val = e.target.value
+        if (val === "" || /^[0-9]*$/.test(val)) {
+            setSum(val)
+        }
+    }
+
+    // validate on blur or Enter
+    const [captchaStatus, setCaptchaStatus] = useState<null | boolean>(null) // null = unchecked, true/false = result
+
+    function validateCaptchaValue(): boolean {
+        const numeric = sum.trim() === "" ? NaN : Number(sum.trim())
+        const correct = !Number.isNaN(numeric) && numeric === a + b
+        setCaptchaStatus(correct)
+        return correct
+    }
+
+    function handleCaptchaBlur() {
+        setFocused("")
+        if (sum.trim() !== "") validateCaptchaValue()
+    }
+
+    function handleCaptchaKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === "Enter") {
+            e.preventDefault()
+            validateCaptchaValue()
+        }
+    }
+    // ------------------------------------------------
+
     // form submit
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setStatus("")
 
-        // captcha check
-        if (parseInt(sum || "0", 10) !== a + b) {
+        // captcha check (trim and parse safely)
+        if (!validateCaptchaValue()) {
             setStatus("Please solve the captcha correctly.")
             return
         }
+
         // validation
         if (!form.first || !form.email || !form.message) {
             setStatus("Please fill Name, Email and Message.")
@@ -175,12 +214,10 @@ export default function CreasunContact(): React.JSX.Element {
                 setBillPreviewUrl(null)
             }
             // refresh captcha
-            const x = Math.floor(Math.random() * 8) + 1
-            const y = Math.floor(Math.random() * 8) + 1
-            setA(x)
-            setB(y)
+            regenerateCaptcha()
             // reset map
             setMapSrc(`https://www.google.com/maps?q=${encodeURIComponent(initialMapQuery)}&z=15&output=embed`)
+            setCaptchaStatus(null)
         }, 1400)
     }
 
@@ -192,9 +229,7 @@ export default function CreasunContact(): React.JSX.Element {
     }, [billPreviewUrl])
 
     return (
-        <div className="w-full  py-8 md:py-10 "
-
-        >
+        <div className="w-full  py-8 md:py-10 ">
             {/* Contact Info Cards Section */}
             <div className="py-10 px-6 " style={{ background: `linear-gradient(180deg, #f8fbff 0%, #f0f8ff 100%)` }}>
                 <div className="max-w-6xl mx-auto">
@@ -460,19 +495,46 @@ export default function CreasunContact(): React.JSX.Element {
                                     {a} + {b} = <span style={{ color: BRAND.sunYellow }}>?</span>
                                 </div>
                             </div>
-                            <input
-                                value={sum}
-                                onChange={(e) => setSum(e.target.value)}
-                                onFocus={() => setFocused("captcha")}
-                                onBlur={() => setFocused("")}
-                                placeholder="0"
-                                className="w-full sm:w-24 px-4 py-3 rounded-lg border-2 text-center font-bold transition-all duration-200"
-                                style={{
-                                    borderColor: focused === "captcha" ? BRAND.skyBlue : BRAND.lightTint,
-                                    background: focused === "captcha" ? `${BRAND.skyBlue}05` : "#fafbff",
-                                    boxShadow: focused === "captcha" ? `0 0 0 3px ${BRAND.lightTint}` : "none",
-                                }}
-                            />
+
+                            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                                <input
+                                    value={sum}
+                                    onChange={handleSumChange}
+                                    onFocus={() => setFocused("captcha")}
+                                    onBlur={handleCaptchaBlur}
+                                    onKeyDown={handleCaptchaKeyDown}
+                                    placeholder="0"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    aria-label="Security verification answer"
+                                    className="w-full sm:w-24 px-4 py-3 rounded-lg border-2 text-center font-bold transition-all duration-200"
+                                    style={{
+                                        borderColor: focused === "captcha" ? BRAND.skyBlue : BRAND.lightTint,
+                                        background: focused === "captcha" ? `${BRAND.skyBlue}05` : "#fafbff",
+                                        boxShadow: focused === "captcha" ? `0 0 0 3px ${BRAND.lightTint}` : "none",
+                                    }}
+                                />
+
+                                <div style={{ minWidth: 110 }}>
+                                    {captchaStatus === true && (
+                                        <div style={{ color: "green", fontWeight: 600, display: "flex", alignItems: "center", gap: 8 }}>
+                                            <CheckCircle className="w-4 h-4" /> Correct
+                                        </div>
+                                    )}
+                                    {captchaStatus === false && (
+                                        <div style={{ color: "#b91c1c", fontWeight: 600 }}>✕ Incorrect</div>
+                                    )}
+
+                                    <button
+                                        type="button"
+                                        onClick={regenerateCaptcha}
+                                        className="mt-2 text-xs font-medium"
+                                        style={{ color: BRAND.deepBlue, background: "transparent", border: "none", cursor: "pointer" }}
+                                    >
+                                        Try another
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Submit */}
