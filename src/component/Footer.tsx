@@ -121,7 +121,7 @@ export default function Footer() {
             {/* Social Icons */}
             <div className="mt-5 flex items-center gap-3">
               <a
-                href="https://www.facebook.com/creasunenergy/"
+                href="https://www.facebook.com/creasunenergy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2 hover:bg-[#F5B835]/20 transition"
@@ -131,7 +131,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.instagram.com/creasunenergy"
+                href="https://www.instagram.com/creasunenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2 hover:bg-[#F5B835]/20 transition"
@@ -141,7 +141,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/creasun-energy/"
+                href="https://www.linkedin.com/company/creasun-energy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2 hover:bg-[#F5B835]/20 transition"
