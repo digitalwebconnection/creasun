@@ -13,7 +13,7 @@ const ContactHero = () => {
             <style>{`
         @keyframes kenBurn {
           0% { transform: scale(1) translateY(0); }
-          50% { transform: scale(1.06) translateY(-6px); }
+          50% { transform: scale(1.06) translateY(-6px);    }
           100% { transform: scale(1) translateY(0); }
         }
         @keyframes floatSlow {
@@ -86,7 +86,7 @@ const ContactHero = () => {
             </svg>
 
             {/* Content container */}
-            <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-6 py-15 sm:py-28 lg:py-22 lg:flex-row lg:items-center">
+            <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-6 py-20 sm:py-28 lg:py-22 lg:flex-row lg:items-center">
                 {/* Left: Text */}
                 <div className="w-full lg:w-3/3">
                     <p className="mb-3 text-sm font-medium uppercase tracking-widest text-yellow-300/90">

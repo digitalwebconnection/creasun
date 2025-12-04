@@ -19,7 +19,7 @@ const ResidentialHero = () => {
       <div className="absolute inset-0 bg-black/45" />
 
       {/* CONTENT */}
-      <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-10 lg:flex-row lg:items-center lg:py-24">
+      <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-20 lg:flex-row lg:items-center lg:py-24">
         {/* LEFT CONTENT SIDE */}
         <div className="max-w-3xl space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-yellow-200">
@@ -57,7 +57,7 @@ const ResidentialHero = () => {
         </div>
 
         {/* RIGHT CARD SIDE */}
-        <div className="mt-12 w-full max-w-lg lg:ml-auto lg:mt-0">
+        <div className=" hidden md:block mt-12  w-full max-w-lg lg:ml-auto lg:mt-0">
           <div className="rounded-3xl bg-white p-5 text-slate-900 shadow-2xl">
             {/* VIDEO IMAGE */}
             <div className="relative h-56 w-full overflow-hidden rounded-2xl">

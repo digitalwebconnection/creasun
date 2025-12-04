@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Code2, Sun } from "lucide-react";
 import logo from "../assets/creasun2.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -109,7 +110,8 @@ export default function Footer() {
         <div className="relative z-10 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-10 px-6 py-8 sm:px-0">
           {/* Brand */}
           <div>
-            <img src={logo} alt="Creasun Energy Logo" className="h-20 w-65 -ms-2 rounded-lg shadow-md mb-4" />
+            <Link to="/"><img src={logo} alt="Creasun Energy Logo" className="h-20 w-65 -ms-2 rounded-lg shadow-md mb-4" /></Link>
+            
             <p className="mt-4 text-sm leading-relaxed">
               Clean Power. Smart Savings. Reliable Service.
               <br />
@@ -216,7 +218,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-[#2E7AE3]/40 bg-[#021A5E]/50 backdrop-blur-sm">
-          <div className="mx-auto max-w-7xl px-6 md:px-0 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm">
+          <div className="mx-auto max-w-7xl px-6 md:px-0 py-4 flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm">
             <p className="text-white">© {currentYear} Creasun Energy. All rights reserved.</p>
 
             {/* Clickable company link with fallback and forced pointer-events / z-index */}
@@ -226,7 +228,7 @@ export default function Footer() {
               onClick={handleLinkClick}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 text-white text-[13px] md:text-lg cursor-pointer"
+              className="flex md:items-center md:justify-center gap-2 text-white text-[13px] md:text-lg cursor-pointer"
               style={{ zIndex: 9999, pointerEvents: "auto" }}
               aria-label="Digital Web Connection (opens in new tab)"
             >

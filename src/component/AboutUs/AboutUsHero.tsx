@@ -13,7 +13,7 @@ const AboutUsHero = () => {
 
   return (
     <section
-      className="relative overflow-hidden py-12 sm:py-20 bg-cover bg-center bg-no-repeat"
+      className="relative overflow-hidden py-20  bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('https://insolationenergy.in/public/upload/seo/solar-panels-in-india-ina.jpg')`,
       }}
@@ -90,7 +90,10 @@ const AboutUsHero = () => {
             >
               Talk to Our Team ↗
             </button>
-
+            <div
+              className="absolute inset-0 -z-20 bg-black/70 backdrop-blur-[1px] pointer-events-none"
+              aria-hidden
+            />
             <Link
               to="/project"
               className="inline-flex items-center gap-2 rounded-full border border-[#B1D5FA]/50 bg-white/10 px-5 py-3 text-sm font-semibold text-[#E3EEFF] hover:border-[#F5B835] hover:text-[#F5B835] hover:bg-white/5"
@@ -103,7 +106,7 @@ const AboutUsHero = () => {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
+        <div className="relative hidden md:block mx-auto w-full max-w-md lg:max-w-lg">
           {/* Decorative orbit behind card */}
           <div className="pointer-events-none absolute -inset-6 rounded-4xl border border-white/5" />
           <div className="pointer-events-none absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-[#F5B835]/15 blur-3xl" />

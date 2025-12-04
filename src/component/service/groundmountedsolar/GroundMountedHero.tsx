@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const GroundMountedHero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden ">
+    <section className="relative overflow-hidden h-110 md:h-auto ">
       {/* Background Image */}
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
@@ -42,7 +42,7 @@ const GroundMountedHero: React.FC = () => {
         }}
       />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-4 py-14 md:flex-row md:py-25">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-4 py-20 md:flex-row md:py-25">
         {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -119,7 +119,7 @@ const GroundMountedHero: React.FC = () => {
             {/* Image */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="absolute inset-1 overflow-hidden rounded-2xl border border-white bg-black shadow-xl"
+              className="absolute inset-1 overflow-hidden hidden md:block rounded-2xl border border-white bg-black shadow-xl"
             >
               <img
                 src="https://images.pexels.com/photos/9875440/pexels-photo-9875440.jpeg?auto=compress&cs=tinysrgb&w=1200"

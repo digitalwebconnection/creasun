@@ -24,11 +24,11 @@ export default function CommercialSolarHero() {
       </div>
 
       {/* Main content */}
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-6 py-8 sm:px-0 sm:py-10 lg:flex-row lg:items-center lg:py-20">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-6 py-20 sm:px-0 sm:py-10 lg:flex-row lg:items-center lg:py-20">
         {/* Left: Text content */}
         <div className="max-w-3xl text-center lg:text-left">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#cfc202]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[8px] sm:text-xs uppercase tracking-[0.25em] text-[#cfc202]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#c7ba09]" />
             <span>Factories • Warehouses • Schools • Offices</span>
           </div>

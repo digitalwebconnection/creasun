@@ -2,10 +2,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/creasun2.png";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false); // mobile menu
   const [servicesOpen, setServicesOpen] = useState(false); // desktop Services dropdown
   const [servicesOpenMobile, setServicesOpenMobile] = useState(false); // mobile Services accordion
@@ -18,8 +20,8 @@ export default function Header() {
 
   const serviceItems = [
     { label: "Residential Solar", href: "/services/residential-solar" },
-    { label: "Commercial Solar", href: "/services/Commercial-solar" },
-    { label: "Industrial Solar", href: "/services/Industrial-solar" },
+    { label: "Commercial Solar", href: "/services/commercial-solar" },
+    { label: "Industrial Solar", href: "/services/industrial-solar" },
     { label: "Ground Mounted Solar", href: "/services/ground-mounted-solar" },
   ];
 
@@ -27,33 +29,21 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY || 0;
-
       if (ticking.current) return;
       ticking.current = true;
-
       window.requestAnimationFrame(() => {
         const prevY = lastScrollY.current;
-
-        // Always show when close to top
         if (currentY < 10) {
           setShowHeader(true);
         } else {
           const diff = currentY - prevY;
-
-          if (diff > 5) {
-            // scrolling down
-            setShowHeader(false);
-          } else if (diff < -5) {
-            // scrolling up
-            setShowHeader(true);
-          }
+          if (diff > 5) setShowHeader(false);
+          else if (diff < -5) setShowHeader(true);
         }
-
         lastScrollY.current = currentY;
         ticking.current = false;
       });
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -61,22 +51,17 @@ export default function Header() {
   /* ========== CLICK OUTSIDE TO CLOSE DESKTOP DROPDOWN ========== */
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setServicesOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 z-30 w-full transform transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
-        }`}
+      className={`fixed top-0 left-0 z-30 w-full transform transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* Thin gradient strip */}
       <div className="h-1 w-full bg-linear-to-r from-[#F5B835] via-[#2E7AE3] to-[#031E6C]" />
@@ -87,36 +72,26 @@ export default function Header() {
           <div className="flex h-16 items-center justify-between">
             {/* LEFT: LOGO */}
             <Link to="/" className="flex items-center gap-3">
-              <img
-                src={logo}
-                alt="Creasun Energy"
-                className="h-12 w-auto object-contain"
-              />
+              <img src={logo} alt="Creasun Energy" className="h-12 w-auto object-contain" />
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center gap-10 text-lg font-medium text-slate-700 md:flex">
-              {/* About */}
-              <Link
-                to="/about"
-                className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
-              >
+              <Link to="/about" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
                 <span>About</span>
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
 
-              {/* Services (dropdown) */}
               <div className="relative" ref={dropdownRef}>
                 <button
                   type="button"
                   onClick={() => setServicesOpen((prev) => !prev)}
+                  aria-expanded={servicesOpen}
+                  aria-haspopup="menu"
                   className="flex items-center gap-1 py-1 transition-colors hover:text-[#2E7AE3]"
                 >
                   <span>Services</span>
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""
-                      }`}
-                  />
+                  <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {servicesOpen && (
@@ -135,29 +110,17 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Projects */}
-              <Link
-                to="/project"
-                className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
-              >
+              <Link to="/project" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
                 <span>Projects</span>
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
 
-              {/* Contact Us */}
-              <Link
-                to="/contact"
-                className="relative py-1 transition-colors hover:text-[#2E7AE3] group"
-              >
+              <Link to="/contact" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
                 <span>Contact Us</span>
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
 
-              {/* Call Button */}
-              <a
-                href="tel:+919624120591"
-                className="inline-flex items-center gap-2 rounded-full bg-[#F5B835] px-10 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm transition-colors hover:bg-[#2E7AE3] hover:text-white"
-              >
+              <a href="tel:+919624120591" className="inline-flex items-center gap-2 rounded-full bg-[#F5B835] px-10 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm transition-colors hover:bg-[#2E7AE3] hover:text-white">
                 <Phone className="h-4 w-4" />
                 Call Us
               </a>
@@ -166,8 +129,13 @@ export default function Header() {
             {/* Mobile: Menu Button */}
             <button
               type="button"
-              onClick={() => setOpen((prev) => !prev)}
+              onClick={() => {
+                setOpen((prev) => !prev);
+                setServicesOpen(false);
+              }}
               className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 hover:text-[#031E6C] md:hidden"
+              aria-label="Toggle menu"
+              aria-expanded={open}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -176,70 +144,84 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {open && (
-          <div className="border-t border-slate-200 bg-white/95 backdrop-blur md:hidden">
+          <div className="border-t border-slate-200 bg-white/95 backdrop-blur md:hidden" style={{ touchAction: "manipulation" }}>
             <nav className="space-y-1 px-4 py-3 text-sm font-medium text-slate-700">
-              {/* About */}
               <Link
                 to="/about"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setServicesOpenMobile(false);
+                }}
                 className="block rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
               >
                 About
               </Link>
 
-              {/* Services (accordion) */}
-              <button
-                type="button"
-                onClick={() => setServicesOpenMobile((prev) => !prev)}
-                className="flex w-full items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
-              >
-                <span>Services</span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${servicesOpenMobile ? "rotate-180" : ""
-                    }`}
-                />
-              </button>
+              {/* Services (accordion mobile) */}
+              <div>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setServicesOpenMobile((prev) => !prev);
+                  }}
+                  aria-expanded={servicesOpenMobile}
+                  aria-controls="mobile-services-list"
+                  className="flex w-full items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+                >
+                  <span>Services</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpenMobile ? "rotate-180" : ""}`} />
+                </button>
 
-              {servicesOpenMobile && (
-                <div className="pl-4">
+                <div id="mobile-services-list" className={`${servicesOpenMobile ? "block" : "hidden"} pl-4`}>
                   {serviceItems.map((item) => (
-                    <Link
+                    // Use programmatic navigation for reliable mobile behavior
+                    <button
                       key={item.label}
-                      to={item.href}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // programmatic navigate ensures it always works on mobile
+                        navigate(item.href);
                         setOpen(false);
                         setServicesOpenMobile(false);
                       }}
-                      className="block rounded-lg px-3 py-2 text-[13px] transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
+                      className="w-full text-left rounded-lg px-3 py-2 text-[13px] transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
                     >
                       {item.label}
-                    </Link>
+                    </button>
                   ))}
                 </div>
-              )}
+              </div>
 
-              {/* Projects */}
               <Link
                 to="/project"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setServicesOpenMobile(false);
+                }}
                 className="block rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
               >
                 Projects
               </Link>
 
-              {/* Contact Us */}
               <Link
-                to="/contactus"
-                onClick={() => setOpen(false)}
+                to="/contact"
+                onClick={() => {
+                  setOpen(false);
+                  setServicesOpenMobile(false);
+                }}
                 className="block rounded-lg px-3 py-2 transition-colors hover:bg-slate-50 hover:text-[#2E7AE3]"
               >
                 Contact Us
               </Link>
 
-              {/* Call Button */}
               <a
                 href="tel:+919624120591"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setServicesOpenMobile(false);
+                }}
                 className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[#F5B835] px-4 py-2 text-[13px] font-semibold text-[#031E6C] shadow-sm transition-colors hover:bg-[#2E7AE3] hover:text-white"
               >
                 <Phone className="h-4 w-4" />
