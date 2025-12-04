@@ -1,6 +1,10 @@
 import { Play, Star } from "lucide-react";
+import { useState } from "react";
+import FreeSolarQuoteModal from "../../FreeSolarQuoteModal"; // <-- adjust path if needed
 
 const ResidentialHero = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <section
       className="relative overflow-hidden rounded-b-4xl text-white"
@@ -43,16 +47,13 @@ const ResidentialHero = () => {
 
           {/* BUTTONS */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <button className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg ">
+            <button
+              onClick={() => setOpen(true)}
+              className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg "
+            >
               Book Free Consultation
             </button>
-
-            <button className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-yellow-700 shadow hover:bg-slate-100">
-              Get Savings Estimate
-            </button>
           </div>
-
-          
         </div>
 
         {/* RIGHT CARD SIDE */}
@@ -120,6 +121,9 @@ const ResidentialHero = () => {
           </div>
         </div>
       </div>
+
+      {/* Mount the modal */}
+      <FreeSolarQuoteModal open={open} setOpen={setOpen} />
 
       {/* SVG EDGE (kept as you had) */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 overflow-hidden leading-0">

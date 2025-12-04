@@ -1,9 +1,13 @@
 // IndustrialSolarHero.tsx
-import { ArrowRight } from "lucide-react";
+
+import { useState } from "react";
+import FreeSolarQuoteModal from "../../FreeSolarQuoteModal";
 
 export default function IndustrialSolarHero() {
+  const [visitOpen, setVisitOpen] = useState(false);
+
   return (
-    <section className="relative h-[90vh] min-h-[550px] w-full overflow-hidden text-white">
+    <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden text-white">
       {/* 1. Background Image + Overlays */}
       <div className="absolute inset-0">
         {/* Main background image with slight slow zoom */}
@@ -16,10 +20,10 @@ export default function IndustrialSolarHero() {
         />
 
         {/* Dark gradient overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-black/50" />
+        <div className="absolute inset-0 bg-linear-to-br from-black/85 via-black/70 to-black/50" />
 
         {/* Soft radial glows */}
-        <div className="absolute -left-20 -top-20 h-72 w-72 animate-pulse-slow rounded-full bg-emerald-400/20 blur-3xl" />
+        <div className="absolute -left-20 -top-20 h-102 w-72 animate-pulse-slow rounded-full bg-emerald-400/20 blur-3xl" />
         <div className="absolute bottom-[-120px] left-1/3 h-80 w-80 animate-pulse-slower rounded-full bg-cyan-400/15 blur-3xl" />
 
         {/* Subtle grid pattern overlay */}
@@ -34,7 +38,7 @@ export default function IndustrialSolarHero() {
       </div>
 
       {/* 2. Decorative SVG Wave at the Bottom */}
-      <div className="pointer-events-none absolute bottom-0 left-0 h-32 w-full opacity-70 wave-sway">
+      <div className="pointer-events-none absolute bottom-0 left-0 h-82 w-full opacity-70 wave-sway">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
@@ -63,7 +67,7 @@ export default function IndustrialSolarHero() {
       </div>
 
       {/* 4. Main Content */}
-      <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center gap-8 px-5 py-12 md:px-8 lg:px-0">
+      <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center gap-8 px-5 py-8 md:px-8 lg:px-0">
         {/* Tagline + Heading + Copy */}
         <div className="space-y-4">
           <p className="tag-pulse text-sm font-semibold uppercase tracking-[0.25em] text-emerald-300 opacity-0 animate-fade-in [animation-delay:200ms]">
@@ -83,31 +87,22 @@ export default function IndustrialSolarHero() {
           </p>
         </div>
 
-        {/* Key points – animated float */}
-        <div className="badge-group opacity-0 animate-fade-in-up [animation-delay:800ms] flex flex-wrap gap-4 text-xs sm:text-sm">
-          <span className="badge-float flex items-center gap-2 rounded-full bg-emerald-500/15 px-4 py-2 font-medium backdrop-blur-md hover:bg-emerald-500/30 transition-all">
-            <ArrowRight className="h-3 w-3" /> 100 kW – 5 MW+ rooftop systems
-          </span>
-          <span className="badge-float flex items-center gap-2 rounded-full bg-emerald-500/15 px-4 py-2 font-medium backdrop-blur-md hover:bg-emerald-500/30 transition-all">
-            <ArrowRight className="h-3 w-3" /> 25+ year performance guarantee
-          </span>
-          <span className="badge-float flex items-center gap-2 rounded-full bg-emerald-500/15 px-4 py-2 font-medium backdrop-blur-md hover:bg-emerald-500/30 transition-all">
-            <ArrowRight className="h-3 w-3" /> Typical payback in 3–4 years
-          </span>
-        </div>
 
         {/* CTA buttons */}
         <div className="opacity-0 animate-fade-in-up [animation-delay:1000ms] mt-4 flex flex-wrap items-center gap-4">
-          <button className="btn-glow rounded-lg bg-emerald-500 px-7 py-3 text-base font-bold text-slate-900 shadow-xl shadow-emerald-500/40 transition-all duration-300 hover:scale-[1.05] hover:bg-emerald-400">
+          {/* <-- wired to the modal */}
+          <button
+            onClick={() => setVisitOpen(true)}
+            className="btn-glow rounded-lg bg-emerald-500 px-7 py-3 text-base font-bold text-slate-900 shadow-xl shadow-emerald-500/40 transition-all duration-300 hover:scale-[1.05] hover:bg-emerald-400"
+          >
             Book your industrial site visit
           </button>
 
-          <button className="flex items-center gap-2 text-base font-medium text-slate-100 underline-offset-4 transition hover:text-emerald-300 hover:underline">
-            Get a solar savings estimate
-            <ArrowRight className="h-4 w-4" />
-          </button>
         </div>
       </div>
+
+      {/* Mount the modal here */}
+      <FreeSolarQuoteModal open={visitOpen} setOpen={setVisitOpen} />
 
       {/* 5. Custom keyframes & utility classes */}
       <style>

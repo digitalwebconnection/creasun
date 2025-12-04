@@ -1,4 +1,16 @@
+// AboutUsHero.tsx
+"use client";
+import { Link } from "react-router-dom";
+
+// ...
+
+
+import { useState } from "react";
+import FreeSolarQuoteModal from "../FreeSolarQuoteModal";
+
 const AboutUsHero = () => {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
   return (
     <section
       className="relative overflow-hidden py-12 sm:py-20 bg-cover bg-center bg-no-repeat"
@@ -71,18 +83,22 @@ const AboutUsHero = () => {
 
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#contact"
+            {/* CHANGED: anchor -> button to open modal */}
+            <button
+              onClick={() => setQuoteOpen(true)}
               className="inline-flex items-center gap-2 rounded-full bg-[#031E6C] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(15,23,42,0.55)] transition hover:bg-[#2E7AE3] hover:-translate-y-0.5"
             >
               Talk to Our Team ↗
-            </a>
-            <a
-              href="#projects"
+            </button>
+
+            <Link
+              to="/project"
               className="inline-flex items-center gap-2 rounded-full border border-[#B1D5FA]/50 bg-white/10 px-5 py-3 text-sm font-semibold text-[#E3EEFF] hover:border-[#F5B835] hover:text-[#F5B835] hover:bg-white/5"
             >
               View Projects
-            </a>
+            </Link>
+
+
           </div>
         </div>
 
@@ -151,6 +167,9 @@ const AboutUsHero = () => {
           </div>
         </div>
       </div>
+
+      {/* Mount the modal */}
+      <FreeSolarQuoteModal open={quoteOpen} setOpen={setQuoteOpen} />
     </section>
   );
 };

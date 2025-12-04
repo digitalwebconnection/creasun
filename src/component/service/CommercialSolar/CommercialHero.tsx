@@ -1,8 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import FreeSolarQuoteModal from "../../FreeSolarQuoteModal";
 
 export default function CommercialSolarHero() {
+  // Modal state
+  const [open, setOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden text-white">
       {/* Background image */}
@@ -13,9 +18,9 @@ export default function CommercialSolarHero() {
           className="h-full w-full object-cover"
         />
         {/* Left-to-right dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050814dc] via-[#050814b4] to-[#0508149a]" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#050814dc] via-[#050814b4] to-[#0508149a]" />
         {/* Top-to-bottom soft vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/60" />
       </div>
 
       {/* Main content */}
@@ -46,7 +51,10 @@ export default function CommercialSolarHero() {
 
           {/* CTA group */}
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-4 lg:items-start">
-            <button className="inline-flex items-center gap-2 rounded-full bg-[#c5960e] px-7 py-2 text-sm sm:text-base font-semibold text-white shadow-lg shadow-[#c5960e]/40 transition hover:bg-[#dfb31b]">
+            <button
+              onClick={() => setOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full bg-[#c5960e] px-7 py-2 text-sm sm:text-base font-semibold text-white shadow-lg shadow-[#c5960e]/40 transition hover:bg-[#dfb31b]"
+            >
               Book a commercial solar audit
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -90,10 +98,13 @@ export default function CommercialSolarHero() {
               </div>
             </div>
 
-            <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="mt-5 h-px w-full bg-linear-to-r from-transparent via-white/20 to-transparent" />
           </div>
         </div>
       </div>
+
+      {/* Inject Popup Form */}
+      <FreeSolarQuoteModal open={open} setOpen={setOpen} />
     </section>
   );
 }

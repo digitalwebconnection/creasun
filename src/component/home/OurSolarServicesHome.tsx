@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   Activity,
   BatteryCharging,
-  Lightbulb,
 } from "lucide-react";
 
 type ServiceItem = {
@@ -101,16 +100,7 @@ export default function SolarServicesGridCreasun() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 flex justify-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#2E7AE3] to-[#0A2E9E] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_35px_rgba(3,30,108,0.45)] hover:brightness-110"
-          >
-            Book a Free Solar Consultation
-            <Lightbulb className="h-5 w-5" />
-          </a>
-        </div>
+        
       </div>
     </section>
   );

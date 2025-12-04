@@ -235,29 +235,6 @@ const GroundMountedPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SECTION 6 – CTA BAND */}
-        <section className="rounded-3xl border border-emerald-100 bg-linear-to-r from-blue-600 via-blue-500 to-blue-700 px-6 py-8 text-white shadow-blue-500">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="text-xl font-bold">
-                Ready to explore a ground-mounted solar project?
-              </h3>
-              <p className="mt-2 text-sm text-emerald-50 max-w-xl">
-                Share your land details, average monthly bills and current power
-                setup — we&apos;ll send back a clear, numbers-first feasibility
-                report.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-              <button className="rounded-full bg-white px-6 py-2.5 text-xs font-semibold text-blue-900 shadow-md hover:bg-emerald-50">
-                Request Ground-Mount Feasibility
-              </button>
-              <button className="rounded-full border border-emerald-100/70 px-6 py-2.5 text-xs font-semibold text-emerald-50 hover:bg-emerald-600/60">
-                Download Sample Layout & ROI
-              </button>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );

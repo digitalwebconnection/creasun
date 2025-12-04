@@ -7,6 +7,8 @@ import {
   ChevronDown,
   BarChart3,
 } from "lucide-react";
+import { useState } from "react";
+import FreeSolarQuoteModal from "../FreeSolarQuoteModal";
 
 const EASE: NonNullable<Transition["ease"]> = [0.42, 0, 0.58, 1];
 
@@ -19,12 +21,11 @@ const float: Variants = {
   },
 };
 
-// Background smooth zoom + slow horizontal movement
 const bgMotion: Variants = {
   initial: { scale: 1.05, x: 0 },
   animate: {
     scale: 1.15,
-    x: "-6%", // slow scroll-left
+    x: "-6%",
     transition: {
       duration: 18,
       ease: "easeInOut",
@@ -35,9 +36,10 @@ const bgMotion: Variants = {
 };
 
 export default function CreasunHomeHero() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden bg-[#031E6C] text-white h-auto sm:h-[90vh] flex items-center">
-      
       {/* Animated Background */}
       <motion.div
         variants={bgMotion}
@@ -75,14 +77,13 @@ export default function CreasunHomeHero() {
       </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl px-6 pt-20  lg:px-8">
-        
+      <div className="relative z-10 max-w-7xl px-6 pt-20 lg:px-8">
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="inline-flex  gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm font-semibold backdrop-blur"
+          className="inline-flex gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm font-semibold backdrop-blur"
         >
           <Sun className="h-4 w-4 text-[#F5B835]" />
           Gujarat’s Trusted Solar Partner • Creasun Energy
@@ -109,8 +110,8 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
           className="mt-4 max-w-2xl text-base sm:text-lg text-white/90"
         >
-          Trusted solar partner delivering rooftop, commercial, and industrial 
-          solutions — from design to installation, subsidy support, and long-term 
+          Trusted solar partner delivering rooftop, commercial, and industrial
+          solutions — from design to installation, subsidy support, and long-term
           maintenance. Creasun makes going solar simple, affordable, and reliable.
         </motion.p>
 
@@ -121,13 +122,14 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
           className="mt-8 flex flex-col sm:flex-row gap-4"
         >
-          <a
-            href="#quote"
+          {/* Linked to modal */}
+          <button
+            onClick={() => setQuoteOpen(true)}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B835] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(255,140,0,0.35)] hover:brightness-110 transition"
           >
             🔆 Get a Free Solar Quote
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </button>
 
           <a
             href="#savings-calculator"
@@ -170,6 +172,9 @@ export default function CreasunHomeHero() {
           <ChevronDown className="h-6 w-6 animate-bounce text-white/70" />
         </motion.div>
       </div>
+
+      {/* Mount modal */}
+      <FreeSolarQuoteModal open={quoteOpen} setOpen={setQuoteOpen} />
 
       {/* Bottom Glow */}
       <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[520px] h-[190px] bg-[#F5B835]/25 blur-3xl opacity-50" />

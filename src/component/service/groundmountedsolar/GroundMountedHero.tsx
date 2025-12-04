@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const GroundMountedHero: React.FC = () => {
   return (
@@ -73,7 +74,12 @@ const GroundMountedHero: React.FC = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               className="rounded-md bg-blue-900 px-7 py-3 text-sm font-semibold text-white shadow-lg transition "
             >
+             <Link
+              to="/project"
+
+            >
               View Projects
+            </Link>
             </motion.button>
 
             <motion.div

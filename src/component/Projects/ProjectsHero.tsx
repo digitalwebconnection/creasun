@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "../Projects/creasunHero.css"; // <- important
+import FreeSolarQuoteModal from "../FreeSolarQuoteModal";
+
 
 const SLIDES = [
   {
@@ -40,6 +42,7 @@ const SLIDES = [
 
 const CreasunProjectsHero = () => {
   const [active, setActive] = useState(0);
+  const [siteVisitOpen, setSiteVisitOpen] = useState(false); // <-- modal state
 
   // Auto change slide
   useEffect(() => {
@@ -92,7 +95,13 @@ const CreasunProjectsHero = () => {
               <button className="rounded-full bg-yellow-400 px-6 py-2.5 text-slate-900 shadow-lg shadow-yellow-400/40 hover:bg-yellow-300">
                 View project details
               </button>
-              <button className="rounded-full border border-white/40 bg-white/5 px-6 py-2.5 text-slate-50 hover:border-yellow-300 hover:bg-white/10">
+
+              {/* Book a site visit now opens the modal */}
+              <button
+                onClick={() => setSiteVisitOpen(true)}
+                className="rounded-full border border-white/40 bg-white/5 px-6 py-2.5 text-slate-50 hover:border-yellow-300 hover:bg-white/10"
+                aria-haspopup="dialog"
+              >
                 Book a site visit
               </button>
             </div>
@@ -163,6 +172,9 @@ const CreasunProjectsHero = () => {
           </div>
         </div>
       </div>
+
+      {/* Mount modal and pass control props */}
+      <FreeSolarQuoteModal open={siteVisitOpen} setOpen={setSiteVisitOpen} />
     </section>
   );
 };

@@ -772,14 +772,7 @@ export default function CreasunCalculatorWhite() {
       {/* Actions */}
       <div className="max-w-7xl mx-auto px-6 pb-12">
         <div className="flex flex-wrap justify-center gap-6">
-          <motion.button
-            className="px-8 py-3 rounded-full text-white font-semibold shadow-sm"
-            style={{ background: "linear-gradient(90deg, #2E7AE3, #031E6C)" }}
-            whileHover={{ y: -1, boxShadow: "0 8px 24px rgba(3,30,108,.25)" }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Get Free Consultation
-          </motion.button>
+
 
           <motion.button
             onClick={async () => {
@@ -803,7 +796,7 @@ export default function CreasunCalculatorWhite() {
                 `Creasun_Estimate_${city}_${segment}_${mount}_${Date.now()}.pdf`
               );
             }}
-            className="px-8 py-3 rounded-full font-semibold border border-gray-300 hover:bg-gray-50 flex items-center gap-2"
+            className="px-8 py-3 rounded-full font-semibold border border-gray-500 hover:bg-gray-50 flex items-center gap-2"
             style={{ color: BRAND.blue }}
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.98 }}

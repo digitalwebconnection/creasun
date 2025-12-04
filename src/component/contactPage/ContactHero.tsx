@@ -150,7 +150,7 @@ const ContactHero = () => {
                     <path d="M0,110 C200,40 420,140 720,110 C1020,80 1220,140 1440,100 L1440 160 L0 160 Z"
                         fill="url(#g1)" opacity="1" />
                 </svg>
-                
+
             </div>
         </section>
     );

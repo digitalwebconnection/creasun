@@ -439,56 +439,7 @@ const IndustrialSolarPage: React.FC = () => {
           </motion.div>
         </motion.section>
 
-        {/* SECTION 5 – CTA BAND */}
-        <motion.section
-          className="rounded-3xl bg-[#031E6C] px-5 py-7 text-white shadow-[0_20px_60px_rgba(15,23,42,0.45)]"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }}
-        >
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F5B835]">
-                NEXT STEP WITH CREASUN
-              </p>
-              <h2 className="mt-2 text-lg font-bold sm:text-xl">
-                Ready to see what industrial solar could do for your plant?
-              </h2>
-              <p className="mt-2 text-xs sm:text-sm text-slate-200 max-w-xl">
-                Share your average monthly bill, sanctioned load and roof / land
-                photos. We’ll send back a clear, numbers-first proposal —
-                no jargon, no pressure.
-              </p>
-            </div>
 
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-              {/* Request Audit Button - ENHANCED HOVER */}
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 24px 50px rgba(245,184,53,0.45)",
-                }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }} 
-                className="rounded-full bg-[#F5B835] px-5 py-2.5 text-xs font-semibold text-[#031E6C]"
-              >
-                Request Industrial Solar Audit
-              </motion.button>
-              
-              {/* Download Report Button - ENHANCED HOVER */}
-              <motion.button
-                whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.15)" }} 
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2 }}
-                className="rounded-full border border-slate-500 px-5 py-2.5 text-xs font-semibold text-slate-100"
-              >
-                Download Sample ROI Report
-              </motion.button>
-            </div>
-          </div>
-        </motion.section>
       </div>
     </div>
   );
