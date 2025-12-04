@@ -71,7 +71,7 @@ const CreasunProjectsHero = () => {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-6 py-10">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-3 py-20">
         {/* Text from active slide */}
         <div className="flex-1 flex items-center">
           <div className="max-w-xl">
@@ -109,7 +109,7 @@ const CreasunProjectsHero = () => {
         </div>
 
         {/* Bottom controls + thumbnails */}
-        <div className="mt-6 flex flex-col gap-4 pb-2">
+        <div className="mt-6 hidden md:flex flex-col gap-4 pb-2">
           {/* controls */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 text-xs">
