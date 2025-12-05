@@ -94,7 +94,7 @@ export default function SolarServicesGridCreasun() {
         </header>
 
         {/* Zig-zag pill layout */}
-        <div className="mt-12 space-y-8 max-w-6xl mx-auto">
+        <div className="mt-12 space-y-8 max-w-6xl px-2 mx-auto">
           {services.map((item, index) => (
             <ZigZagRow key={item.key} item={item} index={index} />
           ))}

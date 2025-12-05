@@ -61,15 +61,32 @@ function clamp(n: number, min: number, max: number) {
   return Math.min(Math.max(n, min), max);
 }
 
+/* ===================== Updated subsidy logic per user request ===================== */
+/**
+ * Subsidy scheme:
+ *  - 1 kW -> 20,000
+ *  - 2 kW -> 40,000
+ *  - 3 kW -> 68,000
+ *  - Interpolate between points for fractional kW
+ *  - For > 3 kW, growth continues gently but is capped at 78,000
+ */
 function subsidyForKw(kw: number): number {
   if (!kw || kw <= 0) return 0;
-  const first2 = Math.min(kw, 2) * 30000;
-  const third = Math.max(0, Math.min(kw - 2, 1)) * 18000;
-  return Math.min(78000, Math.round(first2 + third));
+  const cap = 78000;
+  if (kw <= 1) return Math.round(kw * 20000);
+  if (kw <= 2) {
+    const t = kw - 1;
+    return Math.round(20000 + t * (40000 - 20000));
+  }
+  if (kw <= 3) {
+    const t = kw - 2;
+    return Math.round(40000 + t * (68000 - 40000));
+  }
+  const extra = Math.round((kw - 3) * 10000);
+  return Math.min(cap, 68000 + extra);
 }
 
 /* ===================== PDF helpers (ASCII-safe) ===================== */
-// Indian grouping WITHOUT the ₹ symbol (jsPDF default font is not Unicode).
 function formatINRPlain(n: number): string {
   const i = Math.round(n).toString();
   const last3 = i.slice(-3);
@@ -78,7 +95,6 @@ function formatINRPlain(n: number): string {
   return `Rs ${other}${last3}`;
 }
 
-// Remove NBSP and any non-ASCII that can make jsPDF render junk glyphs.
 function cleanTxt(s: string): string {
   return s.replace(/\u00A0/g, " ").replace(/[^\x00-\x7F]/g, "");
 }
@@ -170,7 +186,6 @@ async function makePdf(payload: {
     },
   });
 
-  // Footer
   const yEnd = (doc as any).lastAutoTable.finalY + 18;
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
@@ -216,7 +231,6 @@ function Card({
       className={`relative rounded-2xl p-6 bg-white border border-gray-800/50 shadow-xl shadow-black/50 ${className}`}
       whileHover={{ y: -2 }}
     >
-      {/* animated gradient edge */}
       <span className="pointer-events-none absolute inset-0 rounded-2xl mask-[linear-gradient(white,transparent)]">
         <span className="absolute -inset-px rounded-2xl bg-[conic-gradient(from_0deg,rgba(46,122,227,.2),rgba(245,184,53,.2),transparent_60%)] animate-[spin_8s_linear_infinite]" />
       </span>
@@ -279,7 +293,6 @@ function Stat({
 
 /* ===================== Main Component ===================== */
 export default function CreasunCalculatorWhite() {
-  // 👇 city is now selectable
   const [city, setCity] = useState<City>("Rajkot");
   const [segment, setSegment] = useState<Segment>("Residential");
   const [mount, setMount] = useState<Mount>("Rooftop");
@@ -289,28 +302,44 @@ export default function CreasunCalculatorWhite() {
   const [applySubsidy, setApplySubsidy] = useState<boolean>(true);
 
   // Sizing/assumption constants
-  const PR = 0.75; // performance ratio
+  const PR = 0.75; // performance ratio (kept for generation estimate)
   const TARGET_OFFSET = 0.8; // offset 80% of consumption
 
   const subsidyAllowed = segment === "Residential" && mount === "Rooftop";
   const costPerKw = COST_PER_KW_MATRIX[segment][mount];
 
+  /* ===== USER RULE: ₹1,000 monthly bill ≈ 1 kW solar installed =====
+     We implement recommended size as:
+       recommendedKw = (monthlyBill * TARGET_OFFSET) / savingPerKwMonth
+     where savingPerKwMonth = 1000 (₹ per kW per month)
+  */
+  const savingPerKwMonth = 1000; // ₹1,000 per kW-month
+
   const result = useMemo(() => {
     const sunHours = CITY_SUN[city];
     const monthlyKWh =
       monthlyBill > 0 && tariff > 0 ? monthlyBill / tariff : 0;
-    const targetKWh = monthlyKWh * TARGET_OFFSET;
-    const kWhPerKwMonth = sunHours * 30 * PR;
 
-    const recommendedKw =
-      kWhPerKwMonth > 0 ? clamp(targetKWh / kWhPerKwMonth, 0.3, 500) : 0;
+    // kWh generated per kW per month (used for monthlyGen estimate)
+    const kWhPerKwMonth = Math.round(sunHours * 30 * PR);
+
+    // Recommended KW based on user's rule: ₹1,000 bill = 1 kW (adjusted by target offset)
+    const recommendedKwUnclamped =
+      savingPerKwMonth > 0
+        ? (monthlyBill * TARGET_OFFSET) / savingPerKwMonth
+        : 0;
+
+    const recommendedKw = clamp(Number(recommendedKwUnclamped.toFixed(2)), 0.3, 500);
 
     const capex = Math.round(recommendedKw * costPerKw);
     const subsidy =
       applySubsidy && subsidyAllowed ? subsidyForKw(recommendedKw) : 0;
     const netCapex = Math.max(0, capex - subsidy);
-    const monthlyGen = Math.round(recommendedKw * kWhPerKwMonth);
-    const monthlySavings = Math.round(monthlyGen * tariff);
+    const monthlyGen = Math.round(recommendedKw * (kWhPerKwMonth || 1));
+
+    // Monthly savings derived from the user's empirical rule:
+    // 1 kW -> ₹1,000 saved per month
+    const monthlySavings = Math.round(recommendedKw * savingPerKwMonth);
     const annualSavings = monthlySavings * 12;
     const paybackYears =
       annualSavings > 0 ? netCapex / annualSavings : Infinity;
@@ -325,7 +354,7 @@ export default function CreasunCalculatorWhite() {
       netCapex,
       monthlySavings,
       paybackYears,
-      kWhPerKwMonth: Math.round(kWhPerKwMonth),
+      kWhPerKwMonth,
     };
   }, [monthlyBill, tariff, city, applySubsidy, costPerKw, subsidyAllowed]);
 
@@ -339,7 +368,7 @@ export default function CreasunCalculatorWhite() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Top Banner with animated gradient */}
+      {/* Top Banner with animated gradient + provided images */}
       <section className="relative">
         <motion.div
           aria-hidden
@@ -381,14 +410,30 @@ export default function CreasunCalculatorWhite() {
             transition={{ delay: 0.2, duration: 0.4 }}
           >
             Get an instant estimate of system size, cost, subsidy and ROI for
-            your property.
+            your property. (Rule: ₹1,000 monthly bill ≈ 1 kW solar)
           </motion.p>
+
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <img
+              src="https://yt3.googleusercontent.com/ytc/AIdro_kU6KbeTOGgPRPyUsLkuAFsOxW3bwBzdKgqgo3PQpaEhg=s900-c-k-c0x00ffffff-no-rj"
+              alt="brand-1"
+              className="h-15 object-contain"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHg7nPjzH2tQXUN9yQyDZpUfT2hbzy8sY5Qg&s"
+              alt="brand-2"
+              className="h-20 object-contain"
+            />
+            <img
+              src="https://crystalpng.com/wp-content/uploads/2022/07/waaree-solar-logo.png"
+              alt="brand-3"
+              className="h-20 object-contain"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Main */}
-      <main className="max-w-7xl mx-auto px-6 md:px-0 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Inputs Card */}
+      <main className="max-w-7xl mx-auto px-6 md:px-0  grid grid-cols-1 lg:grid-cols-3 gap-8">
         <Card className="lg:col-span-1">
           <h2
             className="text-lg font-semibold pb-4 mb-6 border-b"
@@ -399,7 +444,6 @@ export default function CreasunCalculatorWhite() {
             </span>
           </h2>
 
-          {/* City / Location – now selectable */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1">
               City / Location (Gujarat)
@@ -417,12 +461,10 @@ export default function CreasunCalculatorWhite() {
               ))}
             </select>
             <p className="text-xs text-gray-500 mt-1">
-              Avg Sun Hours in <b>{city}</b>:{" "}
-              <b>{CITY_SUN[city]} kWh/m²/day</b>
+              Avg Sun Hours in <b>{city}</b>: <b>{CITY_SUN[city]} kWh/m²/day</b>
             </p>
           </div>
 
-          {/* Segment */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2">Segment</label>
             <div className="grid grid-cols-3 gap-2">
@@ -447,7 +489,6 @@ export default function CreasunCalculatorWhite() {
             </div>
           </div>
 
-          {/* Mount */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2">
               Mounting Type
@@ -477,7 +518,6 @@ export default function CreasunCalculatorWhite() {
             </p>
           </div>
 
-          {/* Bill */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1">
               Monthly Electricity Bill (₹)
@@ -502,7 +542,6 @@ export default function CreasunCalculatorWhite() {
                 />
               ))}
             </div>
-            {/* Slider */}
             <input
               type="range"
               min={0}
@@ -515,7 +554,6 @@ export default function CreasunCalculatorWhite() {
             />
           </div>
 
-          {/* Tariff */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1">
               Electricity Tariff (₹/kWh)
@@ -546,7 +584,6 @@ export default function CreasunCalculatorWhite() {
             </p>
           </div>
 
-          {/* Subsidy */}
           <div className="flex items-center gap-3">
             <input
               id="subsidy"
@@ -569,9 +606,7 @@ export default function CreasunCalculatorWhite() {
           </div>
         </Card>
 
-        {/* Results */}
         <section className="lg:col-span-2 space-y-8">
-          {/* Top KPIs */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>
               <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
@@ -582,15 +617,13 @@ export default function CreasunCalculatorWhite() {
                 className="text-4xl font-extrabold mt-2"
                 style={{ color: BRAND.blue }}
               >
-                {/* animate size value smoothly */}
                 <AnimatedNumber
                   value={result.recommendedKw}
                   format={(n) => `${n.toFixed(0)} kW`}
                 />
               </div>
               <p className="text-xs text-gray-500 mt-2">
-                Est. monthly generation:{" "}
-                <b>{result.monthlyGen} kWh</b>
+                Est. monthly generation: <b>{result.monthlyGen} kWh</b>
               </p>
             </Card>
 
@@ -608,7 +641,6 @@ export default function CreasunCalculatorWhite() {
                   years
                 </span>
               </div>
-              {/* Animated progress bar (10-year scale) */}
               <div className="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
@@ -640,12 +672,11 @@ export default function CreasunCalculatorWhite() {
                 />
               </div>
               <p className="text-xs text-gray-500 mt-2">
-                Indicative savings based on current tariff
+                Indicative savings (₹{savingPerKwMonth}/kW-month)
               </p>
             </Card>
           </div>
 
-          {/* Price & Summary */}
           <Card>
             <h3
               className="text-lg font-semibold mb-4"
@@ -654,7 +685,6 @@ export default function CreasunCalculatorWhite() {
               Investment & Savings Breakdown
             </h3>
 
-            {/* Price per kW row */}
             <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 border border-blue-600">
                 {segment === "Residential" ? (
@@ -707,7 +737,6 @@ export default function CreasunCalculatorWhite() {
             </div>
           </Card>
 
-          {/* Info strip */}
           <motion.div
             className="rounded-xl border border-gray-800/50 bg-linear-to-r from-[#FFF9E6] to-white p-4 text-sm text-gray-700 flex items-center gap-2 shadow-md shadow-yellow-500/20"
             initial={{ opacity: 0, y: 6 }}
@@ -720,9 +749,7 @@ export default function CreasunCalculatorWhite() {
             assistance & AMC across Gujarat.
           </motion.div>
 
-          {/* ---------- DETAILS ---------- */}
           <Card>
-            {/* Live price matrix */}
             <div className="mt-1">
               <h4
                 className="text-base font-semibold mb-3"
@@ -765,15 +792,11 @@ export default function CreasunCalculatorWhite() {
               </div>
             </div>
           </Card>
-          {/* ---------- /DETAILS ---------- */}
         </section>
       </main>
 
-      {/* Actions */}
       <div className="max-w-7xl mx-auto px-6 pb-12">
         <div className="flex flex-wrap justify-center gap-6">
-
-
           <motion.button
             onClick={async () => {
               const doc = await makePdf({

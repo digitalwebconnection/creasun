@@ -77,7 +77,7 @@ export default function CreasunHomeHero() {
       </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl px-6 pt-20 lg:px-8">
+      <div className="relative z-10 max-w-7xl px-3 pt-20 lg:px-8">
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}

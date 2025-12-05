@@ -39,14 +39,14 @@ const steps = [
 
 const leaders = [
     {
-        name: "name ",
+        name: "Dharmendr Arjanbhai Chitroda ",
         role: "Founder & CEO",
         bio: "Drives overall vision, strategy, and key partnerships while ensuring every project delivers measurable impact.",
         image: leader1, // <--- assign the imported string directly
         linkedin: "#",
     },
     {
-        name: "name",
+        name: "Parth Ratibhai Suvagiya ",
         role: "Co-Founder & Director",
         bio: "Leads marketing, brand experience, and customer success with a focus on long-term client relationships.",
         image: leader2, // <--- assign the imported string directly
