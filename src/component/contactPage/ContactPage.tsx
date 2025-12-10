@@ -118,35 +118,6 @@ export default function CreasunContact(): React.JSX.Element {
         )
     }
 
-    // file upload for electricity bill
-    function handleBillFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const file = e.target.files && e.target.files[0]
-        if (!file) {
-            setBillFile(null)
-            if (billPreviewUrl) {
-                URL.revokeObjectURL(billPreviewUrl)
-                setBillPreviewUrl(null)
-            }
-            return
-        }
-        // limit 10MB
-        if (file.size > 10 * 1024 * 1024) {
-            setStatus("File too large. Maximum allowed 10 MB.")
-            return
-        }
-        setBillFile(file)
-        setStatus("")
-        if (file.type.startsWith("image/")) {
-            const url = URL.createObjectURL(file)
-            if (billPreviewUrl) URL.revokeObjectURL(billPreviewUrl)
-            setBillPreviewUrl(url)
-        } else {
-            if (billPreviewUrl) {
-                URL.revokeObjectURL(billPreviewUrl)
-                setBillPreviewUrl(null)
-            }
-        }
-    }
 
     // --------- CAPTCHA handling (updated) ----------
     // limit input to digits only; allow empty string so user can delete
@@ -180,8 +151,8 @@ export default function CreasunContact(): React.JSX.Element {
     }
     // ------------------------------------------------
 
-    // form submit
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // --- SUBMIT: send to Web3Forms ---
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setStatus("")
 
@@ -200,25 +171,73 @@ export default function CreasunContact(): React.JSX.Element {
         setIsSubmitting(true)
         setStatus("Submitting...")
 
-        // TODO: replace with real API call (multipart if you upload billFile)
-        window.setTimeout(() => {
-            setIsSubmitting(false)
-            setStatus("Thanks! We'll get back to you soon.")
-            setForm({ first: "", email: "", phone: "", message: "", location: "" })
-            setSum("")
-            setBillAmount("")
-            setBillUnit("INR")
-            setBillFile(null)
-            if (billPreviewUrl) {
-                URL.revokeObjectURL(billPreviewUrl)
-                setBillPreviewUrl(null)
+        try {
+            const payload = new FormData()
+            // required by Web3Forms
+            payload.append("access_key", "c8409d60-24a0-4996-b8c5-98c141b397aa")
+            // basic fields
+            payload.append("name", form.first)
+            payload.append("email", form.email)
+            payload.append("phone", form.phone || "")
+            payload.append("message", form.message)
+            payload.append("location", form.location || "")
+            payload.append("subject", "Website Contact Form - Creasun Contact")
+            // optional: additional metadata fields
+            payload.append("billAmount", billAmount || "")
+            payload.append("billUnit", billUnit)
+            // attach file if provided (append both common keys to improve chance of acceptance)
+            if (billFile) {
+                // single-file key
+                payload.append("file", billFile, billFile.name)
+                // some endpoints expect attachments[] array style
+                payload.append("attachments[]", billFile, billFile.name)
             }
-            // refresh captcha
-            regenerateCaptcha()
-            // reset map
-            setMapSrc(`https://www.google.com/maps?q=${encodeURIComponent(initialMapQuery)}&z=15&output=embed`)
-            setCaptchaStatus(null)
-        }, 1400)
+
+            // Example: capture UTM or source fields if needed:
+            // payload.append("source", "website")
+            // payload.append("page", window.location.href)
+
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: payload,
+            })
+
+            if (!res.ok) {
+                // handle non-2xx
+                const text = await res.text()
+                console.error("Web3Forms non-OK response:", res.status, text)
+                setStatus("Error submitting the form. Please try again later.")
+                setIsSubmitting(false)
+                return
+            }
+
+            const data = await res.json()
+            if (data.success) {
+                setStatus("Thanks! We'll get back to you soon.")
+                // reset local UI state
+                setForm({ first: "", email: "", phone: "", message: "", location: "" })
+                setSum("")
+                setBillAmount("")
+                setBillUnit("INR")
+                setBillFile(null)
+                if (billPreviewUrl) {
+                    URL.revokeObjectURL(billPreviewUrl)
+                    setBillPreviewUrl(null)
+                }
+                // refresh captcha and map
+                regenerateCaptcha()
+                setMapSrc(`https://www.google.com/maps?q=${encodeURIComponent(initialMapQuery)}&z=15&output=embed`)
+            } else {
+                // web3forms returned success:false
+                console.warn("Web3Forms response:", data)
+                setStatus(data.message || "Submission failed. Please try again.")
+            }
+        } catch (err) {
+            console.error("Submit error:", err)
+            setStatus("Network error. Please try again.")
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     // cleanup preview URL on unmount
@@ -446,13 +465,6 @@ export default function CreasunContact(): React.JSX.Element {
 
                         {/* Electricity bill area */}
                         <div className="rounded-xl p-6 flex flex-col gap-4" style={{ background: `${BRAND.lightTint}10`, border: `1px solid ${BRAND.lightTint}` }}>
-                            <div>
-                                <div className="text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND.textGrayish }}>
-                                    Electricity Bill
-                                </div>
-                                <p className="text-xs text-gray-500 mt-1">Provide your monthly bill or upload the latest bill to help us size the system.</p>
-                            </div>
-
                             <div className="flex gap-3 items-start">
                                 <div className="flex-1">
                                     <label className="text-sm font-medium mb-1 block" style={{ color: BRAND.deepBlue }}>
@@ -472,15 +484,6 @@ export default function CreasunContact(): React.JSX.Element {
                                             <option value="kWh">kWh</option>
                                         </select>
                                     </div>
-                                </div>
-
-                                <div className="w-56">
-                                    <label className="text-sm font-medium mb-1 block" style={{ color: BRAND.deepBlue }}>
-                                        Upload Bill
-                                    </label>
-                                    <input type="file" accept=".pdf,image/*" onChange={handleBillFileChange} className="block w-full text-sm text-gray-600" />
-                                    {billFile && !billPreviewUrl && <div className="mt-2 text-xs text-gray-600">{billFile.name}</div>}
-                                    {billPreviewUrl && <div className="mt-2"><img src={billPreviewUrl} alt="Bill preview" className="w-full rounded-md shadow-sm" /></div>}
                                 </div>
                             </div>
                         </div>
@@ -581,8 +584,6 @@ export default function CreasunContact(): React.JSX.Element {
                     <h2 className="text-4xl font-bold  mb-12 text-center">Visit Our Shope </h2>
 
                     <div className="">
-
-
                         <div className="  overflow-hidden shadow-2xl h-96">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3379.697116525583!2d70.7898326!3d22.270909200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959cb798b3be4e5%3A0xe53601b9884a054!2sCreasun%20Energy!5e1!3m2!1sen!2sin!4v1764665710256!5m2!1sen!2sin" width="600" height="450" title="Creasun Energy Location" className="w-full h-full" loading="lazy"></iframe>
                         </div>
