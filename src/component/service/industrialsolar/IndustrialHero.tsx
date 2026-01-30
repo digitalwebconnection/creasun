@@ -7,7 +7,7 @@ export default function IndustrialSolarHero() {
   const [visitOpen, setVisitOpen] = useState(false);
 
   return (
-    <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden text-white">
+    <section className="relative  w-full overflow-hidden text-white">
       {/* 1. Background Image + Overlays */}
       <div className="absolute inset-0">
         {/* Main background image with slight slow zoom */}
@@ -67,14 +67,14 @@ export default function IndustrialSolarHero() {
       </div>
 
       {/* 4. Main Content */}
-      <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center gap-8 px-5 py-8 md:px-8 lg:px-0">
+      <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center gap-8 px-5 py-22 md:px-8 lg:px-0">
         {/* Tagline + Heading + Copy */}
-        <div className="space-y-4">
+        <div className="space-y-1">
           <p className="tag-pulse text-sm font-semibold uppercase tracking-[0.25em] text-emerald-300 opacity-0 animate-fade-in [animation-delay:200ms]">
             Industrial Solar • Future-Proof Power
           </p>
 
-          <h1 className="relative text-shadow-lg max-w-3xl text-4xl font-extrabold leading-snug opacity-0 animate-fade-in-up [animation-delay:400ms] sm:text-5xl lg:text-6xl">
+          <h1 className="relative text-shadow-lg max-w-4xl text-4xl font-extrabold  opacity-0 animate-fade-in-up [animation-delay:400ms] sm:text-5xl lg:text-6xl">
             Reduce your industrial energy costs by{" "}
             <span className="text-emerald-300">up to 60%</span>.
             <span className="shine-effect" />

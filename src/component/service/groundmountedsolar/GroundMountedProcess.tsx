@@ -181,9 +181,9 @@ const GroundMountedPage: React.FC = () => {
             {advantages.map((adv) => (
               <div
                 key={adv.title}
-                className="flex gap-4 rounded-2xl border border-slate-200 bg-emerald-50/40 px-5 py-4 shadow-sm"
+                className="flex gap-4 rounded-2xl border border-slate-200 bg-emerald-50/40 px-2 py-4 shadow-sm"
               >
-                <div className="mt-1 h-8 w-8 flex items-center justify-center rounded-full bg-blue-900 text-white text-xs font-bold">
+                <div className="mt-1 h-8 p-3  flex items-center justify-center rounded-full bg-blue-900 text-white text-xs font-bold">
                   ✓
                 </div>
                 <div>

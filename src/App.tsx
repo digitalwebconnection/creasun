@@ -12,6 +12,9 @@ import Groundmountedsolar from "./component/service/groundmountedsolar/Groundmou
 import ScrollToTop from "./component/ScrollToTop";
 import ContactMain from "./component/contactPage/ContactMain";
 import WhatsAppChatbot from "./component/WhatsAppChatbot";
+import PrivacyPolicy from "./component/PrivacyPolicy";
+
+
 
 function App() {
   return (
@@ -27,18 +30,18 @@ function App() {
         <Route path="/" element={<HomeMain />} />
 
         {/* You can add more routes later like: */}
-        <Route path="/about" element={<AboutUsMain />} />
+        <Route path="/about-us" element={<AboutUsMain />} />
         <Route path="/services/residential-solar" element={<ResidentialSolarMain />} />
         <Route path="/services/Commercial-solar" element={<CommercialSolarMain />} />
         <Route path="/services/Industrial-solar" element={<IndustrialsolarMain />} />
         <Route path="/services/ground-mounted-solar" element={<Groundmountedsolar />} />
         <Route path="/project" element={<ProjectsMain />} />
-        <Route path="/contact" element={<ContactMain />} />
+        <Route path="/contact-us" element={<ContactMain />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
-
       {/* Footer will stay on all pages */}
       <Footer />
-      <WhatsAppChatbot  autoOpenDelay={4000}/>
+      <WhatsAppChatbot autoOpenDelay={4000} />
     </Router>
   );
 }

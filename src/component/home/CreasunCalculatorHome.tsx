@@ -293,7 +293,7 @@ function Stat({
 
 /* ===================== Main Component ===================== */
 export default function CreasunCalculatorWhite() {
-  const [city, setCity] = useState<City>("Rajkot");
+  const [city] = useState<City>("Rajkot");
   const [segment, setSegment] = useState<Segment>("Residential");
   const [mount, setMount] = useState<Mount>("Rooftop");
 
@@ -303,7 +303,7 @@ export default function CreasunCalculatorWhite() {
 
   // Sizing/assumption constants
   const PR = 0.75; // performance ratio (kept for generation estimate)
-  const TARGET_OFFSET = 0.8; // offset 80% of consumption
+  const TARGET_OFFSET = 0.92; // offset 80% of consumption
 
   const subsidyAllowed = segment === "Residential" && mount === "Rooftop";
   const costPerKw = COST_PER_KW_MATRIX[segment][mount];
@@ -400,7 +400,7 @@ export default function CreasunCalculatorWhite() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            Solar Savings Calculator
+            Calculate Your Solar Savings
           </motion.h1>
 
           <motion.p
@@ -444,26 +444,7 @@ export default function CreasunCalculatorWhite() {
             </span>
           </h2>
 
-          <div className="mb-6">
-            <label className="block text-sm font-medium mb-1">
-              City / Location (Gujarat)
-            </label>
-            <select
-              value={city}
-              onChange={(e) => setCity(e.target.value as City)}
-              className="w-full p-3 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-[--accent] focus:border-[--accent] outline-none text-sm"
-              style={{ ["--accent" as any]: BRAND.sky }}
-            >
-              {Object.keys(CITY_SUN).map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-            <p className="text-xs text-gray-500 mt-1">
-              Avg Sun Hours in <b>{city}</b>: <b>{CITY_SUN[city]} kWh/m²/day</b>
-            </p>
-          </div>
+       
 
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2">Segment</label>
@@ -795,7 +776,7 @@ export default function CreasunCalculatorWhite() {
         </section>
       </main>
 
-      <div className="max-w-7xl mx-auto px-6 pb-12">
+      <div className="max-w-7xl mx-auto px-6 pt-15">
         <div className="flex flex-wrap justify-center gap-6">
           <motion.button
             onClick={async () => {
@@ -824,7 +805,7 @@ export default function CreasunCalculatorWhite() {
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.98 }}
           >
-            <Download className="w-5 h-5" />
+            <Download className="w-5  h-5" />
             Download Estimate
           </motion.button>
         </div>

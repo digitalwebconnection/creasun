@@ -238,7 +238,7 @@ export default function Footer() {
             </a>
 
             <div className="flex items-center gap-4">
-              <a className="hover:text-[#F5B835]">Privacy</a>
+              <a className="hover:text-[#F5B835]" href="/privacy-policy">Privacy-policy</a>
               <a className="hover:text-[#F5B835]">Terms</a>
               <a className="hover:text-[#F5B835]">Sitemap</a>
             </div>

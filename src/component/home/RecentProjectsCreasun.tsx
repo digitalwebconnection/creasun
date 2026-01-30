@@ -91,9 +91,9 @@ export default function AutoScrollProjects() {
         </p>
 
         <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-[#031E6C]">
-          Solar rooftops we’ve already{" "}
+          Solar Rooftop Projects{" "}
           <span className="bg-[#0A2E9E] bg-clip-text text-transparent">
-            delivered with pride.
+            Delivered with pride.
           </span>
         </h2>
 

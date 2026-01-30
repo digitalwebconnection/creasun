@@ -276,7 +276,7 @@ const IndustrialSolarPage: React.FC = () => {
 
         {/* SECTION 3 – HOW WE DESIGN YOUR PLANT (PROCESS WITH ICONS) - ENHANCED STAGGER */}
         <motion.section
-          className="space-y-5 rounded-3xl border border-slate-100 bg-white/80 p-6 sm:p-0 shadow-[0_18px_50px_rgba(15,23,42,0.06)]"
+          className="space-y-5 rounded-3xl border border-slate-100 bg-white/80 p-2 sm:p-0 shadow-[0_18px_50px_rgba(15,23,42,0.06)]"
           // Removed variants/initial/whileInView from section tag
         >
           {/* Header/Intro elements wrapped in a motion.div */}
@@ -338,7 +338,7 @@ const IndustrialSolarPage: React.FC = () => {
                   y: -4,
                   boxShadow: "0 20px 40px rgba(15,23,42,0.1)",
                 }}
-                className="relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-transform"
+                className="relative rounded-2xl border border-slate-400 bg-white p-4 shadow-sm transition-transform"
               >
                 <img
                   src={item.icon}

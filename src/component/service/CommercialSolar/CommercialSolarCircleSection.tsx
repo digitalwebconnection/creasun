@@ -52,11 +52,11 @@ export default function CommercialSolarCircleSection() {
         </p>
 
         {/* Circle cards */}
-        <div className="mt-4 grid gap-10 md:grid-cols-4 place-items-center">
+        <div className="mt-4  grid gap-10 md:grid-cols-4 place-items-center">
           {COMMERCIAL_SOLAR_SERVICES.map((item) => (
             <div
               key={item.title}
-              className="relative flex items-center justify-center"
+              className="relative flex mb-10 items-center justify-center"
             >
               {/* Outer gradient ring */}
               <div className="bg-yellow-600 rounded-full p-1.5 shadow-xl">
@@ -77,7 +77,7 @@ export default function CommercialSolarCircleSection() {
               <div
                 className={`
                   absolute -bottom-10 left-1/2 -translate-x-1/2
-                  flex h-24 w-24 items-center justify-center rounded-full
+                  flex h-24  w-24 items-center justify-center rounded-full
                   ${item.accentColor} shadow-lg
                 `}
               >

@@ -19,44 +19,44 @@ type ServiceItem = {
 const services: ServiceItem[] = [
   {
     key: "rooftop",
-    title: "Rooftop Solar Installation",
-    desc: "End-to-end EPC for homes, societies and businesses.",
+    title: "End-to-End Rooftop Solar Installation",
+    desc: "Complete EPC solutions for homes, societies, and businesses.",
     icon: PanelsTopLeft,
   },
   {
     key: "design",
-    title: "Design & Engineering",
-    desc: "Shadow analysis, yield estimates and safe structures.",
+    title: "Precision Solar Design & Engineering",
+    desc: "Accurate shadow analysis, yield estimation, and safe structural design.",
     icon: Gauge,
   },
   {
     key: "approvals",
-    title: "Net-Metering & Approvals",
-    desc: "PM Surya Ghar, DISCOM liaison and safety compliance.",
+    title: "Solar Compliance & Approvals",
+    desc: "PM Surya Ghar facilitation, DISCOM liaison, and safety compliance.",
     icon: BadgeCheck,
   },
   {
     key: "bos",
-    title: "Inverters & BOS Supply",
-    desc: "Adani panels, Polycab inverters, Creasun L&T",
+    title: "Trusted Solar Inverters & BOS Supply",
+    desc: "Adani panels, Polycab inverters, Creasun L&T BOS",
     icon: Cable,
   },
   {
     key: "om",
-    title: "O&M / AMC",
-    desc: "Cleaning, checks and SLAs that protect generation.",
+    title: "Solar O&M & AMC Services",
+    desc: "Cleaning, checks, and SLAs protecting generation",
     icon: ShieldCheck,
   },
   {
     key: "monitoring",
-    title: "Monitoring & Analytics",
-    desc: "See generation, PR and savings in real time.",
+    title: "Solar Monitoring & Analytics",
+    desc: "Track generation, PR, and savings in real time.",
     icon: Activity,
   },
   {
     key: "hybrid",
-    title: "Hybrid & Storage Solutions",
-    desc: "On-grid + battery and DG sync for outages.",
+    title: "Hybrid & Solar Storage Solutions",
+    desc: "On-grid solar with battery and DG.",
     icon: BatteryCharging,
   },
 ];
@@ -80,16 +80,14 @@ export default function SolarServicesGridCreasun() {
           </p>
 
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#031E6C]">
-            Reliable rooftop solar
+            Reliable Rooftop Solar Solutions 
             <span className="block bg-[#0A2E9E] bg-clip-text text-transparent">
-              engineered in Gujarat, built for India.
+              Engineered in Gujarat.
             </span>
           </h2>
 
           <p className="mt-4 text-base sm:text-lg leading-relaxed ">
-            A complete service stack — from design and approvals to supply and
-            maintenance — so you work with one dependable partner for your
-            entire rooftop solar journey.
+            Integrated rooftop solar solutions delivering quality engineering, seamless execution, and dependable support from start to finish.
           </p>
         </header>
 

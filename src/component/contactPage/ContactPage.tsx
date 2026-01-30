@@ -118,7 +118,6 @@ export default function CreasunContact(): React.JSX.Element {
         )
     }
 
-
     // --------- CAPTCHA handling (updated) ----------
     // limit input to digits only; allow empty string so user can delete
     function handleSumChange(e: React.ChangeEvent<HTMLInputElement>) {

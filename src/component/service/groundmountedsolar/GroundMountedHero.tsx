@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const GroundMountedHero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden h-110 md:h-auto ">
+    <section className="relative overflow-hidden h-120 md:h-auto ">
       {/* Background Image */}
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"

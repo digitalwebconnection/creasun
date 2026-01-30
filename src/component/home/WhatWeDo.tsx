@@ -56,12 +56,10 @@ export default function WhatWeDo() {
           </span>
 
           <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">
-            Empowering a Greener Tomorrow
+            Clean Energy. Smarter Future.
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600">
-            Through clean, intelligent energy solutions, Creasun Energy helps
-            homes, businesses, and industries transition to a brighter, more
-            sustainable future.
+            Creasun Energy is committed to shaping a brighter future by powering communities and industries with clean, intelligent, and sustainable energy solutions.
           </p>
         </motion.div>
 

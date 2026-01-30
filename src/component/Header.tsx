@@ -11,11 +11,9 @@ export default function Header() {
   const [open, setOpen] = useState(false); // mobile menu
   const [servicesOpen, setServicesOpen] = useState(false); // desktop Services dropdown
   const [servicesOpenMobile, setServicesOpenMobile] = useState(false); // mobile Services accordion
-
   const [showHeader, setShowHeader] = useState(true); // smart hide/show
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
-
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const serviceItems = [
@@ -70,14 +68,14 @@ export default function Header() {
       <div className="backdrop-blur bg-white/90 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            {/* LEFT: LOGO */}
+            {/* LEFT: LOGO */} 
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} alt="Creasun Energy" className="h-12 w-auto object-contain" />
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center gap-10 text-lg font-medium text-slate-700 md:flex">
-              <Link to="/about" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
+              <Link to="/about-us" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
                 <span>About</span>
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
@@ -115,7 +113,7 @@ export default function Header() {
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>
 
-              <Link to="/contact" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
+              <Link to="/contact-us" className="relative py-1 transition-colors hover:text-[#2E7AE3] group">
                 <span>Contact Us</span>
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-linear-to-r from-[#F5B835] to-[#2E7AE3] transition-all duration-200 group-hover:w-full" />
               </Link>

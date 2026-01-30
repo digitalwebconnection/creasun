@@ -168,11 +168,10 @@ export default function SegmentsAndMountingShowcase() {
             <Sun className="h-3.5 w-3.5" /> Solutions by Segment
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            Explore Our Specialized Solar PV Offerings
+            Tailored Solar PV Solutions <br /> by Segment
           </h2>
           <p className="mt-3 text-lg text-slate-600">
-            Select a segment below to see how we engineer the perfect power
-            system for your specific needs, structure, and budget.
+            Tailored solar PV solutions engineered to meet the specific needs of every segment.
           </p>
         </div>
 

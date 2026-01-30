@@ -39,11 +39,11 @@ export default function CreasunFaqSection() {
     return (
         <>
             <section
-                className=" relative h-[300px] bg-[url('https://zodiacenergy.com/images/2.jpg')] bg-cover bg-center bg-fixed flex items-center "
+                className=" relative h-auto md:h-[300px] bg-[url('https://zodiacenergy.com/images/2.jpg')] bg-cover bg-center bg-fixed flex items-center "
             >
                 <div className="absolute inset-0 bg-black/70" />
 
-                <div className="relative z-10 max-w-7xl px-6 text-white">
+                <div className="relative z-10 max-w-7xl px-6 py-5 text-white">
                     <h2 className="text-3xl sm:text-4xl font-extrabold">
                         Smart Residential Solar by Creasun Energy
                     </h2>

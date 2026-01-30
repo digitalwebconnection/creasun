@@ -96,10 +96,10 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
           className="mt-6 text-4xl sm:text-6xl font-extrabold leading-tight drop-shadow-[0_4px_18px_rgba(0,0,0,0.7)]"
         >
-          Clean Power for Gujarat.
+          Trusted Solar Solutions for
           <br />
           <span className="bg-linear-to-r from-[#1a52f8] via-[#296dcc] to-[#4889c9] bg-clip-text text-transparent">
-            Smart Savings for You.
+            Homes & Businesses in Gujarat
           </span>
         </motion.h1>
 
@@ -110,9 +110,7 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
           className="mt-4 max-w-2xl text-base sm:text-lg text-white/90"
         >
-          Trusted solar partner delivering rooftop, commercial, and industrial
-          solutions — from design to installation, subsidy support, and long-term
-          maintenance. Creasun makes going solar simple, affordable, and reliable.
+         Smart rooftop solar solutions engineered for efficiency, reliability, and long-term energy savings.
         </motion.p>
 
         {/* CTAs */}
@@ -127,7 +125,7 @@ export default function CreasunHomeHero() {
             onClick={() => setQuoteOpen(true)}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B835] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(255,140,0,0.35)] hover:brightness-110 transition"
           >
-            🔆 Get a Free Solar Quote
+            🔆Book a Free Site Visit today
             <ArrowRight className="h-4 w-4" />
           </button>
 
@@ -135,7 +133,7 @@ export default function CreasunHomeHero() {
             href="#savings-calculator"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur hover:bg-white/15 transition"
           >
-            📊 Calculate Your Savings
+            📊 Calculate Your Solar Savings
             <BarChart3 className="h-4 w-4" />
           </a>
         </motion.div>
@@ -147,9 +145,9 @@ export default function CreasunHomeHero() {
           transition={{ duration: 0.9, delay: 0.4, ease: EASE }}
           className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl"
         >
-          <TrustChip icon={Sun} label="Subsidy support under PM Surya Ghar" />
-          <TrustChip icon={BatteryCharging} label="2-year average payback period*" />
-          <TrustChip icon={Leaf} label="5-star rated installations across Gujarat" />
+          <TrustChip icon={Sun} label="70% Monthly Savings" />
+          <TrustChip icon={BatteryCharging} label="10,000+ Panels Installed" />
+          <TrustChip icon={Leaf} label="95% Customer Satisfaction" />
         </motion.div>
 
         {/* Footnote */}

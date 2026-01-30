@@ -159,7 +159,7 @@ function ProjectGridItem({
       transition={{ type: "spring", stiffness: 110, damping: 18 }}
       whileHover={{ translateY: -6, boxShadow: "0 16px 40px rgba(2,6,23,0.08)", scale: 1.01 }}
       onClick={() => openProject(project)}
-      className="bg-white rounded-2xl overflow-hidden cursor-pointer flex flex-col border border-slate-100"
+      className="bg-white rounded-2xl overflow-hidden cursor-pointer flex flex-col border border-slate-400"
     >
       <div className="relative w-full h-56">
         <img
@@ -395,7 +395,7 @@ export default function ProjectsPage(): JSX.Element {
   }, [tag, query]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className=" bg-slate-50 text-slate-900 px-3">
       <div className="max-w-7xl mx-auto px-0 md:px-6 pt-12 pb-6">
         <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Our Recent Solar Projects</h1>
         <p className="text-sm text-slate-500 mb-6">Select a project to view technical highlights, gallery and request a proposal.</p>

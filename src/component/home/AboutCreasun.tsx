@@ -48,12 +48,11 @@ export default function AboutCreasunRedesign() {
             </span>
 
             <h2 className="mt-4 text-5xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
-              Engineering <span className="text-[#0A2E9E]">Future-Ready</span> Solar Solutions
+              Engineering <span className="text-[#0A2E9E]">the Next Generation</span> of Solar Power
             </h2>
 
             <p className="mt-6 text-lg text-slate-600">
-              Creasun Energy is the trusted solar EPC & manufacturing partner, seamlessly integrating high-performance proprietary components with certified modules to deliver **optimized, durable, and cost-effective** clean power systems for C&I sectors.
-            </p>
+             Creasun Energy is a trusted solar EPC and manufacturing partner, delivering engineered clean energy systems by combining certified modules with in-house high-performance components for reliable, long-term C&I applications.</p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <HighlightPill icon={<Leaf className="h-4 w-4" />} label="Sustainable Impact" />
