@@ -1,42 +1,46 @@
 import { useEffect, useState } from "react";
 import "../Projects/creasunHero.css"; // <- important
 import FreeSolarQuoteModal from "../FreeSolarQuoteModal";
+import shreehari from "../../assets/400 KW Shreehari Namkeen.jpg";
+import everest from "../../assets/700 KW – Everest Industries Ltd.jpg";
+import altis from "../../assets/100 KW – Altis POLYTECH.png";
+import finthread from "../../assets/Fin Thread – 3.5 MW.jpg";
 
 
 const SLIDES = [
   {
     id: 1,
-    title: "100 kW Commercial Rooftop",
-    subtitle: "Rajkot • Retail Showroom",
-    image: "https://solarsmart.co.in/wp-content/uploads/2025/01/82318b4b49.jpg",
+    title: "400 KW – Shreehari Namkeen",
+    subtitle: "Shree Swaminarayan Food Pvt. Ltd.,Near Gondal Cross Roads, R.B. Highway, S Atkot Bridge, Jasdan, Gujarat 360040",
+    image: shreehari,
     description:
-      "High-performance rooftop system that cuts daytime grid consumption for a busy retail showroom.",
+      "400 KW commercial solar power plant installed for Shreehari Namkeen to reduce electricity costs and support sustainable food production operations.",
   },
   {
     id: 2,
-    title: "250 kW Industrial Shed",
-    subtitle: "Ahmedabad • Engineering Unit",
-    image: "https://solarsmart.co.in/wp-content/uploads/2025/03/New-Project.png",
+    title: "100 KW – Altis Polytech",
+    subtitle: "Altis Polytech, Gurudev Industries-4, Plot No.4, Survey No.369, Balaji Chowk, Behind Ravki Police Chowki, Ravki, Rajkot, Gujarat 360004",
+    image: altis,
     description:
-      "Large shed installation optimised for machinery load profile, string design and safety.",
+      "Turnkey rooftop solar EPC installation for Altis Polytech designed to reduce electricity costs and ensure reliable green energy generation for industrial operations.",
   },
   {
     id: 3,
-    title: "8 kW Premium Home Rooftop",
-    subtitle: "Rajkot • Bungalow",
+    title: "3.5 MW – Fin Thread",
+    subtitle: "FINETHREAD SOLAR PLANT, J85P+9W, Bhader, Gujarat 360410",
     image:
-      "https://zodiacenergy.com/images/blog/why-summer-is-best-for-solar-installation.png",
+      finthread,
     description:
-      "Premium residential rooftop for a 3–4 BHK bungalow with smart monitoring and clean aesthetics.",
+      "Turnkey solar EPC project for Finethread Solar Plant in Gujarat, delivering efficient power generation through advanced photovoltaic technology and optimized plant design.",
   },
   {
     id: 4,
-    title: "500 kW Factory Rooftop",
-    subtitle: "Morbi • Ceramic Plant",
+    title: "700 KW – Everest Industries Ltd",
+    subtitle: "Everest Industries Ltd,Samatpor, Gujarat 392130",
     image:
-      "https://thumbs.dreamstime.com/z/aerial-overhead-view-solar-energy-panels-photo-luzhu-district-kaohsiung-city-taiwan-241768576.jpg ",
+      everest,
     description:
-      "High-capacity ceramic plant that offsets a major portion of production load with solar.",
+      "Complete solar EPC installation for Everest Industries Ltd including rooftop solar system designed to reduce grid dependency and optimize industrial energy consumption.",
   },
 ];
 

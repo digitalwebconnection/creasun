@@ -1,7 +1,15 @@
 import React, { useEffect, useMemo, useState, type JSX } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Zap, X } from "lucide-react";
-
+import shreehari from "../../assets/400 KW Shreehari Namkeen.jpg";
+import eminentia from "../../assets/500kw eminentia polypack .png";
+import primescal from "../../assets/600 KW Primescal Straps Pvt. Ltd..jpg";
+import everest from "../../assets/700 KW – Everest Industries Ltd.jpg";
+import altis from "../../assets/100 KW – Altis POLYTECH.png";
+import chamunda from "../../assets/Chamunda Oil Mill – 120 KW.jpg";
+import samvi from "../../assets/5 MW – Samvi Spinning Mill Pvt. Ltd..jpg";
+import finthread from "../../assets/Fin Thread – 3.5 MW.jpg";
+import shreepadmavati from "../../assets/400 KW – Shree Padmavati Refine Private Limited.png";
 /*
  * ProjectsPage.tsx
  * - Updated design: cleaner cards, capacity in footer, modal with thumbnails
@@ -28,114 +36,259 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    id: "gujarat-8mw",
-    title: "Gujarat Solar Plant — 8 MW",
-    location: "Ahmedabad, Gujarat",
+    id: "400 KW – Shreehari Namkeen",
+    title: "400 KW – Shreehari Namkeen",
+    location: "Shree Swaminarayan Food Pvt. Ltd.,Near Gondal Cross Roads, R.B. Highway, S Atkot Bridge, Jasdan, Gujarat 360040",
     year: 2025,
-    capacity: "8 MW",
-    type: "Hybrid",
+    capacity: "400 KW",
+
     // HERO + GALLERY: replaced with solar installation imagery from Unsplash
-    hero:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfakCD1twczIedZwXYxj8GWpYmi-OPLeRefQ&s",
+    hero: shreehari,
     gallery: [
-      "https://5.imimg.com/data5/SELLER/Default/2022/3/GE/NE/DX/65902490/solar-ground-mounted-power-plant.jpeg",
-      "https://ychef.files.bbci.co.uk/624x351/p08mn4c2.jpg",
+      shreehari,
     ],
     summary:
-      "Turnkey EPC for mixed rooftop + ground-mounted plant with SCADA and O&M.",
-    highlights: ["8 MW capacity", "SCADA monitoring", "5-year performance guarantee"],
-    client: "Gujarat Textile Park",
-    tags: ["Hybrid", "Gujarat", "Commercial"],
+      "400 KW commercial solar power plant installed for Shreehari Namkeen to reduce electricity costs and support sustainable food production operations.",
+
+    highlights: [
+      "400 KW on-grid solar power plant",
+      "High-efficiency mono PERC solar panels",
+      "Industrial-grade string inverters",
+      "Real-time remote monitoring system",
+      "25-year solar panel performance warranty"
+    ],
+
+    client: "Shreehari Namkeen (Shree Swaminarayan Food Pvt. Ltd.)",
+
+    tags: ["Commercial Solar", "Gujarat", "Industrial Rooftop"]
+
   },
   {
-    id: "surat-2mw",
-    title: "Industrial Rooftop — 2 MW",
-    location: "Surat, Gujarat",
+    id: "500 KW – Eminentia Polypack LLP",
+    title: "500 KW – Eminentia Polypack LLP",
+    location: "Eminentia Polypack LLP,Behind Neknam Police Station, Opp 66 KV Substation (GETCO Neknam Tal. Tankara, Dis, Morbi, Gujarat 363650",
     year: 2024,
-    capacity: "2 MW",
-    type: "Rooftop",
-    hero:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCFwFzm7tm1oq06YuI7th7Fm2hRvQbH_b7_g&s",
+    capacity: "500 KW",
+
+    hero: eminentia,
     gallery: [
-      "https://cdn-trans.info/uploads/2020/10/08e753449573beeea25b5839a80.jpg",
+      eminentia,
     ],
     summary:
-      "Fast-deploy rooftop system, BESS-ready design for later storage addition.",
-    highlights: ["2 MW", "BESS-ready"],
-    client: "Bright Fabrics",
-    tags: ["Rooftop", "Gujarat"],
+      "Complete turnkey solar EPC project designed for industrial power optimization. The plant is engineered to reduce electricity costs while ensuring high efficiency and long-term reliability.",
+
+    highlights: [
+      "500 KW industrial rooftop solar installation",
+      "High-efficiency mono PERC solar modules",
+      "Advanced inverter system with remote monitoring",
+      "Optimized design for maximum energy generation",
+      "Significant reduction in grid electricity dependency"
+    ],
+
+    client: "Eminentia Polypack LLP",
+
+    tags: ["Industrial", "Rooftop Solar", "Gujarat", "Commercial"]
   },
   {
-    id: "kutch-20mw",
-    title: "Kutch Utility Park — 20 MW",
-    location: "Kutch, Gujarat",
+    id: "600 KW – Primescal Straps Pvt. Ltd.",
+    title: "600 KW – Primescal Straps Pvt. Ltd.",
+    location: "Primeseal Straps Pvt. Ltd,Tal.:- Gondal, Survey No. 55/1, P3 P3 & P4, Plot No. 2, B/h. Viraj Agrico Co, Dist, nr. Bharudi Toll Plaza, :, Pipaliya, Gujarat 360311",
     year: 2025,
-    capacity: "20 MW",
-    type: "Utility",
+    capacity: "600 KW",
+
     hero:
-      "https://etimg.etb2bimg.com/thumb/msid-108522976,imgsize-166840,width-1200,height=627,overlay-etenergy,resizemode-75/renewable/nhpc-bags-200-mw-solar-project-in-khavda-renewable-energy-park-in-gujarat.jpg",
+      primescal,
     gallery: [
-      "https://etimg.etb2bimg.com/thumb/msid-108522976,imgsize-166840,width-1200,height=627,overlay-etenergy,resizemode-75/renewable/nhpc-bags-200-mw-solar-project-in-khavda-renewable-energy-park-in-gujarat.jpg",
+      primescal,
     ],
     summary:
-      "Utility-scale ground-mount with single-axis trackers and central inverters.",
-    highlights: ["Trackers", "Central inverters"],
-    client: "GreenGrid Energy",
-    tags: ["Utility", "Gujarat"],
+      "Turnkey industrial rooftop solar installation designed to reduce operational electricity costs and ensure long-term sustainable power generation for manufacturing operations.",
+
+    highlights: [
+      "600 KW industrial rooftop solar plant",
+      "Approx. 3,000 units clean energy generation per day",
+      "Advanced monitoring system for real-time performance tracking",
+      "High-efficiency Tier-1 solar modules",
+      "25-year solar panel performance warranty"
+    ],
+
+    client: "Primescal Straps Pvt. Ltd.",
+
+    tags: [
+      "Industrial",
+      "Rooftop Solar",
+      "Gujarat",
+      "Commercial Solar"
+    ]
   },
   {
-    id: "bhavnagar-0-5mw",
-    title: "Bhavnagar Agri Park — 0.5 MW",
-    location: "Bhavnagar, Gujarat",
+    id: "700 KW – Everest Industries Ltd",
+    title: "700 KW – Everest Industries Ltd",
+    location: "Everest Industries Ltd,Samatpor, Gujarat 392130",
     year: 2023,
-    capacity: "0.5 MW",
-    type: "Community",
+    capacity: "700 KW",
+
     hero:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUkHIU-gt1fJssIVqblQ4oe8g8ued6UGpMXQ&s",
-    gallery: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsJkFAogSyzOEI500WCz-B9rtqUOIDoQPCrg&s"],
+      everest,
+    gallery: [everest],
     summary:
-      "Community solar powering irrigation and cold storage with subsidy facilitation.",
-    highlights: ["Subsidy support", "Community model"],
-    client: "Bhavnagar Agro Coop",
-    tags: ["Community", "Gujarat"],
+      "Complete solar EPC installation for Everest Industries Ltd including rooftop solar system designed to reduce grid dependency and optimize industrial energy consumption.",
+
+    highlights: [
+      "700 KW industrial rooftop solar plant",
+      "High-efficiency mono PERC solar panels",
+      "Advanced inverter technology",
+      "Remote monitoring system",
+      "25-year solar panel performance warranty"
+    ],
+
+    client: "Everest Industries Ltd",
+
+    tags: ["Rooftop Solar", "Gujarat", "Industrial"]
   },
   {
-    id: "school-100kw",
-    title: "School Rooftop — 100 kW",
-    location: "Vadodara, Gujarat",
+    id: "100 KW – Altis Polytech",
+    title: "100 KW – Altis Polytech",
+    location: "Altis Polytech, Gurudev Industries-4, Plot No.4, Survey No.369, Balaji Chowk, Behind Ravki Police Chowki, Ravki, Rajkot, Gujarat 360004",
     year: 2022,
-    capacity: "0.1 MW",
-    type: "Rooftop",
+    capacity: "100 KW",
     hero:
-      "https://bluebirdsolar.com/cdn/shop/files/DAP_Delhi_100_KW_2_1.jpg?v=1654666139 ",
-    gallery: ["https://amplussolar.com/blog/wp-content/uploads/2024/05/blog-topheader.webp"],
+      altis,
+    gallery: [altis],
     summary:
-      "CSR-supported rooftop system for clean energy & water heating at a local school.",
-    highlights: ["CSR", "Education outreach"],
-    client: "Sunrise School",
-    tags: ["Rooftop", "Community"],
+      "Turnkey rooftop solar EPC installation for Altis Polytech designed to reduce electricity costs and ensure reliable green energy generation for industrial operations.",
+
+    highlights: [
+      "100 KW rooftop solar installation",
+      "Approx. 500 units daily power generation",
+      "High-efficiency mono PERC solar panels",
+      "Net-metering enabled system",
+      "Remote monitoring system installed",
+      "25-year solar panel performance warranty"
+    ],
+
+    client: "Altis Polytech",
+
+    tags: ["Rooftop Solar", "Industrial", "Gujarat", "Commercial"]
   },
   {
-    id: "anand-1mw",
-    title: "Anand Microgrid — 1 MW",
-    location: "Anand, Gujarat",
+    id: "120 KW – Chamunda Oil Mill",
+    title: "120 KW – Chamunda Oil Mill",
+    location: "Shree chamunda krupa oil mil vinchiya , 6939+HC4, Vinchhiya, Gujarat 360055",
     year: 2024,
-    capacity: "1 MW",
-    type: "Agriculture",
+    capacity: "120 KW",
     hero:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq5t8M9D0z6zHJRh6JWP1llES5gLrbgD4DMA&s",
-    gallery: ["https://www.tatapower.com/adobe/dynamicmedia/deliver/dm-p-oid--xoiKJFyY4kqwBXocriZrmRglbhyjMgNeoZG4whF-UwrRwMKccPcsDJ-OoCe9x0BAmBgFBk2V-X3i-zKQ4pMX1IF8I-9HkzGNa9bKmTaOU0MImcMpEx9Ah6w_zpck9PZaYj-IAc_hhrRjm9VZu3lzTQ/body-01.webp?quality=85&width=3280&preferwebp=true"],
+      chamunda,
+    gallery: [chamunda],
     summary:
-      "Distributed microgrid powering irrigation pumps and cold storage across 10 farms.",
-    highlights: ["Smart meters", "Cold storage"],
-    client: "Anand Agro Cluster",
-    tags: ["Agriculture", "Gujarat"],
+      "Turnkey EPC installation of a 120 KW commercial rooftop solar plant for Chamunda Oil Mill, designed to reduce electricity costs and ensure sustainable energy generation for daily mill operations.",
+
+    highlights: [
+      "120 KW commercial rooftop solar installation",
+      "Approx. 600 units of clean energy generated daily",
+      "High-efficiency mono PERC solar panels",
+      "Grid-connected system with net metering",
+      "Real-time performance monitoring system",
+      "25-year solar panel performance warranty"
+    ],
+
+    client: "Chamunda Oil Mill",
+
+    tags: [
+      "Rooftop Solar",
+      "Commercial Solar",
+      "Gujarat",
+      "Industrial Solar"
+    ]
+  },
+  {
+    id: "5 MW – Samvi Spinning Mill Pvt. Ltd.",
+    title: "5 MW – Samvi Spinning Mill Pvt. Ltd.",
+    location: "H88R+8WC Beraja, Gujarat",
+    year: 2024,
+    capacity: "5 MW",
+    hero:
+      samvi,
+    gallery: [samvi
+    ],
+    summary:
+      "Turnkey solar EPC project for Samvi Spinning Mill featuring a high-efficiency ground-mounted solar power plant designed to reduce industrial electricity costs and ensure sustainable energy production.",
+
+    highlights: [
+      "5 MW high-efficiency solar power plant",
+      "Industrial-grade grid-connected system",
+      "Advanced remote monitoring system",
+      "High performance Tier-1 solar modules",
+      "Long-term performance optimization"
+    ],
+
+    client: "Samvi Spinning Mill Pvt. Ltd.",
+
+    tags: ["Industrial", "Gujarat", "Ground Mounted", "Solar EPC"]
+  },
+  {
+    id: "3.5 MW – Fin Thread",
+    title: "3.5 MW – Fin Thread",
+    location: "FINETHREAD SOLAR PLANT, J85P+9W, Bhader, Gujarat 360410",
+    year: 2024,
+    capacity: "3.5 MW",
+    hero:
+      finthread,
+    gallery: [finthread],
+    summary:
+      "Turnkey solar EPC project for Finethread Solar Plant in Gujarat, delivering efficient power generation through advanced photovoltaic technology and optimized plant design.",
+
+    highlights: [
+      "3.5 MW installed solar capacity",
+      "High-efficiency solar PV modules",
+      "Grid-connected power generation system",
+      "Advanced monitoring & plant performance tracking",
+      "Designed for maximum energy yield and reliability"
+    ],
+
+    client: "Finethread Solar Plant",
+
+    tags: [
+      "Utility Scale",
+      "Gujarat",
+      "Industrial",
+      "Solar EPC"
+    ]
+  },
+  {
+    id: "400 KW – Shree Padmavati Refine Pvt. Ltd.",
+    title: "400 KW – Shree Padmavati Refine Pvt. Ltd.",
+    location: "SHREE PADMAVATI REXINE PRIVATE LIMITED,Dist. : Jamnagar, New R.S. No. 807 (Old R.S. No. 134/1/P-1 Nikava - Nana Vadala Road Near PGCVL Sub Station Taluka : Kalawad, Nana Vadala, Gujarat 361162",
+    year: 2024,
+    capacity: "400 KW",
+    hero:
+      shreepadmavati,
+    gallery: [shreepadmavati],
+    summary:
+      "Turnkey solar EPC project for a 400 KW industrial rooftop solar power plant designed to reduce electricity costs and ensure sustainable energy for manufacturing operations.",
+
+    highlights: [
+      "400 KW industrial rooftop solar installation",
+      "High-efficiency mono PERC solar modules",
+      "Grid-connected system with advanced monitoring",
+      "Remote performance monitoring system",
+      "25-year solar module performance warranty"
+    ],
+
+    client: "Shree Padmavati Rexine Pvt. Ltd.",
+
+    tags: [
+      "Industrial",
+      "Rooftop Solar",
+      "Gujarat",
+      "Manufacturing",
+      "Grid Connected"
+    ]
   },
 ];
 
 // Utility to open Google maps for project location
-const getMapUrl = (location: string) =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
+
 
 /* --- COMPONENTS --- */
 
@@ -213,7 +366,7 @@ function ProjectModal({
   const isGallery = selected.gallery && selected.gallery.length > 0;
   const images = isGallery ? selected.gallery! : [selected.hero];
   const currentImage = images[carouselIndex % images.length];
-  const locationMapUrl = getMapUrl(selected.location);
+
 
   return (
     <motion.div
@@ -302,7 +455,6 @@ function ProjectModal({
             <h4 className="font-semibold text-emerald-800">Key Information</h4>
             <div className="grid grid-cols-2 gap-2 mt-2 text-sm">
               <div><span className="font-medium">Capacity:</span> {selected.capacity ?? 'N/A'}</div>
-              <div><span className="font-medium">Type:</span> {selected.type ?? 'N/A'}</div>
               <div><span className="font-medium">Client:</span> {selected.client ?? 'Confidential'}</div>
               <div><span className="font-medium">Tags:</span> {(selected.tags || []).join(', ') || '—'}</div>
             </div>
@@ -314,21 +466,13 @@ function ProjectModal({
           </ul>
 
           <div className="mt-6 flex gap-3">
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
-            >
-              <Zap className="h-5 w-5" /> Request Proposal
-            </a>
-            <a
-              href={locationMapUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition"
-            >
-              <MapPin className="h-5 w-5" /> Open Map
-            </a>
+          <a
+  href="tel:9624120591"
+  className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
+>
+  <Zap className="h-5 w-5" /> Request Proposal
+</a>
+            
           </div>
         </div>
       </motion.div>
@@ -397,7 +541,7 @@ export default function ProjectsPage(): JSX.Element {
   return (
     <div className=" bg-slate-50 text-slate-900 px-3">
       <div className="max-w-7xl mx-auto px-0 md:px-6 pt-12 pb-6">
-        <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Our Recent Solar Projects</h1>
+        <h1 className="text-5xl font-extrabold text-slate-900 mb-4">Our Recent Solar Projects</h1>
         <p className="text-sm text-slate-500 mb-6">Select a project to view technical highlights, gallery and request a proposal.</p>
       </div>
 
