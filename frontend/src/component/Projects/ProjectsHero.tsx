@@ -1,0 +1,186 @@
+import { useEffect, useState } from "react";
+import "../Projects/creasunHero.css"; // <- important
+import FreeSolarQuoteModal from "../FreeSolarQuoteModal";
+import shreehari from "../../assets/400 KW Shreehari Namkeen.jpg";
+import everest from "../../assets/700 KW – Everest Industries Ltd.jpg";
+import altis from "../../assets/100 KW – Altis POLYTECH.png";
+import finthread from "../../assets/Fin Thread – 3.5 MW.jpg";
+
+
+const SLIDES = [
+  {
+    id: 1,
+    title: "400 KW – Shreehari Namkeen",
+    subtitle: "Shree Swaminarayan Food Pvt. Ltd.,Near Gondal Cross Roads, R.B. Highway, S Atkot Bridge, Jasdan, Gujarat 360040",
+    image: shreehari,
+    description:
+      "400 KW commercial solar power plant installed for Shreehari Namkeen to reduce electricity costs and support sustainable food production operations.",
+  },
+  {
+    id: 2,
+    title: "100 KW – Altis Polytech",
+    subtitle: "Altis Polytech, Gurudev Industries-4, Plot No.4, Survey No.369, Balaji Chowk, Behind Ravki Police Chowki, Ravki, Rajkot, Gujarat 360004",
+    image: altis,
+    description:
+      "Turnkey rooftop solar EPC installation for Altis Polytech designed to reduce electricity costs and ensure reliable green energy generation for industrial operations.",
+  },
+  {
+    id: 3,
+    title: "3.5 MW – Fin Thread",
+    subtitle: "FINETHREAD SOLAR PLANT, J85P+9W, Bhader, Gujarat 360410",
+    image:
+      finthread,
+    description:
+      "Turnkey solar EPC project for Finethread Solar Plant in Gujarat, delivering efficient power generation through advanced photovoltaic technology and optimized plant design.",
+  },
+  {
+    id: 4,
+    title: "700 KW – Everest Industries Ltd",
+    subtitle: "Everest Industries Ltd,Samatpor, Gujarat 392130",
+    image:
+      everest,
+    description:
+      "Complete solar EPC installation for Everest Industries Ltd including rooftop solar system designed to reduce grid dependency and optimize industrial energy consumption.",
+  },
+];
+
+const CreasunProjectsHero = () => {
+  const [active, setActive] = useState(0);
+  const [siteVisitOpen, setSiteVisitOpen] = useState(false); // <-- modal state
+
+  // Auto change slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % SLIDES.length);
+    }, 5000); // must match animation duration in CSS
+    return () => clearInterval(interval);
+  }, []);
+
+  const current = SLIDES[active];
+
+  const goTo = (index: number) => setActive(index);
+  const next = () => setActive((p) => (p + 1) % SLIDES.length);
+  const prev = () => setActive((p) => (p - 1 + SLIDES.length) % SLIDES.length);
+
+  return (
+    <section className="relative  w-full overflow-hidden bg-black text-white">
+      {/* MAIN MOVING IMAGE */}
+      <div
+        key={active} // remounts to restart CSS animation
+        className="hero-main-image absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${current.image})` }}
+      >
+        {/* gradient overlay for readability */}
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-black/30" />
+      </div>
+
+      {/* CONTENT */}
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-3 py-20">
+        {/* Text from active slide */}
+        <div className="flex-1 flex items-center">
+          <div className="max-w-3xl">
+            <p className="text-xs font-medium uppercase tracking-[0.35em] text-slate-200/90">
+              Creasun Energy • Project Showcase
+            </p>
+
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.3em] text-yellow-300/90">
+              {current.subtitle}
+            </p>
+
+            <h1 className="mt-2 text-4xl font-semibold leading-tight sm:text-5xl lg:text-[3.2rem]">
+              {current.title}
+            </h1>
+
+            <p className="mt-4 text-sm text-slate-100/85 sm:text-base">
+              {current.description}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-[0.2em]">
+              <button className="rounded-full bg-yellow-400 px-6 py-2.5 text-slate-900 shadow-lg shadow-yellow-400/40 hover:bg-yellow-300">
+                View project details
+              </button>
+
+              {/* Book a site visit now opens the modal */}
+              <button
+                onClick={() => setSiteVisitOpen(true)}
+                className="rounded-full border border-white/40 bg-white/5 px-6 py-2.5 text-slate-50 hover:border-yellow-300 hover:bg-white/10"
+                aria-haspopup="dialog"
+              >
+                Book a site visit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom controls + thumbnails */}
+        <div className="mt-6  flex flex-col gap-4 pb-2">
+          {/* controls */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 text-xs">
+              <button
+                onClick={prev}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/50 hover:border-yellow-300 hover:text-yellow-300"
+              >
+                ◀
+              </button>
+              <button
+                onClick={next}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/50 hover:border-yellow-300 hover:text-yellow-300"
+              >
+                ▶
+              </button>
+            </div>
+
+            <div className="flex items-center gap-4 text-xs font-semibold tracking-[0.25em]">
+              <div className="h-0.5 w-32 overflow-hidden rounded-full bg-white/25 md:w-40">
+                <div
+                  className="h-full bg-yellow-400 transition-all duration-500"
+                  style={{
+                    width: `${((active + 1) / SLIDES.length) * 100}%`,
+                  }}
+                />
+              </div>
+              <span>
+                {String(active + 1).padStart(2, "0")}/
+                {String(SLIDES.length).padStart(2, "0")}
+              </span>
+            </div>
+          </div>
+
+          {/* thumbnails row */}
+          <div className="flex gap-4">
+            {SLIDES.map((slide, index) => {
+              const isActive = index === active;
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => goTo(index)}
+                  className={`relative h-20 w-28 overflow-hidden rounded-2xl border transition-all duration-300
+                    ${
+                      isActive
+                        ? "border-yellow-800 shadow-lg shadow-yellow-400/40 scale-105"
+                        : "border-black/25 opacity-75 hover:opacity-100 scale-95"
+                    }`}
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${slide.image})` }}
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
+                  <span className="relative z-10 block px-2 pb-1 pt-7 text-[9px] text-left font-semibold leading-tight text-slate-50">
+                    {slide.title}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Mount modal and pass control props */}
+      <FreeSolarQuoteModal open={siteVisitOpen} setOpen={setSiteVisitOpen} />
+    </section>
+  );
+};
+
+export default CreasunProjectsHero;
