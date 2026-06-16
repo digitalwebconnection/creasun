@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Footer from "./component/Footer";
 import Navbar from "./component/Header";
@@ -12,18 +12,25 @@ import Groundmountedsolar from "./component/service/groundmountedsolar/Groundmou
 import ScrollToTop from "./component/ScrollToTop";
 import ContactMain from "./component/contactPage/ContactMain";
 import BlogMain from "./component/blog/BlogMain";
+import BlogDetails from "./component/blog/BlogDetails";
 import WhatsAppChatbot from "./component/WhatsAppChatbot";
 import PrivacyPolicy from "./component/PrivacyPolicy";
+import AdminLogin from "./component/admin/AdminLogin";
+import AdminDashboard from "./component/admin/AdminDashboard";
+import ProtectedRoute from "./component/admin/ProtectedRoute";
 
 
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   return (
-    <Router>
+    <>
       <ScrollToTop />
 
-      {/* Navbar will stay on all pages */}
-      <Navbar />
+      {/* Conditionally render Navbar */}
+      {!isAdminRoute && <Navbar />}
 
       {/* Define your routes here */}
       <Routes>
@@ -39,11 +46,33 @@ function App() {
         <Route path="/project" element={<ProjectsMain />} />
         <Route path="/contact-us" element={<ContactMain />} />
         <Route path="/blog" element={<BlogMain />} />
+        <Route path="/blog/:slug" element={<BlogDetails />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } />
       </Routes>
-      {/* Footer will stay on all pages */}
-      <Footer />
-      <WhatsAppChatbot autoOpenDelay={4000} />
+      
+      {/* Conditionally render Footer and Chatbot */}
+      {!isAdminRoute && (
+        <>
+          <Footer />
+          <WhatsAppChatbot autoOpenDelay={4000} />
+        </>
+      )}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

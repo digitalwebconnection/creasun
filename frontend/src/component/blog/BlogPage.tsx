@@ -71,13 +71,9 @@ const BlogPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.data)) {
-          // Merge static blogs with fresh data, ensuring no duplicates by slug
+          // The user requested: "if backend blog is fetch do not show static blog"
+          // We'll use only the backend data. If it's empty, it will show "No blogs found".
           const allBlogs = [...data.data];
-          staticBlogs.forEach((sb) => {
-            if (!allBlogs.find((b: any) => b.slug === sb.slug)) {
-              allBlogs.push(sb as any);
-            }
-          });
           setBlogs(allBlogs);
           cacheSet(CACHE_KEY, allBlogs);
           setError("");
@@ -212,7 +208,7 @@ const BlogPage = () => {
               const displayImage = getImageUrl(post.image || (staticMatch ? staticMatch.image : ''));
               return (
                 <Link
-                  to={`/Knowledgwe/${post.slug || post._id}`}
+                  to={`/blog/${post.slug || post._id}`}
                   key={post._id}
                   className="group"
                   onClick={() => {

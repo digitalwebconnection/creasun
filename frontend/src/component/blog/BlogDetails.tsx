@@ -54,7 +54,7 @@ const BlogDetails = () => {
     const deletedSlugs: string[] = deletedRaw ? JSON.parse(deletedRaw) : [];
     if (deletedSlugs.includes(slug || "")) {
       // Blog was deleted, navigate back to list
-      navigate('/Knowledgwe');
+      navigate('/blog');
       return;
     }
 
@@ -129,7 +129,7 @@ const BlogDetails = () => {
       <div className="flex flex-col items-center justify-center min-h-[500px] gap-3 text-center px-4">
         <AlertCircle className="text-red-500" size={40} />
         <h2 className="text-2xl font-bold text-slate-800">{error || "Blog post not found"}</h2>
-        <Link to="/Knowledgwe" className="text-[#FC763A] font-semibold hover:underline mt-2">Back to all blogs</Link>
+        <Link to="/blog" className="text-[#FC763A] font-semibold hover:underline mt-2">Back to all blogs</Link>
       </div>
     );
   }
@@ -154,7 +154,7 @@ const BlogDetails = () => {
 
       <div className="flex items-center justify-between mt-12 mb-8">
         <Link
-          to="/Knowledgwe"
+          to="/blog"
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm w-fit"
         >
           <ArrowLeft size={16} />
