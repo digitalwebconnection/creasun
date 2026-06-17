@@ -3,7 +3,7 @@
  *
  * In development:   Vite proxy forwards /api/* → http://localhost:5000
  * In production:    VITE_API_URL must be set to the deployed backend URL
- *                   e.g. VITE_API_URL=https://truesun-backend.onrender.com
+ *                   e.g. VITE_API_URL=https://creasun-backend.onrender.com
  *
  * Usage:
  *   import { apiUrl, warmUpBackend } from '../../lib/api';
@@ -60,7 +60,7 @@ export function warmUpBackend(): void {
 export function getImageUrl(url: string): string {
   if (!url) return '';
 
-  // If the database stored a backend proxy path like /api/blogs/image/v12345/truesun/...
+  // If the database stored a backend proxy path like /api/blogs/image/v12345/creasun/...
   // Reconstruct the direct Cloudinary URL to bypass the backend proxy entirely!
   // This completely eliminates hanging requests and 404s.
   const proxyPrefix = '/api/blogs/image/';
@@ -72,12 +72,12 @@ export function getImageUrl(url: string): string {
   // If it's a relative local URL, ensure it starts with a leading slash
   if (!url.startsWith('http')) {
     const path = url.startsWith('/') ? url : `/${url}`;
-    
+
     // If it's an API route or upload route, use the backend URL
     if (path.startsWith('/api/') || path.startsWith('/uploads/')) {
       return apiUrl(path);
     }
-    
+
     // Otherwise it's a frontend static image (e.g. /how-long-does-a-solar-panel-installation-take.png)
     // Use the frontend origin
     return `${window.location.origin}${path}`;

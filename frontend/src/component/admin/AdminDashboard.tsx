@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Sun, LogOut, PlusCircle, Pencil, Trash2,FolderOpen, AlertCircle, Loader2,
+  Sun, LogOut, PlusCircle, Pencil, Trash2, FolderOpen, AlertCircle, Loader2,
   FileText
 } from 'lucide-react';
 import BlogForm, { type Blog } from './BlogForm';
@@ -253,7 +253,7 @@ export default function AdminDashboard() {
         if (deletedBlog) {
           localStorage.removeItem(`ts_cache_blog_detail_${deletedBlog.slug}`);
           localStorage.removeItem(`ts_cache_blog_detail_${deletedBlog._id}`);
-          
+
           // Cleanup clicked_blogs in localStorage
           try {
             const raw = localStorage.getItem("clicked_blogs");
@@ -324,7 +324,7 @@ export default function AdminDashboard() {
             <Sun size={17} color="#fff" strokeWidth={2.5} />
           </div>
           <div>
-            <div style={S.logoText}>TrueSun</div>
+            <div style={S.logoText}>creasun</div>
             <div style={S.logoSub}>Admin Panel</div>
           </div>
         </div>

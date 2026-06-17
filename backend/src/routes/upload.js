@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { handleImageUpload } = require('../middleware/upload');
 
-router.post('/', handleImageUpload('truesun/editor'), (req, res) => {
+router.post('/', handleImageUpload('creasun/editor'), (req, res) => {
   if (req.cloudinaryFile) {
     return res.json({
       success: true,

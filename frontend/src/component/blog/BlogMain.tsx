@@ -6,7 +6,7 @@ const BlogMain = () => {
     <>
       <Helmet>
         {/* Title */}
-        <title>Solar Energy Insights & Blog | TrueSun Energy</title>
+        <title>Solar Energy Insights & Blog | creasun Energy</title>
 
         {/* Meta Description */}
         <meta
@@ -21,16 +21,16 @@ const BlogMain = () => {
         />
 
         {/* Canonical */}
-        <link rel="canonical" href="https://truesun.in/Knowledge/" />
+        <link rel="canonical" href="https://creasun.in/Knowledge/" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Solar Energy Blog | TrueSun Energy Insights" />
+        <meta property="og:title" content="Solar Energy Blog | creasun Energy Insights" />
         <meta property="og:description" content="Expert tips, guides, and updates on solar energy to help you save electricity and make smart energy decisions." />
-        <meta property="og:url" content="https://truesun.in/Knowledge/" />
+        <meta property="og:url" content="https://creasun.in/Knowledge/" />
         <meta property="og:type" content="website" />
 
         {/* OG Image */}
-        <meta property="og:image" content="https://truesun.in/solar-blog.jpg" />
+        <meta property="og:image" content="https://creasun.in/solar-blog.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -38,7 +38,7 @@ const BlogMain = () => {
         <meta name="twitter:description" content="Learn about solar installation, savings, and energy efficiency with our expert blog." />
       </Helmet>
 
-      <SolarBlogPage/>
+      <SolarBlogPage />
     </>
   )
 }

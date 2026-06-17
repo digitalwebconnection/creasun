@@ -135,11 +135,11 @@ const S: Record<string, React.CSSProperties> = {
 };
 
 export default function AdminLogin() {
-  const [username, setUsername]         = useState('');
-  const [password, setPassword]         = useState('');
-  const [showPass, setShowPass]         = useState(false);
-  const [error, setError]               = useState('');
-  const [loading, setLoading]           = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Redirect if already logged in
@@ -205,7 +205,7 @@ export default function AdminLogin() {
               required
               style={S.input}
               onFocus={e => (e.currentTarget.style.borderColor = 'rgba(252,118,58,0.6)')}
-              onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+              onBlur={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
             />
           </div>
 
@@ -223,7 +223,7 @@ export default function AdminLogin() {
               required
               style={S.input}
               onFocus={e => (e.currentTarget.style.borderColor = 'rgba(252,118,58,0.6)')}
-              onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+              onBlur={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
             />
             <button
               type="button"
@@ -248,7 +248,7 @@ export default function AdminLogin() {
           </button>
         </form>
 
-        <p style={S.hint}>TrueSun Energy · Secure Admin Access</p>
+        <p style={S.hint}>creasun Energy · Secure Admin Access</p>
       </div>
     </div>
   );

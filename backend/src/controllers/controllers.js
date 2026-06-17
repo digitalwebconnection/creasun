@@ -1,5 +1,5 @@
-const Blog                 = require('../models/Blog');
-const { cloudinary }       = require('../config/cloudinary');
+const Blog = require('../models/Blog');
+const { cloudinary } = require('../config/cloudinary');
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -37,14 +37,14 @@ async function generateUniqueSlug(title, excludeId = null) {
 
 /**
  * Extract Cloudinary public_id from a secure URL so we can delete the old file.
- * e.g. https://res.cloudinary.com/<cloud>/image/upload/v123/truesun/images/abc.jpg
- *      → "truesun/images/abc"
+ * e.g. https://res.cloudinary.com/<cloud>/image/upload/v123/creasun/images/abc.jpg
+ *      → "creasun/images/abc"
  */
 function getPublicId(url) {
   if (!url) return null;
   try {
-    const parts   = url.split('/');
-    const upload  = parts.indexOf('upload');
+    const parts = url.split('/');
+    const upload = parts.indexOf('upload');
     if (upload === -1) return null;
     // Skip version segment (v1234567890) if present
     let start = upload + 1;
@@ -121,7 +121,7 @@ const createBlog = async (req, res) => {
     const imageUrl = convertCloudinaryUrl(rawUrl);
 
     const title = body.title || '';
-    const slug  = await generateUniqueSlug(title);
+    const slug = await generateUniqueSlug(title);
 
     let meta = {};
     if (body.meta) {
@@ -135,12 +135,12 @@ const createBlog = async (req, res) => {
     const data = {
       title,
       slug,
-      excerpt:    body.excerpt    || '',
+      excerpt: body.excerpt || '',
       categories: body.categories || '',
-      readTime:   body.readTime   || '',
-      date:       body.date       || '',
-      content:    body.content    || '',
-      image:      imageUrl,
+      readTime: body.readTime || '',
+      date: body.date || '',
+      content: body.content || '',
+      image: imageUrl,
       meta,
     };
 

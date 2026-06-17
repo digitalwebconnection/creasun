@@ -1,7 +1,7 @@
 {
-  "name": "truesun-backend",
+  "name": "creasun-backend",
   "version": "1.0.0",
-  "description": "TrueSun Solar — Express/MongoDB/Cloudinary REST API",
+  "description": "creasun Solar — Express/MongoDB/Cloudinary REST API",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

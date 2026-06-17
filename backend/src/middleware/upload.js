@@ -1,4 +1,4 @@
-const multer     = require('multer');
+const multer = require('multer');
 const streamifier = require('streamifier');
 const { cloudinary } = require('../config/cloudinary');
 
@@ -25,10 +25,10 @@ const upload = multer({
 /**
  * Upload a buffer to Cloudinary and return the result.
  * @param {Buffer} buffer   - file buffer from multer memoryStorage
- * @param {string} folder   - Cloudinary folder (e.g. 'truesun/images')
+ * @param {string} folder   - Cloudinary folder (e.g. 'creasun/images')
  * @returns {Promise<object>} Cloudinary upload result (contains .secure_url, .public_id etc.)
  */
-const uploadToCloudinary = (buffer, folder = 'truesun/images') => {
+const uploadToCloudinary = (buffer, folder = 'creasun/images') => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
@@ -51,12 +51,12 @@ const uploadToCloudinary = (buffer, folder = 'truesun/images') => {
  * 2. If a file was attached, streams it to Cloudinary
  * 3. Sets req.cloudinaryFile = { secure_url, public_id, ... } for controllers
  */
-const handleImageUpload = (folder = 'truesun/images') => [
+const handleImageUpload = (folder = 'creasun/images') => [
   upload.single('image'),
   async (req, res, next) => {
     if (!req.file) return next(); // no image attached — skip
     try {
-      const result     = await uploadToCloudinary(req.file.buffer, folder);
+      const result = await uploadToCloudinary(req.file.buffer, folder);
       req.cloudinaryFile = result; // attach result so controller can read it
       next();
     } catch (err) {

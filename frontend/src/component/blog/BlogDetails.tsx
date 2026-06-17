@@ -37,9 +37,9 @@ const BlogDetails = () => {
 
   // Seed state instantly from stale cache — returning users see content on first paint
   const [blog, setBlog] = useState<Blog | null>(() => cacheGetStale<Blog>(cacheKey));
-  const [loading, setLoading]       = useState(() => !cacheGetStale<Blog>(cacheKey));
+  const [loading, setLoading] = useState(() => !cacheGetStale<Blog>(cacheKey));
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [error, setError]           = useState("");
+  const [error, setError] = useState("");
   const [openLeadPopup, setOpenLeadPopup] = useState(false);
   const hasFetched = useRef<string | null>(null);
   const navigate = useNavigate();
@@ -59,11 +59,11 @@ const BlogDetails = () => {
     }
 
     // Early exit if slug is missing
-  if (!slug) {
-    setError('Blog not found');
-    setLoading(false);
-    return;
-  }
+    if (!slug) {
+      setError('Blog not found');
+      setLoading(false);
+      return;
+    }
     const stale = cacheGetStale<Blog>(cacheKey);
     const staticMatch = staticBlogs.find((sb) => sb.slug === slug);
     const initialBlog = stale || staticMatch;
@@ -78,7 +78,7 @@ const BlogDetails = () => {
     if (!initialBlog) setLoading(true);
 
     const isObjectId = /^[a-f\d]{24}$/i.test(slug || '');
-    const endpoint   = isObjectId
+    const endpoint = isObjectId
       ? apiUrl(`/api/blogs/${slug}`)
       : apiUrl(`/api/blogs/slug/${slug}`);
 
@@ -112,7 +112,7 @@ const BlogDetails = () => {
         setLoading(false);
         setIsRefreshing(false);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   if (loading) {
@@ -209,7 +209,7 @@ const BlogDetails = () => {
       {/* CTA */}
       <div className="mt-16 p-8 bg-slate-50 border border-slate-200 rounded-2xl text-center shadow-sm">
         <h3 className="text-2xl font-bold mb-4 text-slate-900">Ready to Switch to Solar?</h3>
-        <p className="text-slate-600 mb-6 max-w-lg mx-auto">Take control of your energy costs and join the sustainable revolution today with TrueSun's expert solutions.</p>
+        <p className="text-slate-600 mb-6 max-w-lg mx-auto">Take control of your energy costs and join the sustainable revolution today with creasun's expert solutions.</p>
         <button onClick={() => setOpenLeadPopup(true)}
           className="px-8 py-3 bg-[#FC763A] hover:bg-[#e0652e] transition rounded-full text-white font-semibold shadow-md inline-block">
           Get Free Consultation

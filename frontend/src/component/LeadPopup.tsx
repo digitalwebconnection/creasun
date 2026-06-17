@@ -34,8 +34,8 @@ const LeadPopup: React.FC<LeadPopupProps> = ({ onClose }) => {
     formData.append("access_key", WEB3FORMS_ACCESS_KEY);
 
     // Helpful metadata fields (optional)
-    formData.append("subject", "TrueSun - Free Site Visit Request");
-    formData.append("source", "LeadPopup / TrueSun Website");
+    formData.append("subject", "creasun - Free Site Visit Request");
+    formData.append("source", "LeadPopup / creasun Website");
 
     // Example: combine submitted fields into a single message_owner field if the user left owner message empty
     const userMsg = formData.get("message") ?? "";
@@ -96,7 +96,7 @@ const LeadPopup: React.FC<LeadPopupProps> = ({ onClose }) => {
           Book Your Free Site Visit
         </h2>
         <p className="mb-3 text-xs text-slate-600">
-          Share your details and our TrueSun team will contact you with a custom
+          Share your details and our creasun team will contact you with a custom
           solar proposal for your home or business.
         </p>
 
@@ -208,7 +208,7 @@ const LeadPopup: React.FC<LeadPopupProps> = ({ onClose }) => {
           )}
 
           <p className="mt-1 text-center text-[10px] text-slate-500 leading-tight">
-            By submitting, you agree to be contacted by TrueSun for solar
+            By submitting, you agree to be contacted by creasun for solar
             consultation. No spam, only relevant updates.
           </p>
         </form>
