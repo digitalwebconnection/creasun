@@ -149,35 +149,42 @@ const BlogPage = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 py-10">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <h1 className="text-5xl text-center font-bold text-[#FC763A]">Blogs</h1>
-          {isRefreshing && (
-            <RefreshCw
-              size={22}
-              className="text-[#FC763A] animate-spin mt-1"
-            />
-          )}
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        <div className="flex flex-col items-center justify-center mb-12">
+          <div className="flex items-center gap-3">
+            <h1 className="text-4xl md:text-5xl text-center font-extrabold text-[#F5B835] pb-1 drop-shadow-sm">
+              Solar Insights & News
+            </h1>
+            {isRefreshing && (
+              <RefreshCw
+                size={24}
+                className="text-[#F5B835] animate-spin mt-1"
+              />
+            )}
+          </div>
+          <p className="mt-3 text-lg md:text-xl text-slate-600 text-center max-w-2xl font-light">
+            Stay updated with the latest trends, technologies, and tips in the solar energy world.
+          </p>
         </div>
 
         {loading ? (
           // Full skeleton — shown only on very first visit with no cache
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-4">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="rounded-xl border border-gray-200 bg-white shadow-md h-full flex flex-col overflow-hidden animate-pulse"
+                className="rounded-2xl border border-slate-100 bg-white shadow-sm h-full flex flex-col overflow-hidden animate-pulse"
               >
-                <div className="h-56 w-full bg-gray-200" />
-                <div className="p-6 flex flex-col grow gap-3">
+                <div className="h-56 w-full bg-slate-200" />
+                <div className="p-6 flex flex-col grow gap-4">
                   <div className="flex justify-between items-center">
-                    <div className="h-6 w-20 bg-gray-200 rounded-full" />
-                    <div className="h-4 w-16 bg-gray-200 rounded" />
+                    <div className="h-6 w-24 bg-slate-200 rounded-full" />
+                    <div className="h-4 w-16 bg-slate-200 rounded" />
                   </div>
-                  <div className="h-8 w-full bg-gray-200 rounded mt-2" />
-                  <div className="h-8 w-3/4 bg-gray-200 rounded" />
-                  <div className="h-4 w-full bg-gray-200 rounded" />
-                  <div className="h-4 w-5/6 bg-gray-200 rounded" />
+                  <div className="h-7 w-full bg-slate-200 rounded mt-2" />
+                  <div className="h-7 w-3/4 bg-slate-200 rounded" />
+                  <div className="h-4 w-full bg-slate-100 rounded mt-3" />
+                  <div className="h-4 w-5/6 bg-slate-100 rounded" />
                 </div>
               </div>
             ))}
@@ -192,17 +199,17 @@ const BlogPage = () => {
                 setError("");
                 setLoading(true);
               }}
-              className="mt-2 px-6 py-2 bg-[#FC763A] text-white rounded-full font-semibold hover:bg-[#e0652e] transition"
+              className="mt-2 px-8 py-3 bg-gradient-to-r from-[#FC763A] to-amber-500 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
-              Retry
+              Retry Connection
             </button>
           </div>
         ) : blogs.length === 0 ? (
-          <div className="text-center py-20 text-gray-500">
-            <p className="text-xl">No blog posts found yet.</p>
+          <div className="text-center py-20 text-slate-500">
+            <p className="text-xl font-light">No blog posts found yet.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-4">
             {blogs.map((post, index) => {
               const staticMatch = staticBlogs.find((sb) => sb.slug === post.slug);
               const displayImage = getImageUrl(post.image || (staticMatch ? staticMatch.image : ''));
@@ -225,33 +232,34 @@ const BlogPage = () => {
                     }
                   }}
                 >
-                  <div className="rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden">
-                    <div className="overflow-hidden">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(252,118,58,0.15)] hover:-translate-y-1.5 transition-all duration-500 h-full flex flex-col overflow-hidden">
+                    <div className="overflow-hidden relative">
+                      <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                       <img
                         src={displayImage}
                         alt={post.title}
-                        className="h-56 w-full object-fill group-hover:scale-105 transition-transform duration-500"
+                        className="h-56 w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                         loading="lazy"
                       />
                     </div>
 
-                    <div className="p-6 flex flex-col grow">
+                    <div className="p-6 flex flex-col grow bg-gradient-to-b from-white to-slate-50/50">
 
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="bg-slate-100 text-slate-800 font-semibold px-3 py-1 rounded-full text-[13px]">
+                    <div className="flex justify-between items-center mb-5">
+                      <span className="bg-[#FC763A]/10 text-[#FC763A] font-semibold px-4 py-1.5 rounded-full text-[11px] uppercase tracking-wider border border-[#FC763A]/20">
                         {post.categories}
                       </span>
-                      <div className="flex items-center text-gray-500 text-sm gap-1.5">
-                        <Clock size={15} />
+                      <div className="flex items-center text-slate-400 font-medium text-xs gap-1.5 uppercase tracking-wide">
+                        <Clock size={14} />
                         <span>{post.readTime}</span>
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug group-hover:text-[#FC763A] transition-colors">
+                    <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-2 mb-3 leading-snug group-hover:text-[#FC763A] transition-colors duration-300 line-clamp-2">
                       {post.title}
                     </h3>
 
-                    <p className="text-slate-600">{post.excerpt}</p>
+                    <p className="text-slate-500 font-light leading-relaxed line-clamp-3">{post.excerpt}</p>
                   </div>
                 </div>
               </Link>
