@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "vercel-build": "tsc -b && vite build && rm -rf public && mv dist public",
     "lint": "eslint .",
     "preview": "vite preview"
   },
