@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./App.css";
 import Footer from "./component/Footer";
 import Navbar from "./component/Header";
@@ -65,6 +66,7 @@ function AppContent() {
           <WhatsAppChatbot autoOpenDelay={4000} />
         </>
       )}
+      <SpeedInsights />
     </>
   );
 }
