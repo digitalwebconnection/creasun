@@ -185,7 +185,7 @@ export default function AdminLogin() {
             <Sun size={20} color="#fff" strokeWidth={2.5} />
           </div>
           <span style={S.brand}>
-            True<span style={S.brandOrange}>Sun</span>
+            Crea<span style={S.brandOrange}>Sun</span>
           </span>
         </div>
         <p style={S.subtitle}>Admin Panel</p>
