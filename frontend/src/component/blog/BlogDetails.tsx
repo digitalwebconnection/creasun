@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import LeadPopup from "../LeadPopup";
 import { useState, useEffect, useRef } from "react";
 import { Clock, Calendar, ArrowLeft, Loader2, AlertCircle, RefreshCw } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { apiUrl, getImageUrl } from "../../lib/api";
 import { fetchWithRetry } from "../../lib/fetchWithRetry";
 import { cacheGetStale, cacheSet } from "../../lib/dataCache";

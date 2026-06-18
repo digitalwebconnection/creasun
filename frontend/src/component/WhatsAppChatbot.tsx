@@ -154,7 +154,7 @@ export default function WhatsAppChatbot({
       {/* Chat Card (expands when open) */}
       <div
         className={`origin-bottom-right transform transition-all duration-300 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
-        aria-hidden={!open}
+        {...(!open ? { inert: true } : {})}
       >
         <div className="w-80 md:w-96 rounded-2xl shadow-2xl overflow-hidden ring-1 ring-black/5">
           {/* Header */}
