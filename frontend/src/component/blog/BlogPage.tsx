@@ -173,7 +173,7 @@ const BlogPage = () => {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-slate-100 bg-white shadow-sm h-full flex flex-col overflow-hidden animate-pulse"
+                className="rounded-2xl border border-slate-100 bg-white shadow-xl shadow-black h-full flex flex-col overflow-hidden animate-pulse"
               >
                 <div className="h-56 w-full bg-slate-200" />
                 <div className="p-6 flex flex-col grow gap-4">
@@ -209,7 +209,7 @@ const BlogPage = () => {
             <p className="text-xl font-light">No blog posts found yet.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-4 ">
             {blogs.map((post, index) => {
               const staticMatch = staticBlogs.find((sb) => sb.slug === post.slug);
               const displayImage = getImageUrl(post.image || (staticMatch ? staticMatch.image : ''));
@@ -217,7 +217,7 @@ const BlogPage = () => {
                 <Link
                   to={`/blog/${post.slug || post._id}`}
                   key={post._id}
-                  className="group"
+                  className="group shadow-lg shadow-black/60 rounded-xl"
                   onClick={() => {
                     if (!post.isStatic) {
                       try {

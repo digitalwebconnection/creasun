@@ -1,0 +1,14 @@
+<IfModule mod_headers.c>
+    # Override the default Hostinger CSP to allow API connections to the Render backend
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https: data:; connect-src 'self' https://creasun.onrender.com"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    # Rewrite rules to ensure React Router works correctly on refresh (prevents 404s)
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
