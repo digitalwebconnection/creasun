@@ -66,7 +66,7 @@ function AppContent() {
           <WhatsAppChatbot autoOpenDelay={4000} />
         </>
       )}
-      <SpeedInsights />
+      {typeof window !== "undefined" && window.location.hostname.endsWith("vercel.app") && <SpeedInsights />}
     </>
   );
 }
